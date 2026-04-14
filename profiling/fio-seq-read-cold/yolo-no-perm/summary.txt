@@ -1,0 +1,3 @@
+Profile: fio-seq-read-cold / yolofs-no-perm  (wall: 14835 ms)
+
+  (no bpftrace data)

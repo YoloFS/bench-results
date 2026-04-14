@@ -1,0 +1,3 @@
+Profile: meta-readdir-checkpoint / yolofs-no-perm  (wall: 10215 ms)
+
+  (no bpftrace data)

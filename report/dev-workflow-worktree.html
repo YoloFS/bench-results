@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+        <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+        
+</head>
+
+<body>
+    <div>
+        <div id="plotly-html-element" class="plotly-graph-div" style="height:100%; width:100%;"></div>
+
+        <script type="module">
+            const graph_div = document.getElementById("plotly-html-element");
+            await Plotly.newPlot(graph_div, {"data":[{"type":"bar","x":["yolo-realistic","overlayfs"],"y":[10348.0,10622.0],"name":"run","hovertext":["run: 10348 ms\u003cbr\u003eworktree: prune: 2 ms\u003cbr\u003eworktree: add: 10346 ms","run: 10622 ms\u003cbr\u003eworktree: prune: 1 ms\u003cbr\u003eworktree: add: 10621 ms"],"hoverinfo":"text","marker":{"color":"#4D908E"}},{"type":"bar","x":["yolo-realistic","overlayfs"],"y":[1.0,4245.0],"name":"checkpoint","hovertext":["checkpoint: 1 ms\u003cbr\u003echeckpoint: worktree: 1 ms","checkpoint: 4245 ms\u003cbr\u003echeckpoint: worktree: 4245 ms"],"hoverinfo":"text","marker":{"color":"#577590"}},{"type":"scatter","name":"native baseline","showlegend":false,"opacity":0.0,"mode":"lines","x":["yolo-realistic","overlayfs"],"y":[8985.0,8985.0],"hovertext":["native run: 8985.0","native run: 8985.0"],"hoverinfo":"text"}],"layout":{"title":{"text":"Worktree"},"xaxis":{"title":{"text":"backend"}},"yaxis":{"title":{"text":"time (ms)"}},"annotations":[{"text":"native","showarrow":false,"xref":"paper","x":1.0,"yref":"y","y":8985.0,"yshift":-10.0}],"shapes":[{"type":"line","layer":"above","xref":"paper","x0":0.0,"x1":1.0,"yref":"y","y0":8985.0,"y1":8985.0,"line":{"dash":"dot"}}],"barmode":"stack"},"config":{"fillFrame":true,"responsive":true},"frames":null});
+        </script>
+    </div>
+</body>
+
+</html>

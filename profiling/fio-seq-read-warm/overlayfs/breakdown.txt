@@ -1,0 +1,80 @@
+Function breakdown: fio-seq-read-warm / overlayfs
+wall: 13940 ms, 3 iterations
+per-op latency (from results.json): 1.90 µs
+
+run function: 19% of profiled time
+timed operation: 100% of run | warm-up: 0% of run
+
+    incl   self  call tree
+   µs/op  µs/op
+  ------------------------------------------------------------
+    1.90      —  └─ __libc_start_main
+    1.90      —     └─ yolofs_bench::main
+    1.90      —        └─ <yolofs_bench::workloads::fio_seq_read_warm::FioSeqReadWarm as yolofs_bench::workload::Workload>::run
+    1.90   0.02           └─ yolofs_bench::workloads::run_fio
+    1.86   0.01              └─ read
+    1.80   0.02                 ├─ entry_SYSCALL_64_after_hwframe
+    1.77   0.03                 │  └─ do_syscall_64
+    1.69   0.01                 │     ├─ x64_sys_call
+    1.68      —                 │     │  └─ __x64_sys_read
+    1.67   0.01                 │     │     └─ ksys_read
+    1.64   0.03                 │     │        └─ vfs_read
+    1.54   0.05                 │     │           ├─ ovl_read_iter
+    1.33   0.05                 │     │           │  ├─ backing_file_read_iter
+    1.17   0.03                 │     │           │  │  ├─ vfs_iter_read
+    1.01   0.02                 │     │           │  │  │  ├─ do_iter_readv_writev
+    0.98   0.01                 │     │           │  │  │  │  └─ ext4_file_read_iter
+    0.97      —                 │     │           │  │  │  │     └─ generic_file_read_iter
+    0.97   0.10                 │     │           │  │  │  │        └─ filemap_read
+    0.63   0.01                 │     │           │  │  │  │           ├─ copy_page_to_iter
+    0.56   0.56                 │     │           │  │  │  │           │  ├─ rep_movs_alternative
+    0.06   0.06                 │     │           │  │  │  │           │  └─ _copy_to_iter
+    0.23   0.02                 │     │           │  │  │  │           └─ filemap_get_pages
+    0.21   0.15                 │     │           │  │  │  │              ├─ filemap_get_read_batch
+    0.05   0.03                 │     │           │  │  │  │              │  ├─ xas_load
+    0.01   0.01                 │     │           │  │  │  │              │  │  ├─ xas_descend
+    0.01   0.01                 │     │           │  │  │  │              │  │  └─ xas_start
+    0.00      —                 │     │           │  │  │  │              │  ├─ __xas_next
+    0.00      —                 │     │           │  │  │  │              │  └─ xas_descend
+    0.00      —                 │     │           │  │  │  │              ├─ __rcu_read_lock
+    0.00      —                 │     │           │  │  │  │              └─ xas_load
+    0.11   0.03                 │     │           │  │  │  └─ rw_verify_area
+    0.06   0.01                 │     │           │  │  │     ├─ security_file_permission
+    0.05   0.03                 │     │           │  │  │     │  └─ apparmor_file_permission
+    0.01   0.01                 │     │           │  │  │     │     ├─ aa_file_perm
+    0.00      —                 │     │           │  │  │     │     └─ __rcu_read_unlock
+    0.02   0.02                 │     │           │  │  │     ├─ apparmor_file_permission
+    0.01   0.01                 │     │           │  │  │     ├─ __fsnotify_parent
+    0.00      —                 │     │           │  │  │     ├─ srso_return_thunk
+    0.00      —                 │     │           │  │  │     └─ srso_safe_ret
+    0.11   0.03                 │     │           │  │  └─ ovl_file_accessed
+    0.07   0.02                 │     │           │  │     ├─ touch_atime
+    0.05   0.03                 │     │           │  │     │  ├─ atime_needs_update
+    0.02   0.01                 │     │           │  │     │  │  ├─ current_time
+    0.00      —                 │     │           │  │     │  │  │  └─ ktime_get_coarse_real_ts64
+    0.00      —                 │     │           │  │     │  │  ├─ make_vfsgid
+    0.00      —                 │     │           │  │     │  │  └─ make_vfsuid
+    0.00      —                 │     │           │  │     │  ├─ srso_safe_ret
+    0.00      —                 │     │           │  │     │  └─ current_time
+    0.01   0.01                 │     │           │  │     └─ ovl_inode_upper
+    0.09   0.02                 │     │           │  ├─ ovl_real_fdget
+    0.07   0.04                 │     │           │  │  ├─ ovl_real_fdget_meta
+    0.02   0.01                 │     │           │  │  │  ├─ ovl_path_realdata
+    0.01   0.01                 │     │           │  │  │  │  └─ ovl_path_type
+    0.01   0.01                 │     │           │  │  │  ├─ ovl_verify_lowerdata
+    0.00      —                 │     │           │  │  │  ├─ ovl_d_real
+    0.00      —                 │     │           │  │  │  ├─ srso_return_thunk
+    0.00      —                 │     │           │  │  │  └─ ovl_maybe_validate_verity
+    0.01   0.01                 │     │           │  │  ├─ ovl_d_real
+    0.00      —                 │     │           │  │  └─ ovl_path_realdata
+    0.02   0.02                 │     │           │  └─ ovl_file_accessed
+    0.07      —                 │     │           └─ rw_verify_area
+    0.05   0.01                 │     │              ├─ security_file_permission
+    0.04   0.02                 │     │              │  └─ apparmor_file_permission
+    0.02   0.02                 │     │              │     └─ aa_file_perm
+    0.01   0.01                 │     │              ├─ apparmor_file_permission
+    0.00      —                 │     │              └─ srso_return_thunk
+    0.05   0.02                 │     └─ syscall_exit_to_user_mode
+    0.03   0.03                 │        └─ arch_exit_to_user_mode_prepare.isra.0
+    0.00      —                 │           └─ fpregs_assert_state_consistent
+    0.02   0.02                 └─ entry_SYSCALL_64

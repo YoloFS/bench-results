@@ -1,0 +1,60 @@
+Function breakdown: fio-seq-read-warm / yolofs-no-perm
+wall: 13198 ms, 3 iterations
+per-op latency (from results.json): 1.48 µs
+
+run function: 12% of profiled time
+timed operation: 100% of run | warm-up: 0% of run
+
+    incl   self  call tree
+   µs/op  µs/op
+  ------------------------------------------------------------
+    1.48      —  └─ __libc_start_main
+    1.48      —     └─ yolofs_bench::main
+    1.48      —        └─ <yolofs_bench::workloads::fio_seq_read_warm::FioSeqReadWarm as yolofs_bench::workload::Workload>::run
+    1.48      —           └─ yolofs_bench::workloads::run_fio
+    1.45   0.01              ├─ read
+    1.39   0.01              │  ├─ entry_SYSCALL_64_after_hwframe
+    1.37   0.02              │  │  └─ do_syscall_64
+    1.30      —              │  │     ├─ x64_sys_call
+    1.30      —              │  │     │  └─ __x64_sys_read
+    1.30   0.01              │  │     │     └─ ksys_read
+    1.26   0.03              │  │     │        ├─ vfs_read
+    1.10   0.03              │  │     │        │  ├─ yolofs_read_iter
+    1.07   0.02              │  │     │        │  │  └─ ext4_file_read_iter
+    1.05   0.01              │  │     │        │  │     └─ generic_file_read_iter
+    1.04   0.10              │  │     │        │  │        └─ filemap_read
+    0.63   0.02              │  │     │        │  │           ├─ copy_page_to_iter
+    0.55   0.55              │  │     │        │  │           │  ├─ rep_movs_alternative
+    0.05   0.05              │  │     │        │  │           │  └─ _copy_to_iter
+    0.00      —              │  │     │        │  │           │     └─ asm_sysvec_apic_timer_interrupt
+    0.00      —              │  │     │        │  │           │        └─ sysvec_apic_timer_interrupt
+    0.00      —              │  │     │        │  │           │           └─ __sysvec_apic_timer_interrupt
+    0.00      —              │  │     │        │  │           │              └─ hrtimer_interrupt
+    0.00      —              │  │     │        │  │           │                 └─ __hrtimer_run_queues
+    0.00      —              │  │     │        │  │           │                    └─ perf_swevent_hrtimer
+    0.00      —              │  │     │        │  │           │                       └─ __perf_event_overflow
+    0.00      —              │  │     │        │  │           │                          └─ perf_event_output_forward
+    0.25   0.01              │  │     │        │  │           ├─ filemap_get_pages
+    0.23   0.19              │  │     │        │  │           │  ├─ filemap_get_read_batch
+    0.04   0.02              │  │     │        │  │           │  │  └─ xas_load
+    0.02   0.02              │  │     │        │  │           │  │     ├─ xas_descend
+    0.00      —              │  │     │        │  │           │  │     └─ xas_start
+    0.00      —              │  │     │        │  │           │  └─ __rcu_read_lock
+    0.06   0.01              │  │     │        │  │           └─ touch_atime
+    0.04   0.02              │  │     │        │  │              └─ atime_needs_update
+    0.02   0.01              │  │     │        │  │                 ├─ current_time
+    0.01   0.01              │  │     │        │  │                 │  └─ ktime_get_coarse_real_ts64
+    0.01   0.01              │  │     │        │  │                 └─ make_vfsgid
+    0.10   0.02              │  │     │        │  └─ rw_verify_area
+    0.07   0.02              │  │     │        │     ├─ security_file_permission
+    0.05   0.02              │  │     │        │     │  └─ apparmor_file_permission
+    0.02   0.02              │  │     │        │     │     ├─ aa_file_perm
+    0.01   0.01              │  │     │        │     │     ├─ __rcu_read_unlock
+    0.00      —              │  │     │        │     │     └─ __rcu_read_lock
+    0.02   0.02              │  │     │        │     └─ apparmor_file_permission
+    0.02   0.02              │  │     │        └─ yolofs_read_iter
+    0.03   0.01              │  │     └─ syscall_exit_to_user_mode
+    0.01   0.01              │  │        └─ arch_exit_to_user_mode_prepare.isra.0
+    0.02   0.02              │  ├─ entry_SYSCALL_64
+    0.02   0.02              │  └─ srso_safe_ret
+    0.02   0.02              └─ <std::fs::File as std::io::Read>::read_buf

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+        <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+        
+</head>
+
+<body>
+    <div>
+        <div id="plotly-html-element" class="plotly-graph-div" style="height:100%; width:100%;"></div>
+
+        <script type="module">
+            const graph_div = document.getElementById("plotly-html-element");
+            await Plotly.newPlot(graph_div, {"data":[{"type":"bar","x":["yolo-realistic","overlayfs"],"y":[46437.0,56220.0],"name":"run","hovertext":["run: 46437.0 ms","run: 56220.0 ms"],"hoverinfo":"text","marker":{"color":"#1982C4"}},{"type":"bar","x":["yolo-realistic","overlayfs"],"y":[3667.0,2641.0],"name":"commit","hovertext":["commit: 3667.0 ms","commit: 2641.0 ms"],"hoverinfo":"text","marker":{"color":"#8AC926"}},{"type":"scatter","name":"native baseline","showlegend":false,"opacity":0.0,"mode":"lines","x":["yolo-realistic","overlayfs"],"y":[45268.0,45268.0],"hovertext":["native run (init + staging): 45268.0","native run (init + staging): 45268.0"],"hoverinfo":"text"}],"layout":{"title":{"text":"Run vs Commit"},"xaxis":{"title":{"text":"backend"}},"yaxis":{"title":{"text":"time (ms)"}},"annotations":[{"text":"native run","showarrow":false,"xref":"paper","x":1.0,"yref":"y","y":45268.0,"yshift":-10.0}],"shapes":[{"type":"line","layer":"above","xref":"paper","x0":0.0,"x1":1.0,"yref":"y","y0":45268.0,"y1":45268.0,"line":{"dash":"dot"}}],"barmode":"stack"},"config":{"fillFrame":true,"responsive":true},"frames":null});
+        </script>
+    </div>
+</body>
+
+</html>

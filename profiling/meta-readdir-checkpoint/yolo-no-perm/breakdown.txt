@@ -1,0 +1,33 @@
+Function breakdown: meta-readdir-checkpoint / yolofs-no-perm
+wall: 10215 ms, 8 iterations
+per-op latency (from results.json): 7816.42 µs
+
+run function: 2% of profiled time
+timed operation: 100% of run | warm-up: 0% of run
+
+    incl   self  call tree
+   µs/op  µs/op
+  ------------------------------------------------------------
+  7816.42      —  └─ __libc_start_main
+  7816.42      —     └─ yolofs_bench::main
+  7816.42      —        └─ yolofs_bench::workloads::meta_shared::run_meta_readdir
+  7752.02      —           └─ <std::fs::ReadDir as core::iter::traits::iterator::Iterator>::next
+  7752.02      —              └─ <std::sys::fs::unix::ReadDir as core::iter::traits::iterator::Iterator>::next
+  7582.61      —                 ├─ getdents64
+  7582.61      —                 │  └─ entry_SYSCALL_64_after_hwframe
+  7582.61      —                 │     └─ do_syscall_64
+  7582.61      —                 │        └─ x64_sys_call
+  7582.61      —                 │           └─ __x64_sys_getdents64
+  7582.61      —                 │              └─ iterate_dir
+  6835.09  4256.72                 │                 ├─ yolofs_readdir
+  926.33  926.33                 │                 │  ├─ dput
+  677.54  677.54                 │                 │  ├─ lockref_put_return
+  484.50  484.50                 │                 │  ├─ __rcu_read_unlock
+  197.12  197.12                 │                 │  ├─ __rcu_read_lock
+  156.25  44.45                 │                 │  ├─ filldir64
+   56.00  56.00                 │                 │  │  ├─ memchr
+   55.80  55.80                 │                 │  │  └─ srso_safe_ret
+   82.55  82.55                 │                 │  └─ verify_dirent_name
+  533.32  533.32                 │                 ├─ _raw_spin_lock
+  108.78  108.78                 │                 └─ srso_safe_ret
+  111.80  111.80                 └─ readdir64

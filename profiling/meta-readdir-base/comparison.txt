@@ -1,0 +1,124 @@
+Comparison: meta-readdir-base
+======================================================================
+
+  yolofs-no-perm: 6048.67 µs/op
+  overlayfs: 5463.49 µs/op
+
+                                      yolofs-no-pe  overlayfs    delta
+  ------------------------------------------------------------------
+  └─ __libc_start_main                6048.67   5463.49 +585.18
+     └─ yolofs_bench::main              6048.67   5463.49 +585.18
+        └─ yolofs_bench::workloads::meta_shared::run_meta_readdir   6048.67   5463.49 +585.18
+           ├─ <std::fs::ReadDir as core::iter::traits::iterator::Iterator>::next   5498.86   5217.49 +281.37
+           │  └─ <std::sys::fs::unix::ReadDir as core::iter::traits::iterator::Iterator>::next   5217.66   5069.56 +148.10
+           │     ├─ getdents64      4919.81   4817.48 +102.32
+           │     │  └─ entry_SYSCALL_64_after_hwframe   4919.81   4817.48 +102.32
+           │     │     └─ do_syscall_64   4919.81   4817.48 +102.32
+           │     │        └─ x64_sys_call   4919.81   4817.48 +102.32
+           │     │           └─ __x64_sys_getdents64   4919.81   4817.48 +102.32
+           │     │              └─ iterate_dir   4919.81   4817.48 +102.32
+           │     │                 ├─ yolofs_readdir   3033.57   2969.91  +63.66
+           │     │                 │  └─ iterate_dir   3033.57   2969.91  +63.66
+           │     │                 │     └─ ext4_readdir   3033.57   2969.91  +63.66
+           │     │                 │        ├─ ext4_dx_readdir   3033.57   2843.40 +190.17
+           │     │                 │        │  ├─ call_filldir   1517.05    925.12 +591.93
+           │     │                 │        │  │  ├─ yolofs_fill_base   1358.65    851.94 +506.71
+           │     │                 │        │  │  │  ├─ d_lookup    611.71    389.51 +222.20
+           │     │                 │        │  │  │  │  ├─ __d_lookup    517.70    389.51 +128.19
+           │     │                 │        │  │  │  │  └─ __rcu_read_lock     63.17          —  +63.17
+           │     │                 │        │  │  │  ├─ filldir64    322.29    294.40  +27.89
+           │     │                 │        │  │  │  │  ├─           —     57.08  -57.08
+           │     │                 │        │  │  │  │  └─ asm_exc_page_fault     27.66          —  +27.66
+           │     │                 │        │  │  │  │     └─ exc_page_fault     27.66          —  +27.66
+           │     │                 │        │  │  │  │        └─ do_user_addr_fault     27.66          —  +27.66
+           │     │                 │        │  │  │  │           └─ handle_mm_fault     27.66          —  +27.66
+           │     │                 │        │  │  │  │              └─ __handle_mm_fault     27.66          —  +27.66
+           │     │                 │        │  │  │  │                 └─ handle_pte_fault     27.66          —  +27.66
+           │     │                 │        │  │  │  │                    └─ do_anonymous_page     27.66          —  +27.66
+           │     │                 │        │  │  │  │                       └─ __mem_cgroup_charge     27.66          —  +27.66
+           │     │                 │        │  │  │  │                          └─ mem_cgroup_commit_charge     27.66          —  +27.66
+           │     │                 │        │  │  │  ├─           —     50.97  -50.97
+           │     │                 │        │  │  │  └─ asm_exc_page_fault     38.73          —  +38.73
+           │     │                 │        │  │  ├─ srso_safe_ret     59.49     44.40  +15.09
+           │     │                 │        │  │  └─           —     28.78  -28.78
+           │     │                 │        │  ├─ ext4_htree_fill_tree   1165.97   1497.03 -331.06
+           │     │                 │        │  │  ├─ htree_dirblock_to_tree   1060.13   1451.32 -391.19
+           │     │                 │        │  │  │  ├─ ext4fs_dirhash    507.86    574.02  -66.16
+           │     │                 │        │  │  │  │  ├─ __ext4fs_dirhash    392.87    574.02 -181.15
+           │     │                 │        │  │  │  │  │  ├─ half_md4_transform.isra.0     70.42    361.97 -291.55
+           │     │                 │        │  │  │  │  │  └─ str2hashbuf_signed    159.99    182.37  -22.38
+           │     │                 │        │  │  │  │  ├─ half_md4_transform.isra.0     59.70          —  +59.70
+           │     │                 │        │  │  │  │  └─ str2hashbuf_signed     55.29          —  +55.29
+           │     │                 │        │  │  │  ├─ ext4_htree_store_dirent    381.13    457.69  -76.56
+           │     │                 │        │  │  │  │  ├─ __kmalloc    106.91     65.01  +41.90
+           │     │                 │        │  │  │  │  └─           —     26.85  -26.85
+           │     │                 │        │  │  │  ├─           —    164.99 -164.99
+           │     │                 │        │  │  │  └─ rb_insert_color     30.11     49.21  -19.10
+           │     │                 │        │  │  ├─ ext4fs_dirhash     68.97          —  +68.97
+           │     │                 │        │  │  ├─           —     45.71  -45.71
+           │     │                 │        │  │  │  └─           —     45.71  -45.71
+           │     │                 │        │  │  │     └─           —     45.71  -45.71
+           │     │                 │        │  │  │        └─           —     45.71  -45.71
+           │     │                 │        │  │  │           └─           —     45.71  -45.71
+           │     │                 │        │  │  │              └─           —     45.71  -45.71
+           │     │                 │        │  │  └─ srso_safe_ret     36.86          —  +36.86
+           │     │                 │        │  ├─ free_rb_tree_fname    262.21    288.80  -26.59
+           │     │                 │        │  │  ├─ kfree     56.58    225.61 -169.03
+           │     │                 │        │  │  │  └─ __slab_free     56.58     31.47  +25.11
+           │     │                 │        │  │  └─ __slab_free    144.24          — +144.24
+           │     │                 │        │  └─ rb_next_postorder     52.39     56.35   -3.96
+           │     │                 │        ├─           —     67.15  -67.15
+           │     │                 │        └─           —     59.36  -59.36
+           │     │                 └─ shared_ovl_iterate   1886.24   1847.57  +38.67
+           │     │                    └─ wrap_directory_iterator   1886.24   1847.57  +38.67
+           │     │                       └─ ovl_iterate   1886.24   1847.57  +38.67
+           │     │                          └─ ovl_iterate_real   1886.24   1847.57  +38.67
+           │     │                             └─ iterate_dir   1886.24   1847.57  +38.67
+           │     │                                └─ ext4_readdir   1886.24   1847.57  +38.67
+           │     │                                   ├─ ext4_dx_readdir   1886.24   1787.19  +99.05
+           │     │                                   │  ├─ ext4_htree_fill_tree   1200.26   1052.67 +147.59
+           │     │                                   │  │  ├─ htree_dirblock_to_tree   1135.14   1052.67  +82.47
+           │     │                                   │  │  │  ├─ ext4fs_dirhash    494.25    337.95 +156.31
+           │     │                                   │  │  │  │  ├─ __ext4fs_dirhash    434.62    309.14 +125.48
+           │     │                                   │  │  │  │  │  ├─ str2hashbuf_signed    144.46    177.97  -33.51
+           │     │                                   │  │  │  │  │  └─ half_md4_transform.isra.0    173.58     75.23  +98.35
+           │     │                                   │  │  │  │  └─           —     28.81  -28.81
+           │     │                                   │  │  │  ├─ ext4_htree_store_dirent    323.47    377.99  -54.52
+           │     │                                   │  │  │  │  ├─ __kmalloc    147.52    109.83  +37.69
+           │     │                                   │  │  │  │  ├─           —     37.82  -37.82
+           │     │                                   │  │  │  │  └─           —     18.63  -18.63
+           │     │                                   │  │  │  ├─ rb_insert_color    125.21    110.98  +14.23
+           │     │                                   │  │  │  ├─ __kmalloc     68.90     34.64  +34.26
+           │     │                                   │  │  │  ├─ __ext4_check_dir_entry     24.30     68.41  -44.11
+           │     │                                   │  │  │  └─ __ext4_read_dirblock     31.19     19.19  +12.00
+           │     │                                   │  │  │     └─ ext4_bread     31.19     19.19  +12.00
+           │     │                                   │  │  │        └─ ext4_getblk     31.19     19.19  +12.00
+           │     │                                   │  │  │           └─ bdev_getblk     31.19     19.19  +12.00
+           │     │                                   │  │  │              └─ find_get_block_common     31.19     19.19  +12.00
+           │     │                                   │  │  │                 ├─ __find_get_block_slow     31.19          —  +31.19
+           │     │                                   │  │  │                 └─           —     19.19  -19.19
+           │     │                                   │  │  ├─ ext4fs_dirhash     36.38          —  +36.38
+           │     │                                   │  │  └─ dx_probe     28.75          —  +28.75
+           │     │                                   │  │     └─ __ext4_read_dirblock     28.75          —  +28.75
+           │     │                                   │  │        └─ ext4_bread     28.75          —  +28.75
+           │     │                                   │  │           └─ ext4_getblk     28.75          —  +28.75
+           │     │                                   │  │              └─ ext4_map_blocks     28.75          —  +28.75
+           │     │                                   │  ├─ call_filldir    537.56    515.48  +22.08
+           │     │                                   │  │  ├─ ovl_fill_real    382.63    269.61 +113.02
+           │     │                                   │  │  │  ├─ filldir64    316.23    202.10 +114.13
+           │     │                                   │  │  │  │  ├─ memchr     91.57          —  +91.57
+           │     │                                   │  │  │  │  └─           —     23.92  -23.92
+           │     │                                   │  │  │  └─           —     29.60  -29.60
+           │     │                                   │  │  └─ filldir64     59.14     65.24   -6.11
+           │     │                                   │  ├─ free_rb_tree_fname     88.07    143.92  -55.84
+           │     │                                   │  │  └─ kfree     57.86    103.98  -46.12
+           │     │                                   │  │     └─ __slab_free     57.86     72.41  -14.55
+           │     │                                   │  │        └─           —     29.02  -29.02
+           │     │                                   │  └─           —     28.91  -28.91
+           │     │                                   └─           —     60.38  -60.38
+           │     ├─                        —    165.67 -165.67
+           │     ├─ _RNvCs5QKde7ScR4H_7___rustc35___rust_no_alloc_shim_is_unstable_v2    115.31          — +115.31
+           │     └─ alloc::ffi::c_str::<impl alloc::borrow::ToOwned for core::ffi::c_str::CStr>::to_owned     34.84     86.40  -51.56
+           │        └─ malloc         34.84     86.40  -51.56
+           ├─ malloc                   278.01          — +278.01
+           └─                                —     63.12  -63.12

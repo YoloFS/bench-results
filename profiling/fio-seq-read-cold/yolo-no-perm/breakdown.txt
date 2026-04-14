@@ -1,0 +1,1597 @@
+Function breakdown: fio-seq-read-cold / yolofs-no-perm
+wall: 14835 ms, 3 iterations
+per-op latency (from results.json): 8.72 µs
+
+run function: 31% of profiled time
+timed operation: 100% of run | warm-up: 0% of run
+
+    incl   self  call tree
+   µs/op  µs/op
+  ------------------------------------------------------------
+    7.20      —  ├─ __libc_start_main
+    4.61      —  │  ├─ fio_backend
+    4.61      —  │  │  └─ [fio]
+    4.24   0.03  │  │     ├─ [fio]
+    3.99   0.04  │  │     │  ├─ td_io_queue
+    3.94   0.02  │  │     │  │  └─ [fio]
+    3.88   0.02  │  │     │  │     └─ __libc_pread
+    3.81   0.01  │  │     │  │        └─ entry_SYSCALL_64_after_hwframe
+    3.78   0.04  │  │     │  │           └─ do_syscall_64
+    3.69      —  │  │     │  │              ├─ x64_sys_call
+    3.69   0.02  │  │     │  │              │  └─ __x64_sys_pread64
+    3.65   0.05  │  │     │  │              │     └─ vfs_read
+    3.46   0.03  │  │     │  │              │        ├─ yolofs_read_iter
+    3.42   0.02  │  │     │  │              │        │  └─ ext4_file_read_iter
+    3.40      —  │  │     │  │              │        │     └─ generic_file_read_iter
+    3.39   0.08  │  │     │  │              │        │        └─ filemap_read
+    2.79   0.03  │  │     │  │              │        │           ├─ filemap_get_pages
+    2.50      —  │  │     │  │              │        │           │  ├─ page_cache_async_ra
+    2.50      —  │  │     │  │              │        │           │  │  └─ ondemand_readahead
+    2.49      —  │  │     │  │              │        │           │  │     └─ page_cache_ra_order
+    2.48   0.02  │  │     │  │              │        │           │  │        └─ page_cache_ra_unbounded
+    0.94   0.02  │  │     │  │              │        │           │  │           ├─ filemap_alloc_folio
+    0.91   0.01  │  │     │  │              │        │           │  │           │  └─ folio_alloc
+    0.89   0.01  │  │     │  │              │        │           │  │           │     └─ alloc_pages
+    0.87   0.01  │  │     │  │              │        │           │  │           │        ├─ alloc_pages_mpol
+    0.82   0.04  │  │     │  │              │        │           │  │           │        │  ├─ __alloc_pages
+    0.76   0.03  │  │     │  │              │        │           │  │           │        │  │  ├─ get_page_from_freelist
+    0.42   0.42  │  │     │  │              │        │           │  │           │        │  │  │  ├─ clear_page_rep
+    0.26   0.05  │  │     │  │              │        │           │  │           │        │  │  │  ├─ rmqueue
+    0.20   0.02  │  │     │  │              │        │           │  │           │        │  │  │  │  ├─ __rmqueue_pcplist
+    0.18   0.18  │  │     │  │              │        │           │  │           │        │  │  │  │  │  └─ rmqueue_bulk
+    0.01   0.01  │  │     │  │              │        │           │  │           │        │  │  │  │  └─ _raw_spin_unlock
+    0.02   0.02  │  │     │  │              │        │           │  │           │        │  │  │  ├─ post_alloc_hook
+    0.02   0.02  │  │     │  │              │        │           │  │           │        │  │  │  ├─ _raw_spin_trylock
+    0.01   0.01  │  │     │  │              │        │           │  │           │        │  │  │  └─ _raw_spin_unlock
+    0.02   0.02  │  │     │  │              │        │           │  │           │        │  │  └─ __next_zones_zonelist
+    0.01   0.01  │  │     │  │              │        │           │  │           │        │  ├─ policy_nodemask
+    0.01   0.01  │  │     │  │              │        │           │  │           │        │  └─ should_fail_alloc_page
+    0.01   0.01  │  │     │  │              │        │           │  │           │        └─ __alloc_pages
+    0.75   0.02  │  │     │  │              │        │           │  │           ├─ filemap_add_folio
+    0.47   0.08  │  │     │  │              │        │           │  │           │  ├─ __filemap_add_folio
+    0.18   0.03  │  │     │  │              │        │           │  │           │  │  ├─ __mem_cgroup_charge
+    0.07   0.04  │  │     │  │              │        │           │  │           │  │  │  ├─ mem_cgroup_commit_charge
+    0.03   0.02  │  │     │  │              │        │           │  │           │  │  │  │  ├─ __count_memcg_events
+    0.00      —  │  │     │  │              │        │           │  │           │  │  │  │  │  └─ cgroup_rstat_updated
+    0.00      —  │  │     │  │              │        │           │  │           │  │  │  │  └─ memcg_check_events
+    0.00      —  │  │     │  │              │        │           │  │           │  │  │  │     └─ __mem_cgroup_threshold
+    0.05   0.05  │  │     │  │              │        │           │  │           │  │  │  ├─ get_mem_cgroup_from_mm
+    0.02   0.01  │  │     │  │              │        │           │  │           │  │  │  ├─ try_charge_memcg
+    0.00      —  │  │     │  │              │        │           │  │           │  │  │  │  └─ consume_stock
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │  │  ├─ __rcu_read_unlock
+    0.00      —  │  │     │  │              │        │           │  │           │  │  │  └─ srso_safe_ret
+    0.07   0.03  │  │     │  │              │        │           │  │           │  │  ├─ xas_find_conflict
+    0.02   0.02  │  │     │  │              │        │           │  │           │  │  │  ├─ xas_descend
+    0.02   0.02  │  │     │  │              │        │           │  │           │  │  │  └─ xas_start
+    0.05   0.02  │  │     │  │              │        │           │  │           │  │  ├─ xas_store
+    0.02      —  │  │     │  │              │        │           │  │           │  │  │  ├─ xas_create
+    0.02      —  │  │     │  │              │        │           │  │           │  │  │  │  └─ xas_alloc
+    0.02      —  │  │     │  │              │        │           │  │           │  │  │  │     └─ kmem_cache_alloc_lru
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │  │  │        ├─ __memcg_slab_pre_alloc_hook
+    0.00      —  │  │     │  │              │        │           │  │           │  │  │  │        └─ __memcg_slab_post_alloc_hook
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │  │  └─ workingset_update_node
+    0.04   0.02  │  │     │  │              │        │           │  │           │  │  ├─ __lruvec_stat_mod_folio
+    0.02      —  │  │     │  │              │        │           │  │           │  │  │  ├─ __mod_lruvec_state
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │  │  │  ├─ __mod_memcg_lruvec_state
+    0.00      —  │  │     │  │              │        │           │  │           │  │  │  │  └─ __mod_node_page_state
+    0.00      —  │  │     │  │              │        │           │  │           │  │  │  └─ __mod_memcg_lruvec_state
+    0.02   0.02  │  │     │  │              │        │           │  │           │  │  ├─ _raw_spin_lock_irq
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │  ├─ xas_start
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │  ├─ mem_cgroup_commit_charge
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │  ├─ __rcu_read_lock
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │  ├─ xas_descend
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │  └─ __rcu_read_unlock
+    0.22   0.02  │  │     │  │              │        │           │  │           │  ├─ folio_add_lru
+    0.19   0.01  │  │     │  │              │        │           │  │           │  │  ├─ folio_batch_move_lru
+    0.15   0.04  │  │     │  │              │        │           │  │           │  │  │  ├─ lru_add_fn
+    0.10   0.02  │  │     │  │              │        │           │  │           │  │  │  │  ├─ lru_gen_add_folio
+    0.04      —  │  │     │  │              │        │           │  │           │  │  │  │  │  ├─ __mod_lruvec_state
+    0.03   0.02  │  │     │  │              │        │           │  │           │  │  │  │  │  │  ├─ __mod_memcg_lruvec_state
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │  │  │  │  │  │  └─ cgroup_rstat_updated
+    0.00      —  │  │     │  │              │        │           │  │           │  │  │  │  │  │  └─ cgroup_rstat_updated
+    0.03   0.03  │  │     │  │              │        │           │  │           │  │  │  │  │  ├─ __mod_zone_page_state
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │  │  │  │  └─ __mod_memcg_lruvec_state
+    0.00      —  │  │     │  │              │        │           │  │           │  │  │  │  └─ __mod_zone_page_state
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │  │  ├─ __rcu_read_lock
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │  │  ├─ __rcu_read_unlock
+    0.00      —  │  │     │  │              │        │           │  │           │  │  │  ├─ folio_mapping
+    0.00      —  │  │     │  │              │        │           │  │           │  │  │  ├─ lru_gen_add_folio
+    0.00      —  │  │     │  │              │        │           │  │           │  │  │  ├─ release_pages
+    0.00      —  │  │     │  │              │        │           │  │           │  │  │  └─ srso_safe_ret
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │  └─ lru_add_fn
+    0.02   0.02  │  │     │  │              │        │           │  │           │  ├─ srso_safe_ret
+    0.01   0.01  │  │     │  │              │        │           │  │           │  └─ xas_store
+    0.68      —  │  │     │  │              │        │           │  │           ├─ read_pages
+    0.40      —  │  │     │  │              │        │           │  │           │  ├─ blk_finish_plug
+    0.40      —  │  │     │  │              │        │           │  │           │  │  └─ __blk_flush_plug
+    0.40      —  │  │     │  │              │        │           │  │           │  │     └─ blk_mq_flush_plug_list
+    0.40      —  │  │     │  │              │        │           │  │           │  │        └─ blk_mq_flush_plug_list.part.0
+    0.39      —  │  │     │  │              │        │           │  │           │  │           ├─ blk_mq_dispatch_plug_list
+    0.38      —  │  │     │  │              │        │           │  │           │  │           │  └─ blk_mq_run_hw_queue
+    0.38      —  │  │     │  │              │        │           │  │           │  │           │     └─ blk_mq_sched_dispatch_requests
+    0.38      —  │  │     │  │              │        │           │  │           │  │           │        └─ __blk_mq_sched_dispatch_requests
+    0.37      —  │  │     │  │              │        │           │  │           │  │           │           ├─ __blk_mq_do_dispatch_sched
+    0.34      —  │  │     │  │              │        │           │  │           │  │           │           │  ├─ blk_mq_dispatch_rq_list
+    0.34      —  │  │     │  │              │        │           │  │           │  │           │           │  │  └─ scsi_queue_rq
+    0.29      —  │  │     │  │              │        │           │  │           │  │           │           │  │     ├─ scsi_dispatch_cmd
+    0.29      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │  └─ ata_scsi_queuecmd
+    0.27      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     ├─ __ata_scsi_queuecmd
+    0.27      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │  └─ ata_qc_issue
+    0.25      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     ├─ dma_map_sg_attrs
+    0.25      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │  └─ __dma_map_sg_attrs
+    0.25   0.01  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │     └─ iommu_dma_map_sg
+    0.21   0.03  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        ├─ iommu_map_sg
+    0.16   0.03  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        │  ├─ __iommu_map
+    0.10      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        │  │  ├─ amd_iommu_map_pages
+    0.09   0.06  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        │  │  │  ├─ iommu_v1_map_pages
+    0.03   0.03  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        │  │  │  │  ├─ alloc_pte.constprop.0
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        │  │  │  │  ├─ free_unref_page_list
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        │  │  │  │  └─ put_pages_list
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        │  │  │  └─ put_pages_list
+    0.02   0.02  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        │  │  ├─ iommu_v1_map_pages
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        │  │  └─ iommu_pgsize
+    0.02   0.02  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        │  ├─ amd_iommu_map_pages
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        │  └─ amd_iommu_iotlb_sync_map
+    0.02   0.02  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        ├─ __finalise_sg.isra.0
+    0.01      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        ├─ iommu_dma_alloc_iova
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        │  ├─ alloc_iova_fast
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        │  └─ _raw_spin_unlock_irqrestore
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        ├─ srso_safe_ret
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     │        └─ sg_next
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │     └─ ahci_qc_prep
+    0.01      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     ├─ _raw_spin_lock_irqsave
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │           │           │  │     │     │  └─ __raw_spin_lock_irqsave
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     ├─ ata_sg_init
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     └─ asm_sysvec_apic_timer_interrupt
+    0.04   0.01  │  │     │  │              │        │           │  │           │  │           │           │  │     ├─ scsi_prepare_cmd
+    0.03      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │  ├─ sd_init_command
+    0.03      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │  │  └─ sd_setup_read_write_cmnd
+    0.02      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │  │     └─ scsi_alloc_sgtables
+    0.01      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │  │        ├─ __blk_rq_map_sg
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │           │           │  │     │  │        │  ├─ sg_next
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │  │        │  └─ __blk_bios_map_sg
+    0.01      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │  │        └─ sg_alloc_table_chained
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │  │           ├─ __sg_alloc_table
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │  │           │  └─ sg_init_table
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │  │           └─ sg_init_table
+    0.01      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │  └─ scsi_init_command
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │     └─ init_timer_key
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     ├─ blk_mq_start_request
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     │  └─ __rq_qos_issue
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │     └─ ata_scsi_queuecmd
+    0.01      —  │  │     │  │              │        │           │  │           │  │           │           │  ├─ __blk_mq_alloc_driver_tag
+    0.01      —  │  │     │  │              │        │           │  │           │  │           │           │  │  └─ __sbitmap_queue_get
+    0.01      —  │  │     │  │              │        │           │  │           │  │           │           │  │     └─ sbitmap_get
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  │        └─ _find_next_zero_bit
+    0.01      —  │  │     │  │              │        │           │  │           │  │           │           │  ├─ scsi_mq_get_budget
+    0.01      —  │  │     │  │              │        │           │  │           │  │           │           │  │  └─ sbitmap_get
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │           │           │  │     └─ _find_next_zero_bit
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  ├─ __sbitmap_queue_get
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │  └─ dd_dispatch_request
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           │     └─ _raw_spin_unlock
+    0.00      —  │  │     │  │              │        │           │  │           │  │           │           └─ dd_has_work
+    0.01   0.01  │  │     │  │              │        │           │  │           │  │           ├─ dd_insert_requests
+    0.00      —  │  │     │  │              │        │           │  │           │  │           └─ __rcu_read_lock
+    0.28      —  │  │     │  │              │        │           │  │           │  └─ ext4_readahead
+    0.28   0.05  │  │     │  │              │        │           │  │           │     ├─ ext4_mpage_readpages
+    0.07      —  │  │     │  │              │        │           │  │           │     │  ├─ submit_bio
+    0.06      —  │  │     │  │              │        │           │  │           │     │  │  ├─ submit_bio_noacct
+    0.06      —  │  │     │  │              │        │           │  │           │     │  │  │  └─ submit_bio_noacct_nocheck
+    0.06      —  │  │     │  │              │        │           │  │           │     │  │  │     ├─ __submit_bio
+    0.05      —  │  │     │  │              │        │           │  │           │     │  │  │     │  ├─ blk_mq_submit_bio
+    0.02   0.01  │  │     │  │              │        │           │  │           │     │  │  │     │  │  ├─ __blk_mq_alloc_requests
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  │     │  │  │  ├─ blk_mq_get_tag
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  │     │  │  │  │  └─ __blk_mq_get_tag
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  │     │  │  │  └─ blk_mq_rq_ctx_init.isra.0
+    0.01      —  │  │     │  │              │        │           │  │           │     │  │  │     │  │  ├─ __bio_split_to_limits
+    0.01   0.01  │  │     │  │              │        │           │  │           │     │  │  │     │  │  │  └─ bio_split_rw
+    0.01      —  │  │     │  │              │        │           │  │           │     │  │  │     │  │  ├─ __rq_qos_throttle
+    0.01   0.01  │  │     │  │              │        │           │  │           │     │  │  │     │  │  │  └─ wbt_wait
+    0.01      —  │  │     │  │              │        │           │  │           │     │  │  │     │  │  ├─ blk_mq_attempt_bio_merge
+    0.01      —  │  │     │  │              │        │           │  │           │     │  │  │     │  │  │  └─ blk_mq_sched_bio_merge
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  │     │  │  │     └─ dd_bio_merge
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  │     │  │  │        └─ blk_mq_sched_try_merge
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  │     │  │  │           └─ elv_merge
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  │     │  │  └─ blk_account_io_start
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  │     │  │     └─ srso_safe_ret
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  │     │  ├─ blk_mq_attempt_bio_merge
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  │     │  └─ srso_safe_ret
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  │     └─ ktime_get
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  └─ should_fail_bio
+    0.06   0.05  │  │     │  │              │        │           │  │           │     │  ├─ xa_load
+    0.02   0.02  │  │     │  │              │        │           │  │           │     │  │  └─ xas_descend
+    0.06   0.03  │  │     │  │              │        │           │  │           │     │  ├─ bio_add_folio
+    0.02   0.02  │  │     │  │              │        │           │  │           │     │  │  ├─ __bio_add_page
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  ├─ bvec_try_merge_page
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  └─ asm_sysvec_apic_timer_interrupt
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │     └─ sysvec_apic_timer_interrupt
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │        └─ __sysvec_apic_timer_interrupt
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │           └─ hrtimer_interrupt
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │              └─ __hrtimer_run_queues
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │                 └─ tick_nohz_highres_handler
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │                    └─ tick_sched_do_timer
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │                       └─ tick_do_update_jiffies64
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │                          └─ update_wall_time
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │                             └─ timekeeping_advance
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │                                └─ _raw_spin_lock_irqsave
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │                                   └─ __raw_spin_lock_irqsave
+    0.01   0.01  │  │     │  │              │        │           │  │           │     │  ├─ fscrypt_mergeable_bio
+    0.01      —  │  │     │  │              │        │           │  │           │     │  ├─ bio_alloc_bioset
+    0.01      —  │  │     │  │              │        │           │  │           │     │  │  ├─ bvec_alloc
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  │  ├─ memset_orig
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  │  └─ kmem_cache_alloc
+    0.00      —  │  │     │  │              │        │           │  │           │     │  │  └─ bio_associate_blkg
+    0.01   0.01  │  │     │  │              │        │           │  │           │     │  ├─ __rcu_read_lock
+    0.00      —  │  │     │  │              │        │           │  │           │     │  ├─ __rcu_read_unlock
+    0.00      —  │  │     │  │              │        │           │  │           │     │  ├─ __bio_add_page
+    0.00      —  │  │     │  │              │        │           │  │           │     │  └─ ext4_map_blocks
+    0.00      —  │  │     │  │              │        │           │  │           │     └─ fscrypt_mergeable_bio
+    0.06   0.04  │  │     │  │              │        │           │  │           └─ xa_load
+    0.01   0.01  │  │     │  │              │        │           │  │              └─ xas_descend
+    0.12   0.06  │  │     │  │              │        │           │  ├─ filemap_get_read_batch
+    0.05   0.02  │  │     │  │              │        │           │  │  ├─ xas_load
+    0.02   0.02  │  │     │  │              │        │           │  │  │  ├─ xas_descend
+    0.01   0.01  │  │     │  │              │        │           │  │  │  └─ xas_start
+    0.00      —  │  │     │  │              │        │           │  │  ├─ xas_descend
+    0.00      —  │  │     │  │              │        │           │  │  └─ xas_start
+    0.12      —  │  │     │  │              │        │           │  └─ filemap_update_page
+    0.11   0.01  │  │     │  │              │        │           │     ├─ folio_wait_bit_common
+    0.10      —  │  │     │  │              │        │           │     │  ├─ io_schedule
+    0.10      —  │  │     │  │              │        │           │     │  │  └─ schedule
+    0.10      —  │  │     │  │              │        │           │     │  │     └─ __schedule
+    0.06      —  │  │     │  │              │        │           │     │  │        ├─ dequeue_task
+    0.06      —  │  │     │  │              │        │           │     │  │        │  └─ dequeue_task_fair
+    0.04      —  │  │     │  │              │        │           │     │  │        │     ├─ dequeue_entity
+    0.03      —  │  │     │  │              │        │           │     │  │        │     │  ├─ update_curr
+    0.02   0.02  │  │     │  │              │        │           │     │  │        │     │  │  └─ cpuacct_charge
+    0.00      —  │  │     │  │              │        │           │     │  │        │     │  ├─ update_cfs_group
+    0.00      —  │  │     │  │              │        │           │     │  │        │     │  │  └─ reweight_entity
+    0.00      —  │  │     │  │              │        │           │     │  │        │     │  ├─ srso_safe_ret
+    0.00      —  │  │     │  │              │        │           │     │  │        │     │  ├─ __calc_delta.constprop.0
+    0.00      —  │  │     │  │              │        │           │     │  │        │     │  └─ update_load_avg
+    0.00      —  │  │     │  │              │        │           │     │  │        │     │     └─ __update_load_avg_se
+    0.01   0.01  │  │     │  │              │        │           │     │  │        │     └─ update_cfs_group
+    0.02      —  │  │     │  │              │        │           │     │  │        ├─ pick_next_task
+    0.01      —  │  │     │  │              │        │           │     │  │        │  ├─ put_prev_task_fair
+    0.01   0.01  │  │     │  │              │        │           │     │  │        │  │  └─ put_prev_entity
+    0.00      —  │  │     │  │              │        │           │     │  │        │  ├─ pick_next_task_fair
+    0.00      —  │  │     │  │              │        │           │     │  │        │  ├─ pick_next_task_idle
+    0.00      —  │  │     │  │              │        │           │     │  │        │  │  └─ __rcu_read_lock
+    0.00      —  │  │     │  │              │        │           │     │  │        │  └─ put_prev_entity
+    0.01      —  │  │     │  │              │        │           │     │  │        ├─ psi_task_switch
+    0.01   0.01  │  │     │  │              │        │           │     │  │        │  ├─ psi_group_change
+    0.00      —  │  │     │  │              │        │           │     │  │        │  └─ sched_clock_cpu
+    0.00      —  │  │     │  │              │        │           │     │  │        │     └─ sched_clock
+    0.00      —  │  │     │  │              │        │           │     │  │        │        └─ sched_clock_noinstr
+    0.00      —  │  │     │  │              │        │           │     │  │        │           └─ native_sched_clock
+    0.00      —  │  │     │  │              │        │           │     │  │        └─ finish_task_switch.isra.0
+    0.00      —  │  │     │  │              │        │           │     │  └─ schedule
+    0.00      —  │  │     │  │              │        │           │     ├─ down_read
+    0.00      —  │  │     │  │              │        │           │     └─ srso_safe_ret
+    0.45   0.01  │  │     │  │              │        │           ├─ copy_page_to_iter
+    0.42   0.42  │  │     │  │              │        │           │  ├─ rep_movs_alternative
+    0.02   0.02  │  │     │  │              │        │           │  └─ _copy_to_iter
+    0.06      —  │  │     │  │              │        │           └─ touch_atime
+    0.05   0.04  │  │     │  │              │        │              ├─ atime_needs_update
+    0.01   0.01  │  │     │  │              │        │              │  ├─ current_time
+    0.00      —  │  │     │  │              │        │              │  └─ make_vfsgid
+    0.00      —  │  │     │  │              │        │              ├─ srso_safe_ret
+    0.00      —  │  │     │  │              │        │              └─ generic_update_time
+    0.00      —  │  │     │  │              │        │                 └─ __mark_inode_dirty
+    0.12   0.02  │  │     │  │              │        └─ rw_verify_area
+    0.05      —  │  │     │  │              │           ├─ security_file_permission
+    0.05   0.03  │  │     │  │              │           │  └─ apparmor_file_permission
+    0.01   0.01  │  │     │  │              │           │     ├─ aa_file_perm
+    0.00      —  │  │     │  │              │           │     ├─ __rcu_read_lock
+    0.00      —  │  │     │  │              │           │     └─ __rcu_read_unlock
+    0.04   0.04  │  │     │  │              │           ├─ apparmor_file_permission
+    0.00      —  │  │     │  │              │           └─ srso_safe_ret
+    0.04   0.01  │  │     │  │              └─ syscall_exit_to_user_mode
+    0.01   0.01  │  │     │  │                 ├─ arch_exit_to_user_mode_prepare.isra.0
+    0.01      —  │  │     │  │                 ├─ __rseq_handle_notify_resume
+    0.00      —  │  │     │  │                 │  ├─ rseq_ip_fixup
+    0.00      —  │  │     │  │                 │  ├─ __put_user_8
+    0.00      —  │  │     │  │                 │  └─ rseq_update_cpu_node_id
+    0.00      —  │  │     │  │                 ├─ fpregs_assert_state_consistent
+    0.00      —  │  │     │  │                 └─ _raw_spin_unlock_irq
+    0.11      —  │  │     │  ├─ io_queue_event
+    0.11   0.01  │  │     │  │  └─ io_u_sync_complete
+    0.08   0.01  │  │     │  │     ├─ [fio]
+    0.05   0.02  │  │     │  │     │  ├─ [fio]
+    0.02   0.02  │  │     │  │     │  │  ├─ add_lat_sample
+    0.01      —  │  │     │  │     │  │  ├─ clock_gettime
+    0.01   0.01  │  │     │  │     │  │  │  └─ [[vdso]]
+    0.01   0.01  │  │     │  │     │  │  └─ add_clat_sample
+    0.02   0.02  │  │     │  │     │  └─ clock_gettime
+    0.02   0.01  │  │     │  │     └─ put_io_u
+    0.00      —  │  │     │  │        ├─ put_file_log
+    0.00      —  │  │     │  │        │  └─ put_file
+    0.00      —  │  │     │  │        └─ put_file
+    0.05   0.02  │  │     │  └─ get_io_u
+    0.02      —  │  │     │     ├─ [fio]
+    0.02      —  │  │     │     │  └─ clock_gettime
+    0.02   0.02  │  │     │     │     └─ [[vdso]]
+    0.00      —  │  │     │     └─ asm_sysvec_apic_timer_interrupt
+    0.00      —  │  │     │        └─ sysvec_apic_timer_interrupt
+    0.00      —  │  │     │           └─ __sysvec_apic_timer_interrupt
+    0.00      —  │  │     │              └─ hrtimer_interrupt
+    0.00      —  │  │     │                 └─ __hrtimer_run_queues
+    0.00      —  │  │     │                    └─ tick_nohz_highres_handler
+    0.00      —  │  │     │                       └─ tick_sched_handle
+    0.00      —  │  │     │                          └─ update_process_times
+    0.00      —  │  │     │                             └─ scheduler_tick
+    0.00      —  │  │     │                                └─ task_tick_fair
+    0.00      —  │  │     │                                   └─ update_load_avg
+    0.33      —  │  │     └─ init_disk_util
+    0.33      —  │  │        └─ [fio]
+    0.33      —  │  │           └─ [fio]
+    0.27      —  │  │              ├─ [fio]
+    0.13      —  │  │              │  ├─ [fio]
+    0.07      —  │  │              │  │  ├─ [fio]
+    0.06      —  │  │              │  │  │  ├─ [fio]
+    0.05      —  │  │              │  │  │  │  ├─ opendir
+    0.05      —  │  │              │  │  │  │  │  └─ __open64_nocancel
+    0.05      —  │  │              │  │  │  │  │     └─ entry_SYSCALL_64_after_hwframe
+    0.05      —  │  │              │  │  │  │  │        └─ do_syscall_64
+    0.05      —  │  │              │  │  │  │  │           └─ x64_sys_call
+    0.05      —  │  │              │  │  │  │  │              └─ __x64_sys_openat
+    0.05      —  │  │              │  │  │  │  │                 └─ do_sys_openat2
+    0.05      —  │  │              │  │  │  │  │                    └─ do_filp_open
+    0.05      —  │  │              │  │  │  │  │                       └─ path_openat
+    0.03   0.01  │  │              │  │  │  │  │                          ├─ link_path_walk.part.0.constprop.0
+    0.01      —  │  │              │  │  │  │  │                          │  ├─ walk_component
+    0.01      —  │  │              │  │  │  │  │                          │  │  ├─ lookup_fast
+    0.01   0.01  │  │              │  │  │  │  │                          │  │  │  └─ __d_lookup
+    0.01      —  │  │              │  │  │  │  │                          │  │  └─ step_into
+    0.01      —  │  │              │  │  │  │  │                          │  │     └─ pick_link
+    0.01   0.01  │  │              │  │  │  │  │                          │  │        └─ kernfs_iop_get_link
+    0.01      —  │  │              │  │  │  │  │                          │  └─ inode_permission
+    0.01      —  │  │              │  │  │  │  │                          │     └─ kernfs_iop_permission
+    0.01   0.01  │  │              │  │  │  │  │                          │        └─ generic_permission
+    0.01      —  │  │              │  │  │  │  │                          ├─ do_open
+    0.01      —  │  │              │  │  │  │  │                          │  ├─ may_open
+    0.01      —  │  │              │  │  │  │  │                          │  │  └─ inode_permission
+    0.01   0.01  │  │              │  │  │  │  │                          │  │     └─ kernfs_iop_permission
+    0.01      —  │  │              │  │  │  │  │                          │  └─ vfs_open
+    0.01   0.01  │  │              │  │  │  │  │                          │     └─ do_dentry_open
+    0.01      —  │  │              │  │  │  │  │                          └─ open_last_lookups
+    0.01      —  │  │              │  │  │  │  │                             └─ step_into
+    0.01   0.01  │  │              │  │  │  │  │                                └─ dput
+    0.01      —  │  │              │  │  │  │  ├─ getdents64
+    0.01      —  │  │              │  │  │  │  │  └─ entry_SYSCALL_64_after_hwframe
+    0.01      —  │  │              │  │  │  │  │     └─ do_syscall_64
+    0.01      —  │  │              │  │  │  │  │        └─ x64_sys_call
+    0.01   0.01  │  │              │  │  │  │  │           └─ srso_safe_ret
+    0.01      —  │  │              │  │  │  │  └─ __fstat64
+    0.01      —  │  │              │  │  │  │     └─ entry_SYSCALL_64_after_hwframe
+    0.01      —  │  │              │  │  │  │        └─ do_syscall_64
+    0.01      —  │  │              │  │  │  │           └─ x64_sys_call
+    0.01      —  │  │              │  │  │  │              └─ __x64_sys_newfstat
+    0.01      —  │  │              │  │  │  │                 └─ __do_sys_newfstat
+    0.01      —  │  │              │  │  │  │                    └─ vfs_fstat
+    0.01   0.01  │  │              │  │  │  │                       └─ security_inode_getattr
+    0.01      —  │  │              │  │  │  ├─ fopen
+    0.01      —  │  │              │  │  │  │  └─ _IO_file_fopen
+    0.01      —  │  │              │  │  │  │     └─ _IO_file_open
+    0.01      —  │  │              │  │  │  │        └─ open64
+    0.01      —  │  │              │  │  │  │           └─ entry_SYSCALL_64_after_hwframe
+    0.01      —  │  │              │  │  │  │              └─ do_syscall_64
+    0.01      —  │  │              │  │  │  │                 └─ x64_sys_call
+    0.01      —  │  │              │  │  │  │                    └─ __x64_sys_openat
+    0.01      —  │  │              │  │  │  │                       └─ do_sys_openat2
+    0.01      —  │  │              │  │  │  │                          └─ do_filp_open
+    0.01      —  │  │              │  │  │  │                             └─ path_openat
+    0.01      —  │  │              │  │  │  │                                └─ link_path_walk.part.0.constprop.0
+    0.01      —  │  │              │  │  │  │                                   └─ inode_permission
+    0.01      —  │  │              │  │  │  │                                      └─ kernfs_iop_permission
+    0.01   0.01  │  │              │  │  │  │                                         └─ down_read
+    0.01      —  │  │              │  │  │  └─ opendir
+    0.01      —  │  │              │  │  │     └─ __open64_nocancel
+    0.01      —  │  │              │  │  │        └─ entry_SYSCALL_64_after_hwframe
+    0.01      —  │  │              │  │  │           └─ do_syscall_64
+    0.01      —  │  │              │  │  │              └─ x64_sys_call
+    0.01      —  │  │              │  │  │                 └─ __x64_sys_openat
+    0.01      —  │  │              │  │  │                    └─ do_sys_openat2
+    0.01      —  │  │              │  │  │                       └─ do_filp_open
+    0.01      —  │  │              │  │  │                          └─ path_openat
+    0.01      —  │  │              │  │  │                             └─ link_path_walk.part.0.constprop.0
+    0.01      —  │  │              │  │  │                                └─ walk_component
+    0.01      —  │  │              │  │  │                                   └─ step_into
+    0.01      —  │  │              │  │  │                                      └─ pick_link
+    0.01      —  │  │              │  │  │                                         └─ kernfs_iop_get_link
+    0.01   0.01  │  │              │  │  │                                            └─ strlen
+    0.05      —  │  │              │  │  ├─ fstatat64
+    0.05      —  │  │              │  │  │  └─ entry_SYSCALL_64_after_hwframe
+    0.05      —  │  │              │  │  │     └─ do_syscall_64
+    0.05      —  │  │              │  │  │        └─ x64_sys_call
+    0.05      —  │  │              │  │  │           └─ __x64_sys_newfstatat
+    0.05      —  │  │              │  │  │              └─ __do_sys_newfstatat
+    0.05      —  │  │              │  │  │                 └─ vfs_fstatat
+    0.05      —  │  │              │  │  │                    └─ vfs_statx
+    0.05      —  │  │              │  │  │                       └─ filename_lookup
+    0.05      —  │  │              │  │  │                          └─ path_lookupat
+    0.02   0.01  │  │              │  │  │                             ├─ link_path_walk.part.0.constprop.0
+    0.01   0.01  │  │              │  │  │                             │  ├─ mntput
+    0.01      —  │  │              │  │  │                             │  └─ inode_permission
+    0.01   0.01  │  │              │  │  │                             │     └─ kernfs_iop_permission
+    0.01      —  │  │              │  │  │                             ├─ walk_component
+    0.01      —  │  │              │  │  │                             │  └─ __lookup_slow
+    0.01      —  │  │              │  │  │                             │     └─ kernfs_iop_lookup
+    0.01   0.01  │  │              │  │  │                             │        ├─ _raw_spin_lock
+    0.01      —  │  │              │  │  │                             │        └─ kernfs_get_inode
+    0.01      —  │  │              │  │  │                             │           └─ iget_locked
+    0.01      —  │  │              │  │  │                             │              └─ alloc_inode
+    0.01      —  │  │              │  │  │                             │                 └─ kmem_cache_alloc_lru
+    0.01      —  │  │              │  │  │                             │                    └─ __memcg_slab_pre_alloc_hook
+    0.01      —  │  │              │  │  │                             │                       └─ obj_cgroup_charge
+    0.01   0.01  │  │              │  │  │                             │                          └─ consume_obj_stock
+    0.01      —  │  │              │  │  │                             ├─ terminate_walk
+    0.01      —  │  │              │  │  │                             │  └─ mntput
+    0.01   0.01  │  │              │  │  │                             │     └─ mntput_no_expire
+    0.01   0.01  │  │              │  │  │                             └─ srso_safe_ret
+    0.01      —  │  │              │  │  ├─ opendir
+    0.01      —  │  │              │  │  │  └─ __open64_nocancel
+    0.01      —  │  │              │  │  │     └─ entry_SYSCALL_64_after_hwframe
+    0.01      —  │  │              │  │  │        └─ do_syscall_64
+    0.01      —  │  │              │  │  │           └─ x64_sys_call
+    0.01      —  │  │              │  │  │              └─ __x64_sys_openat
+    0.01      —  │  │              │  │  │                 └─ do_sys_openat2
+    0.01      —  │  │              │  │  │                    └─ do_filp_open
+    0.01      —  │  │              │  │  │                       └─ path_openat
+    0.01      —  │  │              │  │  │                          └─ open_last_lookups
+    0.01   0.01  │  │              │  │  │                             └─ kernfs_dop_revalidate
+    0.01      —  │  │              │  │  ├─ __fstat64
+    0.01      —  │  │              │  │  │  └─ entry_SYSCALL_64_after_hwframe
+    0.01      —  │  │              │  │  │     └─ do_syscall_64
+    0.01      —  │  │              │  │  │        └─ x64_sys_call
+    0.01      —  │  │              │  │  │           └─ __x64_sys_newfstat
+    0.01      —  │  │              │  │  │              └─ __do_sys_newfstat
+    0.01   0.01  │  │              │  │  │                 └─ vfs_fstat
+    0.01      —  │  │              │  │  └─ fopen
+    0.01      —  │  │              │  │     └─ _IO_file_fopen
+    0.01      —  │  │              │  │        └─ _IO_file_open
+    0.01      —  │  │              │  │           └─ open64
+    0.01      —  │  │              │  │              └─ entry_SYSCALL_64_after_hwframe
+    0.01      —  │  │              │  │                 └─ do_syscall_64
+    0.01      —  │  │              │  │                    └─ x64_sys_call
+    0.01      —  │  │              │  │                       └─ __x64_sys_openat
+    0.01      —  │  │              │  │                          └─ do_sys_openat2
+    0.01      —  │  │              │  │                             └─ do_filp_open
+    0.01      —  │  │              │  │                                └─ path_openat
+    0.01   0.01  │  │              │  │                                   └─ link_path_walk.part.0.constprop.0
+    0.13      —  │  │              │  └─ fstatat64
+    0.13      —  │  │              │     └─ entry_SYSCALL_64_after_hwframe
+    0.13      —  │  │              │        └─ do_syscall_64
+    0.13      —  │  │              │           └─ x64_sys_call
+    0.13      —  │  │              │              └─ __x64_sys_newfstatat
+    0.13      —  │  │              │                 └─ __do_sys_newfstatat
+    0.13      —  │  │              │                    ├─ vfs_fstatat
+    0.13      —  │  │              │                    │  └─ vfs_statx
+    0.12      —  │  │              │                    │     ├─ filename_lookup
+    0.12      —  │  │              │                    │     │  └─ path_lookupat
+    0.08   0.01  │  │              │                    │     │     ├─ link_path_walk.part.0.constprop.0
+    0.06      —  │  │              │                    │     │     │  ├─ walk_component
+    0.03      —  │  │              │                    │     │     │  │  ├─ step_into
+    0.02   0.01  │  │              │                    │     │     │  │  │  ├─ pick_link
+    0.01      —  │  │              │                    │     │     │  │  │  │  ├─ kernfs_iop_get_link
+    0.01   0.01  │  │              │                    │     │     │  │  │  │  │  └─ memset_orig
+    0.01      —  │  │              │                    │     │     │  │  │  │  └─ touch_atime
+    0.01   0.01  │  │              │                    │     │     │  │  │  │     └─ atime_needs_update
+    0.01   0.01  │  │              │                    │     │     │  │  │  ├─ lockref_put_return
+    0.01   0.01  │  │              │                    │     │     │  │  │  └─ __rcu_read_lock
+    0.02   0.01  │  │              │                    │     │     │  │  ├─ lookup_fast
+    0.01   0.01  │  │              │                    │     │     │  │  │  ├─ __rcu_read_lock
+    0.01   0.01  │  │              │                    │     │     │  │  │  └─ kernfs_dop_revalidate
+    0.01      —  │  │              │                    │     │     │  │  └─ mntput
+    0.01   0.01  │  │              │                    │     │     │  │     └─ mntput_no_expire
+    0.01      —  │  │              │                    │     │     │  └─ inode_permission
+    0.01   0.01  │  │              │                    │     │     │     ├─ kernfs_refresh_inode
+    0.01      —  │  │              │                    │     │     │     └─ kernfs_iop_permission
+    0.01   0.01  │  │              │                    │     │     │        └─ generic_permission
+    0.05      —  │  │              │                    │     │     └─ walk_component
+    0.04      —  │  │              │                    │     │        ├─ __lookup_slow
+    0.02      —  │  │              │                    │     │        │  ├─ d_alloc_parallel
+    0.02      —  │  │              │                    │     │        │  │  └─ __d_alloc
+    0.02      —  │  │              │                    │     │        │  │     └─ kmem_cache_alloc_lru
+    0.02   0.01  │  │              │                    │     │        │  │        └─ __memcg_slab_pre_alloc_hook
+    0.01      —  │  │              │                    │     │        │  │           └─ memcg_list_lru_alloc
+    0.01   0.01  │  │              │                    │     │        │  │              └─ xa_load
+    0.02      —  │  │              │                    │     │        │  ├─ kernfs_iop_lookup
+    0.02      —  │  │              │                    │     │        │  │  └─ kernfs_get_inode
+    0.01      —  │  │              │                    │     │        │  │     ├─ iget_locked
+    0.01      —  │  │              │                    │     │        │  │     │  ├─ alloc_inode
+    0.01      —  │  │              │                    │     │        │  │     │  │  └─ kmem_cache_alloc_lru
+    0.01   0.01  │  │              │                    │     │        │  │     │  │     └─ __rcu_read_unlock
+    0.01   0.01  │  │              │                    │     │        │  │     │  └─ find_inode_fast
+    0.01   0.01  │  │              │                    │     │        │  │     └─ unlock_new_inode
+    0.01   0.01  │  │              │                    │     │        │  └─ d_splice_alias
+    0.01      —  │  │              │                    │     │        └─ step_into
+    0.01   0.01  │  │              │                    │     │           └─ __rcu_read_unlock
+    0.01      —  │  │              │                    │     └─ path_put
+    0.01      —  │  │              │                    │        └─ dput
+    0.01      —  │  │              │                    │           └─ d_lru_add
+    0.01      —  │  │              │                    │              └─ list_lru_add_obj
+    0.01      —  │  │              │                    │                 └─ list_lru_add
+    0.01   0.01  │  │              │                    │                    └─ xa_load
+    0.01      —  │  │              │                    └─ cp_new_stat
+    0.01   0.01  │  │              │                       └─ rep_movs_alternative
+    0.07      —  │  │              └─ fstatat64
+    0.07      —  │  │                 └─ entry_SYSCALL_64_after_hwframe
+    0.07      —  │  │                    └─ do_syscall_64
+    0.07      —  │  │                       └─ x64_sys_call
+    0.07      —  │  │                          └─ __x64_sys_newfstatat
+    0.07      —  │  │                             └─ __do_sys_newfstatat
+    0.06      —  │  │                                ├─ vfs_fstatat
+    0.06      —  │  │                                │  └─ vfs_statx
+    0.05      —  │  │                                │     ├─ filename_lookup
+    0.05      —  │  │                                │     │  └─ path_lookupat
+    0.04      —  │  │                                │     │     ├─ link_path_walk.part.0.constprop.0
+    0.04   0.01  │  │                                │     │     │  ├─ walk_component
+    0.01      —  │  │                                │     │     │  │  ├─ lookup_fast
+    0.01   0.01  │  │                                │     │     │  │  │  ├─ __d_lookup
+    0.01   0.01  │  │                                │     │     │  │  │  └─ strcmp
+    0.01      —  │  │                                │     │     │  │  ├─ step_into
+    0.01      —  │  │                                │     │     │  │  │  └─ pick_link
+    0.01      —  │  │                                │     │     │  │  │     └─ kernfs_iop_get_link
+    0.01   0.01  │  │                                │     │     │  │  │        └─ strlen
+    0.01      —  │  │                                │     │     │  │  ├─ mntput
+    0.01   0.01  │  │                                │     │     │  │  │  └─ __rcu_read_unlock
+    0.01   0.01  │  │                                │     │     │  │  └─ kernfs_dop_revalidate
+    0.01   0.01  │  │                                │     │     │  └─ kernfs_iop_permission
+    0.01      —  │  │                                │     │     └─ walk_component
+    0.01      —  │  │                                │     │        └─ __lookup_slow
+    0.01      —  │  │                                │     │           └─ kernfs_iop_lookup
+    0.01      —  │  │                                │     │              └─ kernfs_get_inode
+    0.01      —  │  │                                │     │                 └─ iget_locked
+    0.01      —  │  │                                │     │                    ├─ alloc_inode
+    0.01      —  │  │                                │     │                    │  └─ kmem_cache_alloc_lru
+    0.01   0.01  │  │                                │     │                    │     └─ __rcu_read_unlock
+    0.01   0.01  │  │                                │     │                    └─ find_inode_fast
+    0.01      —  │  │                                │     └─ path_put
+    0.01   0.01  │  │                                │        └─ dput
+    0.01   0.01  │  │                                └─ cp_new_stat
+    2.45      —  │  └─ fio_time_init
+    2.45      —  │     └─ [fio]
+    1.27      —  │        ├─ fio_monotonic_clocktest
+    1.18      —  │        │  ├─ [fio]
+    1.16   0.33  │        │  │  ├─ [fio]
+    0.81   0.01  │        │  │  │  ├─ clock_gettime
+    0.81   0.80  │        │  │  │  │  └─ [[vdso]]
+    0.01   0.01  │        │  │  │  └─ [[vdso]]
+    0.02   0.02  │        │  │  └─ clock_gettime@plt
+    0.06   0.04  │        │  ├─ qsort_r
+    0.02   0.02  │        │  │  ├─ [fio]
+    0.01      —  │        │  │  └─ asm_exc_page_fault
+    0.01      —  │        │  │     └─ exc_page_fault
+    0.01      —  │        │  │        └─ do_user_addr_fault
+    0.01      —  │        │  │           └─ handle_mm_fault
+    0.01   0.01  │        │  │              └─ __handle_mm_fault
+    0.02      —  │        │  └─ pthread_create
+    0.02      —  │        │     ├─ asm_exc_page_fault
+    0.02      —  │        │     │  └─ exc_page_fault
+    0.02      —  │        │     │     └─ do_user_addr_fault
+    0.01      —  │        │     │        ├─ handle_mm_fault
+    0.01      —  │        │     │        │  └─ __handle_mm_fault
+    0.01      —  │        │     │        │     └─ handle_pte_fault
+    0.01      —  │        │     │        │        └─ do_anonymous_page
+    0.01      —  │        │     │        │           ├─ alloc_anon_folio
+    0.01      —  │        │     │        │           │  └─ vma_alloc_folio
+    0.01      —  │        │     │        │           │     └─ alloc_pages_mpol
+    0.01      —  │        │     │        │           │        └─ __alloc_pages
+    0.01      —  │        │     │        │           │           └─ get_page_from_freelist
+    0.01      —  │        │     │        │           │              └─ rmqueue
+    0.01      —  │        │     │        │           │                 └─ __rmqueue_pcplist
+    0.01   0.01  │        │     │        │           │                    └─ rmqueue_bulk
+    0.01      —  │        │     │        │           └─ __mem_cgroup_charge
+    0.01   0.01  │        │     │        │              └─ mem_cgroup_commit_charge
+    0.01      —  │        │     │        └─ lock_vma_under_rcu
+    0.01   0.01  │        │     │           └─ mas_walk
+    0.01      —  │        │     └─ __mmap
+    0.01      —  │        │        └─ entry_SYSCALL_64_after_hwframe
+    0.01      —  │        │           └─ do_syscall_64
+    0.01      —  │        │              └─ x64_sys_call
+    0.01      —  │        │                 └─ __x64_sys_mmap
+    0.01      —  │        │                    └─ ksys_mmap_pgoff
+    0.01      —  │        │                       └─ vm_mmap_pgoff
+    0.01      —  │        │                          └─ do_mmap
+    0.01   0.01  │        │                             └─ mmap_region
+    1.15   0.36  │        └─ [fio]
+    0.79   0.02  │           └─ clock_gettime
+    0.77   0.77  │              └─ [[vdso]]
+    1.01   0.99  ├─ [fio]
+    0.01      —  │  └─ asm_sysvec_apic_timer_interrupt
+    0.01      —  │     └─ sysvec_apic_timer_interrupt
+    0.01      —  │        ├─ __sysvec_apic_timer_interrupt
+    0.01      —  │        │  └─ hrtimer_interrupt
+    0.01      —  │        │     ├─ __hrtimer_run_queues
+    0.01      —  │        │     │  └─ tick_nohz_highres_handler
+    0.01      —  │        │     │     └─ tick_sched_handle
+    0.01      —  │        │     │        └─ update_process_times
+    0.01      —  │        │     │           └─ scheduler_tick
+    0.00      —  │        │     │              ├─ task_tick_fair
+    0.00      —  │        │     │              │  └─ update_load_avg
+    0.00      —  │        │     │              │     └─ sched_clock_cpu
+    0.00      —  │        │     │              │        └─ sched_clock
+    0.00      —  │        │     │              └─ perf_event_task_tick
+    0.00      —  │        │     │                 └─ perf_adjust_freq_unthr_context
+    0.00      —  │        │     │                    └─ x86_pmu_enable
+    0.00      —  │        │     │                       └─ amd_pmu_enable_all
+    0.00      —  │        │     │                          └─ native_write_msr
+    0.00      —  │        │     └─ hrtimer_update_next_event
+    0.00      —  │        └─ irq_exit_rcu
+    0.00      —  │           └─ __irq_exit_rcu
+    0.00      —  │              └─ handle_softirqs
+    0.00      —  │                 └─ rcu_core_si
+    0.00      —  │                    └─ rcu_core
+    0.00      —  │                       └─ note_gp_changes
+    0.15   0.01  ├─ _dl_catch_exception
+    0.09      —  │  ├─ entry_SYSCALL_64_after_hwframe
+    0.08      —  │  │  ├─ do_syscall_64
+    0.08      —  │  │  │  └─ x64_sys_call
+    0.04      —  │  │  │     ├─ __x64_sys_openat
+    0.04      —  │  │  │     │  └─ do_sys_openat2
+    0.04      —  │  │  │     │     ├─ do_filp_open
+    0.04      —  │  │  │     │     │  └─ path_openat
+    0.02      —  │  │  │     │     │     ├─ open_last_lookups
+    0.02      —  │  │  │     │     │     │  ├─ lookup_open.isra.0
+    0.02      —  │  │  │     │     │     │  │  └─ ext4_lookup
+    0.01      —  │  │  │     │     │     │  │     ├─ __ext4_iget
+    0.01      —  │  │  │     │     │     │  │     │  ├─ __ext4_get_inode_loc_noinmem
+    0.01      —  │  │  │     │     │     │  │     │  │  └─ __ext4_get_inode_loc
+    0.01      —  │  │  │     │     │     │  │     │  │     ├─ ext4_sb_breadahead_unmovable
+    0.01      —  │  │  │     │     │     │  │     │  │     │  └─ bdev_getblk
+    0.00      —  │  │  │     │     │     │  │     │  │     │     ├─ __getblk_slow
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │  └─ __filemap_get_folio
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │     ├─ filemap_add_folio
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │     │  └─ __filemap_add_folio
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │     │     └─ _raw_spin_unlock_irq
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │     │        └─ asm_sysvec_apic_timer_interrupt
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │     │           └─ sysvec_apic_timer_interrupt
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │     │              └─ irq_exit_rcu
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │     │                 └─ __irq_exit_rcu
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │     │                    └─ handle_softirqs
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │     │                       └─ rcu_core_si
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │     │                          └─ rcu_core
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │     │                             └─ rcu_do_batch
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │     │                                └─ vm_area_free_rcu_cb
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │     │                                   └─ __vm_area_free
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │     │                                      └─ kmem_cache_free
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │     └─ filemap_alloc_folio
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │        └─ folio_alloc
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │           └─ alloc_pages
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │              └─ alloc_pages_mpol
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │                 └─ __alloc_pages
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │                    └─ get_page_from_freelist
+    0.00      —  │  │  │     │     │     │  │     │  │     │     │                       └─ _raw_spin_unlock
+    0.00      —  │  │  │     │     │     │  │     │  │     │     └─ find_get_block_common
+    0.00      —  │  │  │     │     │     │  │     │  │     └─ blk_finish_plug
+    0.00      —  │  │  │     │     │     │  │     │  │        └─ __blk_flush_plug
+    0.00      —  │  │  │     │     │     │  │     │  │           └─ blk_mq_flush_plug_list
+    0.00      —  │  │  │     │     │     │  │     │  │              └─ blk_mq_flush_plug_list.part.0
+    0.00      —  │  │  │     │     │     │  │     │  │                 └─ blk_mq_dispatch_plug_list
+    0.00      —  │  │  │     │     │     │  │     │  │                    └─ blk_mq_run_hw_queue
+    0.00      —  │  │  │     │     │     │  │     │  │                       └─ blk_mq_sched_dispatch_requests
+    0.00      —  │  │  │     │     │     │  │     │  │                          └─ __blk_mq_sched_dispatch_requests
+    0.00      —  │  │  │     │     │     │  │     │  │                             └─ __blk_mq_do_dispatch_sched
+    0.00      —  │  │  │     │     │     │  │     │  │                                └─ blk_mq_dispatch_rq_list
+    0.00      —  │  │  │     │     │     │  │     │  │                                   └─ scsi_queue_rq
+    0.00      —  │  │  │     │     │     │  │     │  │                                      └─ scsi_dispatch_cmd
+    0.00      —  │  │  │     │     │     │  │     │  │                                         └─ ata_scsi_queuecmd
+    0.00      —  │  │  │     │     │     │  │     │  │                                            └─ __ata_scsi_queuecmd
+    0.00      —  │  │  │     │     │     │  │     │  │                                               └─ ata_qc_issue
+    0.00      —  │  │  │     │     │     │  │     │  │                                                  └─ dma_map_sg_attrs
+    0.00      —  │  │  │     │     │     │  │     │  │                                                     └─ __dma_map_sg_attrs
+    0.00      —  │  │  │     │     │     │  │     │  │                                                        └─ iommu_dma_map_sg
+    0.00      —  │  │  │     │     │     │  │     │  │                                                           └─ iommu_map_sg
+    0.00      —  │  │  │     │     │     │  │     │  │                                                              └─ __iommu_map
+    0.00      —  │  │  │     │     │     │  │     │  │                                                                 └─ iommu_v1_map_pages
+    0.00      —  │  │  │     │     │     │  │     │  └─ iget_locked
+    0.00      —  │  │  │     │     │     │  │     │     └─ find_inode_fast
+    0.00      —  │  │  │     │     │     │  │     ├─ __ext4_find_entry
+    0.00      —  │  │  │     │     │     │  │     │  └─ ext4_search_dir
+    0.00      —  │  │  │     │     │     │  │     │     └─ ext4_match
+    0.00      —  │  │  │     │     │     │  │     └─ srso_safe_ret
+    0.00      —  │  │  │     │     │     │  ├─ lookup_fast
+    0.00      —  │  │  │     │     │     │  │  └─ __d_lookup_rcu
+    0.00      —  │  │  │     │     │     │  └─ step_into
+    0.00      —  │  │  │     │     │     │     └─ dput
+    0.00      —  │  │  │     │     │     │        └─ d_lru_add
+    0.00      —  │  │  │     │     │     │           └─ list_lru_add_obj
+    0.00      —  │  │  │     │     │     │              └─ list_lru_add
+    0.00      —  │  │  │     │     │     │                 └─ xa_load
+    0.01      —  │  │  │     │     │     ├─ link_path_walk.part.0.constprop.0
+    0.01      —  │  │  │     │     │     │  ├─ walk_component
+    0.01      —  │  │  │     │     │     │  │  └─ __lookup_slow
+    0.01      —  │  │  │     │     │     │  │     └─ ext4_lookup
+    0.01      —  │  │  │     │     │     │  │        ├─ __ext4_iget
+    0.01      —  │  │  │     │     │     │  │        │  └─ __ext4_get_inode_loc_noinmem
+    0.01      —  │  │  │     │     │     │  │        │     └─ __ext4_get_inode_loc
+    0.01      —  │  │  │     │     │     │  │        │        └─ ext4_sb_breadahead_unmovable
+    0.01      —  │  │  │     │     │     │  │        │           └─ bdev_getblk
+    0.01      —  │  │  │     │     │     │  │        │              └─ __getblk_slow
+    0.01      —  │  │  │     │     │     │  │        │                 └─ __filemap_get_folio
+    0.00      —  │  │  │     │     │     │  │        │                    ├─ filemap_alloc_folio
+    0.00      —  │  │  │     │     │     │  │        │                    │  └─ folio_prep_large_rmappable
+    0.00      —  │  │  │     │     │     │  │        │                    └─ filemap_add_folio
+    0.00      —  │  │  │     │     │     │  │        │                       └─ __filemap_add_folio
+    0.00      —  │  │  │     │     │     │  │        │                          └─ try_charge_memcg
+    0.00      —  │  │  │     │     │     │  │        └─ __ext4_find_entry
+    0.00      —  │  │  │     │     │     │  │           └─ __wait_on_buffer
+    0.00      —  │  │  │     │     │     │  │              └─ out_of_line_wait_on_bit
+    0.00      —  │  │  │     │     │     │  │                 └─ __wait_on_bit
+    0.00      —  │  │  │     │     │     │  │                    └─ bit_wait_io
+    0.00      —  │  │  │     │     │     │  │                       └─ schedule
+    0.00      —  │  │  │     │     │     │  └─ inode_permission
+    0.00      —  │  │  │     │     │     │     └─ generic_permission
+    0.00      —  │  │  │     │     │     ├─ alloc_empty_file
+    0.00      —  │  │  │     │     │     │  └─ init_file
+    0.00      —  │  │  │     │     │     │     └─ security_file_alloc
+    0.00      —  │  │  │     │     │     │        └─ should_failslab.constprop.0
+    0.00      —  │  │  │     │     │     └─ terminate_walk
+    0.00      —  │  │  │     │     │        └─ srso_safe_ret
+    0.00      —  │  │  │     │     └─ getname
+    0.00      —  │  │  │     │        └─ getname_flags.part.0
+    0.03      —  │  │  │     ├─ __x64_sys_mmap
+    0.03      —  │  │  │     │  └─ ksys_mmap_pgoff
+    0.03      —  │  │  │     │     └─ vm_mmap_pgoff
+    0.03      —  │  │  │     │        ├─ do_mmap
+    0.03      —  │  │  │     │        │  └─ mmap_region
+    0.03      —  │  │  │     │        │     └─ __mmap_region
+    0.01      —  │  │  │     │        │        ├─ do_vmi_munmap
+    0.01      —  │  │  │     │        │        │  └─ do_vmi_align_munmap
+    0.01      —  │  │  │     │        │        │     ├─ __split_vma
+    0.00      —  │  │  │     │        │        │     │  ├─ vma_complete
+    0.00      —  │  │  │     │        │        │     │  │  └─ mas_store_prealloc
+    0.00      —  │  │  │     │        │        │     │  │     └─ mas_wr_store_entry.isra.0
+    0.00      —  │  │  │     │        │        │     │  │        └─ mas_wr_modify
+    0.00      —  │  │  │     │        │        │     │  │           └─ mas_wr_node_store
+    0.00      —  │  │  │     │        │        │     │  └─ vma_prepare
+    0.00      —  │  │  │     │        │        │     │     └─ vma_interval_tree_insert
+    0.00      —  │  │  │     │        │        │     └─ mas_wr_store_setup.isra.0
+    0.01      —  │  │  │     │        │        ├─ vm_area_alloc
+    0.00      —  │  │  │     │        │        │  └─ kmem_cache_alloc
+    0.00      —  │  │  │     │        │        │     └─ __memcg_slab_post_alloc_hook
+    0.00      —  │  │  │     │        │        ├─ mas_preallocate
+    0.00      —  │  │  │     │        │        │  └─ mas_node_count_gfp
+    0.00      —  │  │  │     │        │        │     └─ mas_alloc_nodes
+    0.00      —  │  │  │     │        │        ├─ perf_event_mmap
+    0.00      —  │  │  │     │        │        │  ├─ perf_event_mmap_event
+    0.00      —  │  │  │     │        │        │  │  └─ kfree
+    0.00      —  │  │  │     │        │        │  └─ strlen
+    0.00      —  │  │  │     │        │        ├─ mas_store_prealloc
+    0.00      —  │  │  │     │        │        ├─ vma_expand
+    0.00      —  │  │  │     │        │        │  └─ mas_preallocate
+    0.00      —  │  │  │     │        │        │     └─ mas_wr_walk
+    0.00      —  │  │  │     │        │        └─ mas_prev
+    0.00      —  │  │  │     │        │           └─ mas_prev_slot
+    0.00      —  │  │  │     │        └─ security_mmap_file
+    0.00      —  │  │  │     │           └─ ima_file_mmap
+    0.00      —  │  │  │     │              └─ security_current_getlsmblob_subj
+    0.00      —  │  │  │     ├─ __x64_sys_read
+    0.00      —  │  │  │     │  └─ ksys_read
+    0.00      —  │  │  │     │     ├─ __fdget_pos
+    0.00      —  │  │  │     │     └─ vfs_read
+    0.00      —  │  │  │     │        └─ ext4_file_read_iter
+    0.00      —  │  │  │     │           └─ generic_file_read_iter
+    0.00      —  │  │  │     │              └─ filemap_read
+    0.00      —  │  │  │     │                 └─ filemap_get_pages
+    0.00      —  │  │  │     │                    └─ filemap_update_page
+    0.00      —  │  │  │     │                       └─ folio_wait_bit_common
+    0.00      —  │  │  │     │                          └─ io_schedule
+    0.00      —  │  │  │     │                             └─ schedule
+    0.00      —  │  │  │     │                                └─ __schedule
+    0.00      —  │  │  │     │                                   └─ psi_task_switch
+    0.00      —  │  │  │     │                                      └─ psi_group_change
+    0.00      —  │  │  │     └─ __x64_sys_newfstatat
+    0.00      —  │  │  │        └─ __do_sys_newfstatat
+    0.00      —  │  │  │           └─ vfs_fstatat
+    0.00      —  │  │  │              └─ vfs_statx
+    0.00      —  │  │  │                 └─ filename_lookup
+    0.00      —  │  │  │                    └─ path_lookupat
+    0.00      —  │  │  │                       └─ link_path_walk.part.0.constprop.0
+    0.00      —  │  │  │                          └─ inode_permission
+    0.00      —  │  │  └─ x64_sys_call
+    0.06      —  │  ├─ asm_exc_page_fault
+    0.06      —  │  │  └─ exc_page_fault
+    0.06      —  │  │     └─ do_user_addr_fault
+    0.06      —  │  │        └─ handle_mm_fault
+    0.06      —  │  │           └─ __handle_mm_fault
+    0.05      —  │  │              └─ handle_pte_fault
+    0.05      —  │  │                 ├─ do_fault
+    0.02      —  │  │                 │  ├─ __do_fault
+    0.02      —  │  │                 │  │  └─ filemap_fault
+    0.02      —  │  │                 │  │     ├─ do_sync_mmap_readahead
+    0.02      —  │  │                 │  │     │  └─ page_cache_ra_order
+    0.02      —  │  │                 │  │     │     └─ page_cache_ra_unbounded
+    0.01      —  │  │                 │  │     │        ├─ read_pages
+    0.01      —  │  │                 │  │     │        │  ├─ blk_finish_plug
+    0.01      —  │  │                 │  │     │        │  │  └─ __blk_flush_plug
+    0.01      —  │  │                 │  │     │        │  │     └─ blk_mq_flush_plug_list
+    0.01      —  │  │                 │  │     │        │  │        └─ blk_mq_flush_plug_list.part.0
+    0.01      —  │  │                 │  │     │        │  │           └─ blk_mq_dispatch_plug_list
+    0.01      —  │  │                 │  │     │        │  │              └─ blk_mq_run_hw_queue
+    0.01      —  │  │                 │  │     │        │  │                 └─ blk_mq_sched_dispatch_requests
+    0.01      —  │  │                 │  │     │        │  │                    └─ __blk_mq_sched_dispatch_requests
+    0.01      —  │  │                 │  │     │        │  │                       └─ __blk_mq_do_dispatch_sched
+    0.01      —  │  │                 │  │     │        │  │                          ├─ blk_mq_dispatch_rq_list
+    0.01      —  │  │                 │  │     │        │  │                          │  └─ scsi_queue_rq
+    0.01      —  │  │                 │  │     │        │  │                          │     ├─ scsi_dispatch_cmd
+    0.01      —  │  │                 │  │     │        │  │                          │     │  └─ ata_scsi_queuecmd
+    0.01      —  │  │                 │  │     │        │  │                          │     │     └─ __ata_scsi_queuecmd
+    0.01      —  │  │                 │  │     │        │  │                          │     │        └─ ata_qc_issue
+    0.00      —  │  │                 │  │     │        │  │                          │     │           ├─ ahci_qc_prep
+    0.00      —  │  │                 │  │     │        │  │                          │     │           └─ dma_map_sg_attrs
+    0.00      —  │  │                 │  │     │        │  │                          │     │              └─ __dma_map_sg_attrs
+    0.00      —  │  │                 │  │     │        │  │                          │     │                 └─ iommu_dma_map_sg
+    0.00      —  │  │                 │  │     │        │  │                          │     │                    └─ iommu_map_sg
+    0.00      —  │  │                 │  │     │        │  │                          │     └─ scsi_target_queue_ready
+    0.00      —  │  │                 │  │     │        │  │                          └─ dd_has_work
+    0.00      —  │  │                 │  │     │        │  └─ ext4_readahead
+    0.00      —  │  │                 │  │     │        │     └─ ext4_mpage_readpages
+    0.00      —  │  │                 │  │     │        │        └─ submit_bio
+    0.00      —  │  │                 │  │     │        │           └─ submit_bio_noacct
+    0.00      —  │  │                 │  │     │        │              └─ submit_bio_noacct_nocheck
+    0.00      —  │  │                 │  │     │        │                 └─ __submit_bio
+    0.00      —  │  │                 │  │     │        │                    └─ blk_mq_submit_bio
+    0.00      —  │  │                 │  │     │        │                       └─ __blk_mq_alloc_requests
+    0.00      —  │  │                 │  │     │        │                          └─ blk_mq_get_tag
+    0.00      —  │  │                 │  │     │        │                             └─ __blk_mq_get_tag
+    0.00      —  │  │                 │  │     │        │                                └─ __sbitmap_queue_get
+    0.00      —  │  │                 │  │     │        │                                   └─ sbitmap_get
+    0.01      —  │  │                 │  │     │        └─ filemap_add_folio
+    0.01      —  │  │                 │  │     │           └─ __filemap_add_folio
+    0.00      —  │  │                 │  │     │              ├─ srso_safe_ret
+    0.00      —  │  │                 │  │     │              ├─ __mem_cgroup_charge
+    0.00      —  │  │                 │  │     │              │  └─ try_charge_memcg
+    0.00      —  │  │                 │  │     │              └─ __lruvec_stat_mod_folio
+    0.00      —  │  │                 │  │     │                 └─ __mod_lruvec_state
+    0.00      —  │  │                 │  │     │                    └─ __mod_memcg_lruvec_state
+    0.00      —  │  │                 │  │     └─ folio_wait_bit_common
+    0.00      —  │  │                 │  │        └─ io_schedule
+    0.00      —  │  │                 │  │           └─ schedule
+    0.00      —  │  │                 │  │              └─ __schedule
+    0.00      —  │  │                 │  │                 └─ dequeue_task
+    0.00      —  │  │                 │  │                    └─ dequeue_task_fair
+    0.00      —  │  │                 │  │                       └─ update_cfs_group
+    0.02      —  │  │                 │  ├─ do_read_fault
+    0.02      —  │  │                 │  │  └─ __do_fault
+    0.02      —  │  │                 │  │     └─ filemap_fault
+    0.02      —  │  │                 │  │        ├─ do_sync_mmap_readahead
+    0.02      —  │  │                 │  │        │  └─ page_cache_ra_order
+    0.02      —  │  │                 │  │        │     └─ page_cache_ra_unbounded
+    0.01      —  │  │                 │  │        │        ├─ filemap_alloc_folio
+    0.01      —  │  │                 │  │        │        │  └─ folio_alloc
+    0.01      —  │  │                 │  │        │        │     └─ alloc_pages
+    0.01      —  │  │                 │  │        │        │        └─ alloc_pages_mpol
+    0.01      —  │  │                 │  │        │        │           └─ __alloc_pages
+    0.01      —  │  │                 │  │        │        │              └─ get_page_from_freelist
+    0.01   0.01  │  │                 │  │        │        │                 └─ clear_page_rep
+    0.01      —  │  │                 │  │        │        ├─ filemap_add_folio
+    0.01      —  │  │                 │  │        │        │  └─ __filemap_add_folio
+    0.01      —  │  │                 │  │        │        │     └─ __lruvec_stat_mod_folio
+    0.00      —  │  │                 │  │        │        │        └─ __mod_lruvec_state
+    0.00      —  │  │                 │  │        │        │           └─ __mod_memcg_lruvec_state
+    0.00      —  │  │                 │  │        │        ├─ read_pages
+    0.00      —  │  │                 │  │        │        │  └─ ext4_readahead
+    0.00      —  │  │                 │  │        │        │     └─ ext4_mpage_readpages
+    0.00      —  │  │                 │  │        │        │        └─ xa_load
+    0.00      —  │  │                 │  │        │        └─ __rcu_read_lock
+    0.00      —  │  │                 │  │        └─ page_cache_async_ra
+    0.00      —  │  │                 │  │           └─ ondemand_readahead
+    0.00      —  │  │                 │  │              └─ page_cache_ra_order
+    0.00      —  │  │                 │  │                 └─ page_cache_ra_unbounded
+    0.00      —  │  │                 │  │                    └─ filemap_alloc_folio
+    0.00      —  │  │                 │  │                       └─ folio_alloc
+    0.00      —  │  │                 │  │                          └─ alloc_pages
+    0.00      —  │  │                 │  │                             └─ alloc_pages_mpol
+    0.00      —  │  │                 │  │                                └─ __alloc_pages
+    0.00      —  │  │                 │  │                                   └─ get_page_from_freelist
+    0.00      —  │  │                 │  │                                      └─ clear_page_rep
+    0.00      —  │  │                 │  ├─ __anon_vma_prepare
+    0.00      —  │  │                 │  │  └─ kmem_cache_alloc
+    0.00      —  │  │                 │  └─ vma_alloc_folio
+    0.00      —  │  │                 │     └─ alloc_pages_mpol
+    0.00      —  │  │                 │        └─ __alloc_pages
+    0.00      —  │  │                 │           └─ get_page_from_freelist
+    0.00      —  │  │                 │              └─ rmqueue
+    0.00      —  │  │                 ├─ vma_alloc_folio
+    0.00      —  │  │                 └─ do_wp_page
+    0.00      —  │  │                    └─ wp_page_copy
+    0.00      —  │  │                       └─ vma_alloc_folio
+    0.00      —  │  │                          └─ alloc_pages_mpol
+    0.00      —  │  │                             └─ __alloc_pages
+    0.00      —  │  │                                └─ get_page_from_freelist
+    0.00      —  │  │                                   └─ rmqueue
+    0.00      —  │  │                                      └─ _raw_spin_unlock
+    0.00      —  │  └─ srso_safe_ret
+    0.12      —  ├─ [libceph-common.so.2]
+    0.08      —  │  ├─ build_options
+    0.04      —  │  │  ├─ get_global_options
+    0.02      —  │  │  │  ├─ Option::Option
+    0.01      —  │  │  │  │  ├─ operator new
+    0.01      —  │  │  │  │  │  └─ malloc
+    0.01      —  │  │  │  │  │     └─ asm_exc_page_fault
+    0.01      —  │  │  │  │  │        └─ exc_page_fault
+    0.01      —  │  │  │  │  │           └─ do_user_addr_fault
+    0.01      —  │  │  │  │  │              └─ handle_mm_fault
+    0.01      —  │  │  │  │  │                 └─ __handle_mm_fault
+    0.01      —  │  │  │  │  │                    └─ handle_pte_fault
+    0.00      —  │  │  │  │  │                       ├─ do_anonymous_page
+    0.00      —  │  │  │  │  │                       │  └─ alloc_anon_folio
+    0.00      —  │  │  │  │  │                       │     └─ vma_alloc_folio
+    0.00      —  │  │  │  │  │                       │        └─ alloc_pages_mpol
+    0.00      —  │  │  │  │  │                       │           └─ __alloc_pages
+    0.00      —  │  │  │  │  │                       │              └─ get_page_from_freelist
+    0.00      —  │  │  │  │  │                       │                 └─ clear_page_rep
+    0.00      —  │  │  │  │  │                       └─ sysvec_call_function_single
+    0.00      —  │  │  │  │  └─ asm_exc_page_fault
+    0.00      —  │  │  │  │     └─ exc_page_fault
+    0.00      —  │  │  │  │        └─ do_user_addr_fault
+    0.00      —  │  │  │  │           └─ handle_mm_fault
+    0.00      —  │  │  │  │              └─ srso_safe_ret
+    0.02      —  │  │  │  └─ asm_exc_page_fault
+    0.02      —  │  │  │     └─ exc_page_fault
+    0.02      —  │  │  │        └─ do_user_addr_fault
+    0.01      —  │  │  │           ├─ handle_mm_fault
+    0.01      —  │  │  │           │  └─ __handle_mm_fault
+    0.01      —  │  │  │           │     └─ handle_pte_fault
+    0.01      —  │  │  │           │        ├─ do_anonymous_page
+    0.01      —  │  │  │           │        │  └─ alloc_anon_folio
+    0.01      —  │  │  │           │        │     └─ vma_alloc_folio
+    0.01      —  │  │  │           │        │        └─ alloc_pages_mpol
+    0.01      —  │  │  │           │        │           └─ __alloc_pages
+    0.01      —  │  │  │           │        │              └─ get_page_from_freelist
+    0.01   0.01  │  │  │           │        │                 └─ clear_page_rep
+    0.00      —  │  │  │           │        ├─ do_fault
+    0.00      —  │  │  │           │        │  └─ do_read_fault
+    0.00      —  │  │  │           │        │     └─ __do_fault
+    0.00      —  │  │  │           │        │        └─ filemap_fault
+    0.00      —  │  │  │           │        │           └─ do_sync_mmap_readahead
+    0.00      —  │  │  │           │        │              └─ page_cache_ra_order
+    0.00      —  │  │  │           │        │                 └─ page_cache_ra_unbounded
+    0.00      —  │  │  │           │        │                    └─ read_pages
+    0.00      —  │  │  │           │        │                       └─ blk_finish_plug
+    0.00      —  │  │  │           │        │                          └─ __blk_flush_plug
+    0.00      —  │  │  │           │        │                             └─ blk_mq_flush_plug_list
+    0.00      —  │  │  │           │        │                                └─ blk_mq_flush_plug_list.part.0
+    0.00      —  │  │  │           │        │                                   └─ blk_mq_dispatch_plug_list
+    0.00      —  │  │  │           │        │                                      └─ blk_mq_run_hw_queue
+    0.00      —  │  │  │           │        │                                         └─ blk_mq_sched_dispatch_requests
+    0.00      —  │  │  │           │        │                                            └─ __blk_mq_sched_dispatch_requests
+    0.00      —  │  │  │           │        │                                               └─ __blk_mq_do_dispatch_sched
+    0.00      —  │  │  │           │        │                                                  └─ blk_mq_dispatch_rq_list
+    0.00      —  │  │  │           │        │                                                     └─ scsi_queue_rq
+    0.00      —  │  │  │           │        │                                                        └─ scsi_dispatch_cmd
+    0.00      —  │  │  │           │        │                                                           └─ ata_scsi_queuecmd
+    0.00      —  │  │  │           │        │                                                              └─ __ata_scsi_queuecmd
+    0.00      —  │  │  │           │        │                                                                 └─ ata_qc_issue
+    0.00      —  │  │  │           │        │                                                                    └─ dma_map_sg_attrs
+    0.00      —  │  │  │           │        │                                                                       └─ __dma_map_sg_attrs
+    0.00      —  │  │  │           │        │                                                                          └─ iommu_dma_map_sg
+    0.00      —  │  │  │           │        │                                                                             └─ iommu_map_sg
+    0.00      —  │  │  │           │        └─ pte_offset_map_nolock
+    0.00      —  │  │  │           │           └─ __pte_offset_map
+    0.01      —  │  │  │           └─ lock_mm_and_find_vma
+    0.00      —  │  │  │              ├─ expand_stack_locked
+    0.00      —  │  │  │              │  └─ khugepaged_enter_vma
+    0.00      —  │  │  │              └─ find_vma
+    0.00      —  │  │  │                 └─ mt_find
+    0.03      —  │  │  ├─ [libceph-common.so.2]
+    0.02      —  │  │  │  ├─ void std::vector<Option, std::allocator<Option> >::_M_realloc_insert<Option>
+    0.02      —  │  │  │  │  ├─ Option::Option
+    0.01      —  │  │  │  │  │  ├─ asm_exc_page_fault
+    0.01      —  │  │  │  │  │  │  └─ exc_page_fault
+    0.01      —  │  │  │  │  │  │     └─ do_user_addr_fault
+    0.01      —  │  │  │  │  │  │        ├─ handle_mm_fault
+    0.01      —  │  │  │  │  │  │        │  └─ __handle_mm_fault
+    0.01      —  │  │  │  │  │  │        │     ├─ handle_pte_fault
+    0.01      —  │  │  │  │  │  │        │     │  └─ do_anonymous_page
+    0.00      —  │  │  │  │  │  │        │     │     ├─ folio_add_lru_vma
+    0.00      —  │  │  │  │  │  │        │     │     │  └─ folio_add_lru
+    0.00      —  │  │  │  │  │  │        │     │     │     └─ folio_batch_move_lru
+    0.00      —  │  │  │  │  │  │        │     │     │        └─ __mem_cgroup_uncharge_list
+    0.00      —  │  │  │  │  │  │        │     │     └─ alloc_anon_folio
+    0.00      —  │  │  │  │  │  │        │     │        └─ vma_alloc_folio
+    0.00      —  │  │  │  │  │  │        │     │           └─ alloc_pages_mpol
+    0.00      —  │  │  │  │  │  │        │     │              └─ policy_nodemask
+    0.00      —  │  │  │  │  │  │        │     └─ __rcu_read_unlock
+    0.00      —  │  │  │  │  │  │        └─ lock_vma_under_rcu
+    0.00      —  │  │  │  │  │  └─ operator new
+    0.00      —  │  │  │  │  │     └─ malloc
+    0.00      —  │  │  │  │  ├─ Option::~Option
+    0.00      —  │  │  │  │  │  └─ cfree
+    0.00      —  │  │  │  │  └─ __munmap
+    0.00      —  │  │  │  │     └─ entry_SYSCALL_64_after_hwframe
+    0.00      —  │  │  │  │        └─ do_syscall_64
+    0.00      —  │  │  │  │           └─ x64_sys_call
+    0.00      —  │  │  │  │              └─ __x64_sys_munmap
+    0.00      —  │  │  │  │                 └─ __vm_munmap
+    0.00      —  │  │  │  │                    └─ do_vmi_munmap
+    0.00      —  │  │  │  │                       └─ do_vmi_align_munmap
+    0.00      —  │  │  │  │                          └─ unmap_region
+    0.00      —  │  │  │  │                             └─ unmap_vmas
+    0.00      —  │  │  │  │                                └─ unmap_page_range
+    0.01      —  │  │  │  └─ Option::Option
+    0.01   0.01  │  │  │     └─ asm_exc_page_fault
+    0.00      —  │  │  ├─ get_rgw_options
+    0.00      —  │  │  ├─ Option::~Option
+    0.00      —  │  │  ├─ cfree
+    0.00      —  │  │  ├─ get_mds_options
+    0.00      —  │  │  │  └─ Option::Option
+    0.00      —  │  │  └─ get_rbd_mirror_options
+    0.00      —  │  │     └─ Option::Option
+    0.00      —  │  │        └─ operator new
+    0.00      —  │  │           └─ malloc
+    0.02      —  │  ├─ asm_exc_page_fault
+    0.02      —  │  │  └─ exc_page_fault
+    0.02      —  │  │     └─ do_user_addr_fault
+    0.02      —  │  │        └─ handle_mm_fault
+    0.02      —  │  │           └─ __handle_mm_fault
+    0.02      —  │  │              └─ handle_pte_fault
+    0.02      —  │  │                 └─ do_fault
+    0.02      —  │  │                    └─ do_read_fault
+    0.02      —  │  │                       ├─ __do_fault
+    0.02      —  │  │                       │  └─ filemap_fault
+    0.01      —  │  │                       │     ├─ do_sync_mmap_readahead
+    0.01      —  │  │                       │     │  └─ page_cache_ra_order
+    0.01      —  │  │                       │     │     └─ page_cache_ra_unbounded
+    0.01      —  │  │                       │     │        ├─ filemap_alloc_folio
+    0.01      —  │  │                       │     │        │  └─ folio_alloc
+    0.01      —  │  │                       │     │        │     └─ alloc_pages
+    0.01      —  │  │                       │     │        │        └─ alloc_pages_mpol
+    0.01      —  │  │                       │     │        │           └─ __alloc_pages
+    0.01      —  │  │                       │     │        │              └─ get_page_from_freelist
+    0.01   0.01  │  │                       │     │        │                 ├─ clear_page_rep
+    0.00      —  │  │                       │     │        │                 └─ rmqueue
+    0.00      —  │  │                       │     │        │                    └─ __rmqueue_pcplist
+    0.00      —  │  │                       │     │        └─ filemap_add_folio
+    0.00      —  │  │                       │     │           └─ __filemap_add_folio
+    0.00      —  │  │                       │     │              └─ __mem_cgroup_charge
+    0.00      —  │  │                       │     │                 └─ __rcu_read_lock
+    0.00      —  │  │                       │     └─ page_cache_async_ra
+    0.00      —  │  │                       │        └─ ondemand_readahead
+    0.00      —  │  │                       │           └─ page_cache_ra_order
+    0.00      —  │  │                       │              └─ page_cache_ra_unbounded
+    0.00      —  │  │                       │                 └─ filemap_add_folio
+    0.00      —  │  │                       │                    └─ __filemap_add_folio
+    0.00      —  │  │                       │                       └─ __mem_cgroup_charge
+    0.00      —  │  │                       └─ filemap_map_pages
+    0.00      —  │  │                          └─ __pte_offset_map_lock
+    0.01      —  │  ├─ dlopen
+    0.01      —  │  │  └─ _dl_catch_exception
+    0.01      —  │  │     └─ _dl_catch_exception
+    0.01      —  │  │        └─ _dl_catch_exception
+    0.01      —  │  │           └─ asm_exc_page_fault
+    0.01      —  │  │              └─ exc_page_fault
+    0.01      —  │  │                 └─ do_user_addr_fault
+    0.01      —  │  │                    └─ handle_mm_fault
+    0.01      —  │  │                       └─ __handle_mm_fault
+    0.01      —  │  │                          └─ handle_pte_fault
+    0.01      —  │  │                             └─ do_fault
+    0.01      —  │  │                                └─ do_read_fault
+    0.01      —  │  │                                   └─ __do_fault
+    0.01      —  │  │                                      └─ filemap_fault
+    0.01      —  │  │                                         └─ do_sync_mmap_readahead
+    0.01      —  │  │                                            └─ page_cache_ra_order
+    0.01      —  │  │                                               └─ page_cache_ra_unbounded
+    0.00      —  │  │                                                  ├─ read_pages
+    0.00      —  │  │                                                  │  └─ ext4_readahead
+    0.00      —  │  │                                                  │     └─ ext4_mpage_readpages
+    0.00      —  │  │                                                  │        └─ ext4_map_blocks
+    0.00      —  │  │                                                  └─ filemap_alloc_folio
+    0.00      —  │  │                                                     └─ folio_alloc
+    0.00      —  │  │                                                        └─ alloc_pages
+    0.00      —  │  │                                                           └─ alloc_pages_mpol
+    0.00      —  │  │                                                              └─ __alloc_pages
+    0.00      —  │  │                                                                 └─ get_page_from_freelist
+    0.00      —  │  │                                                                    └─ clear_page_rep
+    0.00      —  │  ├─ get_rgw_options
+    0.00      —  │  │  └─ asm_exc_page_fault
+    0.00      —  │  │     └─ exc_page_fault
+    0.00      —  │  │        └─ do_user_addr_fault
+    0.00      —  │  │           └─ handle_mm_fault
+    0.00      —  │  │              └─ __handle_mm_fault
+    0.00      —  │  │                 └─ handle_pte_fault
+    0.00      —  │  │                    └─ do_fault
+    0.00      —  │  │                       └─ do_read_fault
+    0.00      —  │  │                          └─ __do_fault
+    0.00      —  │  │                             └─ filemap_fault
+    0.00      —  │  │                                └─ do_sync_mmap_readahead
+    0.00      —  │  │                                   └─ page_cache_ra_order
+    0.00      —  │  │                                      └─ page_cache_ra_unbounded
+    0.00      —  │  │                                         └─ filemap_alloc_folio
+    0.00      —  │  │                                            └─ folio_alloc
+    0.00      —  │  │                                               └─ alloc_pages
+    0.00      —  │  │                                                  └─ alloc_pages_mpol
+    0.00      —  │  │                                                     └─ __alloc_pages
+    0.00      —  │  │                                                        └─ get_page_from_freelist
+    0.00      —  │  │                                                           └─ clear_page_rep
+    0.00      —  │  └─ mempool::pool_t::get_type
+    0.00      —  │     └─ asm_exc_page_fault
+    0.00      —  │        └─ exc_page_fault
+    0.00      —  │           └─ do_user_addr_fault
+    0.00      —  │              └─ handle_mm_fault
+    0.00      —  │                 └─ __handle_mm_fault
+    0.00      —  │                    └─ handle_pte_fault
+    0.00      —  │                       └─ do_fault
+    0.00      —  │                          └─ do_read_fault
+    0.00      —  │                             └─ __do_fault
+    0.00      —  │                                └─ filemap_fault
+    0.00      —  │                                   └─ do_sync_mmap_readahead
+    0.00      —  │                                      └─ page_cache_ra_order
+    0.00      —  │                                         └─ page_cache_ra_unbounded
+    0.00      —  │                                            └─ filemap_add_folio
+    0.00      —  │                                               └─ folio_add_lru
+    0.07      —  ├─ asm_exc_page_fault
+    0.07      —  │  └─ exc_page_fault
+    0.07      —  │     └─ do_user_addr_fault
+    0.07      —  │        └─ handle_mm_fault
+    0.07      —  │           └─ __handle_mm_fault
+    0.07      —  │              └─ handle_pte_fault
+    0.06      —  │                 ├─ do_fault
+    0.05      —  │                 │  ├─ do_read_fault
+    0.04      —  │                 │  │  ├─ __do_fault
+    0.04      —  │                 │  │  │  └─ filemap_fault
+    0.02      —  │                 │  │  │     ├─ page_cache_async_ra
+    0.02      —  │                 │  │  │     │  └─ ondemand_readahead
+    0.02      —  │                 │  │  │     │     └─ page_cache_ra_order
+    0.02      —  │                 │  │  │     │        └─ page_cache_ra_unbounded
+    0.01      —  │                 │  │  │     │           ├─ read_pages
+    0.01      —  │                 │  │  │     │           │  └─ blk_finish_plug
+    0.01      —  │                 │  │  │     │           │     └─ __blk_flush_plug
+    0.01      —  │                 │  │  │     │           │        └─ blk_mq_flush_plug_list
+    0.01      —  │                 │  │  │     │           │           └─ blk_mq_flush_plug_list.part.0
+    0.01      —  │                 │  │  │     │           │              └─ blk_mq_dispatch_plug_list
+    0.01      —  │                 │  │  │     │           │                 └─ blk_mq_run_hw_queue
+    0.01      —  │                 │  │  │     │           │                    └─ blk_mq_sched_dispatch_requests
+    0.01      —  │                 │  │  │     │           │                       └─ __blk_mq_sched_dispatch_requests
+    0.01      —  │                 │  │  │     │           │                          └─ __blk_mq_do_dispatch_sched
+    0.01      —  │                 │  │  │     │           │                             └─ blk_mq_dispatch_rq_list
+    0.01      —  │                 │  │  │     │           │                                └─ scsi_queue_rq
+    0.01      —  │                 │  │  │     │           │                                   └─ scsi_dispatch_cmd
+    0.01      —  │                 │  │  │     │           │                                      └─ ata_scsi_queuecmd
+    0.01      —  │                 │  │  │     │           │                                         └─ __ata_scsi_queuecmd
+    0.01      —  │                 │  │  │     │           │                                            └─ ata_qc_issue
+    0.01      —  │                 │  │  │     │           │                                               └─ dma_map_sg_attrs
+    0.01      —  │                 │  │  │     │           │                                                  └─ __dma_map_sg_attrs
+    0.01      —  │                 │  │  │     │           │                                                     └─ iommu_dma_map_sg
+    0.01      —  │                 │  │  │     │           │                                                        └─ iommu_map_sg
+    0.00      —  │                 │  │  │     │           │                                                           ├─ __iommu_map
+    0.00      —  │                 │  │  │     │           │                                                           │  └─ amd_iommu_map_pages
+    0.00      —  │                 │  │  │     │           │                                                           │     └─ iommu_v1_map_pages
+    0.00      —  │                 │  │  │     │           │                                                           │        └─ alloc_pte.constprop.0
+    0.00      —  │                 │  │  │     │           │                                                           └─ amd_iommu_map_pages
+    0.01      —  │                 │  │  │     │           ├─ filemap_alloc_folio
+    0.01      —  │                 │  │  │     │           │  └─ folio_alloc
+    0.01      —  │                 │  │  │     │           │     └─ alloc_pages
+    0.01      —  │                 │  │  │     │           │        └─ alloc_pages_mpol
+    0.01      —  │                 │  │  │     │           │           └─ __alloc_pages
+    0.01      —  │                 │  │  │     │           │              └─ get_page_from_freelist
+    0.00      —  │                 │  │  │     │           │                 ├─ rmqueue
+    0.00      —  │                 │  │  │     │           │                 │  └─ __rmqueue_pcplist
+    0.00      —  │                 │  │  │     │           │                 │     └─ rmqueue_bulk
+    0.00      —  │                 │  │  │     │           │                 └─ clear_page_rep
+    0.00      —  │                 │  │  │     │           ├─ xa_load
+    0.00      —  │                 │  │  │     │           └─ filemap_add_folio
+    0.00      —  │                 │  │  │     │              └─ __filemap_add_folio
+    0.00      —  │                 │  │  │     │                 └─ __mem_cgroup_charge
+    0.00      —  │                 │  │  │     │                    └─ get_mem_cgroup_from_mm
+    0.02      —  │                 │  │  │     └─ do_sync_mmap_readahead
+    0.02      —  │                 │  │  │        └─ page_cache_ra_order
+    0.02      —  │                 │  │  │           └─ page_cache_ra_unbounded
+    0.01      —  │                 │  │  │              ├─ filemap_alloc_folio
+    0.01      —  │                 │  │  │              │  └─ folio_alloc
+    0.01      —  │                 │  │  │              │     └─ alloc_pages
+    0.01      —  │                 │  │  │              │        └─ alloc_pages_mpol
+    0.01      —  │                 │  │  │              │           └─ __alloc_pages
+    0.01      —  │                 │  │  │              │              └─ get_page_from_freelist
+    0.00      —  │                 │  │  │              │                 ├─ rmqueue
+    0.00      —  │                 │  │  │              │                 │  └─ __rmqueue_pcplist
+    0.00      —  │                 │  │  │              │                 │     └─ rmqueue_bulk
+    0.00      —  │                 │  │  │              │                 └─ clear_page_rep
+    0.01      —  │                 │  │  │              ├─ read_pages
+    0.01      —  │                 │  │  │              │  └─ ext4_readahead
+    0.01      —  │                 │  │  │              │     └─ ext4_mpage_readpages
+    0.00      —  │                 │  │  │              │        ├─ submit_bio
+    0.00      —  │                 │  │  │              │        │  └─ submit_bio_noacct
+    0.00      —  │                 │  │  │              │        │     └─ submit_bio_noacct_nocheck
+    0.00      —  │                 │  │  │              │        │        └─ __submit_bio
+    0.00      —  │                 │  │  │              │        │           └─ blk_mq_submit_bio
+    0.00      —  │                 │  │  │              │        │              └─ __bio_split_to_limits
+    0.00      —  │                 │  │  │              │        │                 └─ bio_split_rw
+    0.00      —  │                 │  │  │              │        └─ xa_load
+    0.01      —  │                 │  │  │              └─ filemap_add_folio
+    0.01      —  │                 │  │  │                 └─ __filemap_add_folio
+    0.00      —  │                 │  │  │                    ├─ __rcu_read_lock
+    0.00      —  │                 │  │  │                    └─ __mem_cgroup_charge
+    0.00      —  │                 │  │  │                       └─ get_mem_cgroup_from_mm
+    0.00      —  │                 │  │  └─ filemap_map_pages
+    0.00      —  │                 │  │     └─ next_uptodate_folio
+    0.01      —  │                 │  ├─ __do_fault
+    0.01      —  │                 │  │  └─ filemap_fault
+    0.01      —  │                 │  │     ├─ do_sync_mmap_readahead
+    0.01      —  │                 │  │     │  └─ page_cache_ra_order
+    0.01      —  │                 │  │     │     └─ page_cache_ra_unbounded
+    0.00      —  │                 │  │     │        ├─ filemap_alloc_folio
+    0.00      —  │                 │  │     │        │  └─ folio_alloc
+    0.00      —  │                 │  │     │        │     └─ alloc_pages
+    0.00      —  │                 │  │     │        │        └─ alloc_pages_mpol
+    0.00      —  │                 │  │     │        │           └─ policy_nodemask
+    0.00      —  │                 │  │     │        │              └─ asm_sysvec_apic_timer_interrupt
+    0.00      —  │                 │  │     │        │                 └─ sysvec_apic_timer_interrupt
+    0.00      —  │                 │  │     │        │                    └─ irq_exit_rcu
+    0.00      —  │                 │  │     │        │                       └─ __irq_exit_rcu
+    0.00      —  │                 │  │     │        │                          └─ handle_softirqs
+    0.00      —  │                 │  │     │        │                             └─ rcu_core_si
+    0.00      —  │                 │  │     │        │                                └─ rcu_core
+    0.00      —  │                 │  │     │        │                                   └─ rcu_do_batch
+    0.00      —  │                 │  │     │        │                                      └─ vm_area_free_rcu_cb
+    0.00      —  │                 │  │     │        │                                         └─ __vm_area_free
+    0.00      —  │                 │  │     │        │                                            └─ kmem_cache_free
+    0.00      —  │                 │  │     │        └─ filemap_add_folio
+    0.00      —  │                 │  │     │           └─ folio_add_lru
+    0.00      —  │                 │  │     │              └─ folio_batch_move_lru
+    0.00      —  │                 │  │     │                 └─ lru_add_fn
+    0.00      —  │                 │  │     │                    └─ lru_gen_add_folio
+    0.00      —  │                 │  │     └─ page_cache_async_ra
+    0.00      —  │                 │  │        └─ ondemand_readahead
+    0.00      —  │                 │  │           └─ page_cache_ra_order
+    0.00      —  │                 │  │              └─ page_cache_ra_unbounded
+    0.00      —  │                 │  │                 └─ filemap_add_folio
+    0.00      —  │                 │  │                    └─ __filemap_add_folio
+    0.01      —  │                 │  └─ finish_fault
+    0.01      —  │                 │     └─ set_pte_range
+    0.00      —  │                 │        └─ folio_add_lru_vma
+    0.00      —  │                 │           └─ folio_add_lru
+    0.00      —  │                 │              └─ folio_batch_move_lru
+    0.00      —  │                 │                 └─ lru_add_fn
+    0.00      —  │                 │                    └─ lru_gen_add_folio
+    0.00      —  │                 │                       └─ __mod_lruvec_state
+    0.00      —  │                 │                          └─ __mod_memcg_lruvec_state
+    0.00      —  │                 ├─ copy_page
+    0.00      —  │                 └─ do_wp_page
+    0.03      —  ├─ [librbd.so.1.19.0]
+    0.03      —  │  └─ asm_exc_page_fault
+    0.02      —  │     ├─ exc_page_fault
+    0.02      —  │     │  └─ do_user_addr_fault
+    0.02      —  │     │     └─ handle_mm_fault
+    0.02      —  │     │        └─ __handle_mm_fault
+    0.02      —  │     │           └─ handle_pte_fault
+    0.02      —  │     │              └─ do_fault
+    0.02      —  │     │                 └─ do_read_fault
+    0.02      —  │     │                    └─ __do_fault
+    0.02      —  │     │                       └─ filemap_fault
+    0.02      —  │     │                          ├─ do_sync_mmap_readahead
+    0.02      —  │     │                          │  └─ page_cache_ra_order
+    0.02      —  │     │                          │     └─ page_cache_ra_unbounded
+    0.01      —  │     │                          │        ├─ read_pages
+    0.01      —  │     │                          │        │  ├─ blk_finish_plug
+    0.01      —  │     │                          │        │  │  └─ __blk_flush_plug
+    0.01      —  │     │                          │        │  │     └─ blk_mq_flush_plug_list
+    0.01      —  │     │                          │        │  │        └─ blk_mq_flush_plug_list.part.0
+    0.01      —  │     │                          │        │  │           └─ blk_mq_dispatch_plug_list
+    0.01      —  │     │                          │        │  │              └─ blk_mq_run_hw_queue
+    0.01      —  │     │                          │        │  │                 └─ blk_mq_sched_dispatch_requests
+    0.01      —  │     │                          │        │  │                    └─ __blk_mq_sched_dispatch_requests
+    0.01      —  │     │                          │        │  │                       └─ __blk_mq_do_dispatch_sched
+    0.01      —  │     │                          │        │  │                          └─ blk_mq_dispatch_rq_list
+    0.01      —  │     │                          │        │  │                             └─ scsi_queue_rq
+    0.01      —  │     │                          │        │  │                                └─ scsi_dispatch_cmd
+    0.01      —  │     │                          │        │  │                                   └─ ata_scsi_queuecmd
+    0.01      —  │     │                          │        │  │                                      └─ __ata_scsi_queuecmd
+    0.01      —  │     │                          │        │  │                                         └─ ata_qc_issue
+    0.01      —  │     │                          │        │  │                                            └─ dma_map_sg_attrs
+    0.01      —  │     │                          │        │  │                                               └─ __dma_map_sg_attrs
+    0.01      —  │     │                          │        │  │                                                  └─ iommu_dma_map_sg
+    0.01      —  │     │                          │        │  │                                                     └─ iommu_map_sg
+    0.01      —  │     │                          │        │  │                                                        └─ __iommu_map
+    0.01      —  │     │                          │        │  │                                                           └─ amd_iommu_map_pages
+    0.01      —  │     │                          │        │  │                                                              └─ iommu_v1_map_pages
+    0.00      —  │     │                          │        │  │                                                                 └─ put_pages_list
+    0.00      —  │     │                          │        │  └─ ext4_readahead
+    0.00      —  │     │                          │        │     └─ ext4_mpage_readpages
+    0.00      —  │     │                          │        ├─ filemap_alloc_folio
+    0.00      —  │     │                          │        │  └─ folio_alloc
+    0.00      —  │     │                          │        │     └─ alloc_pages
+    0.00      —  │     │                          │        │        └─ alloc_pages_mpol
+    0.00      —  │     │                          │        │           └─ __alloc_pages
+    0.00      —  │     │                          │        │              └─ get_page_from_freelist
+    0.00      —  │     │                          │        │                 └─ clear_page_rep
+    0.00      —  │     │                          │        ├─ xa_load
+    0.00      —  │     │                          │        └─ __rcu_read_unlock
+    0.01      —  │     │                          └─ page_cache_async_ra
+    0.01      —  │     │                             └─ ondemand_readahead
+    0.01      —  │     │                                └─ page_cache_ra_order
+    0.01      —  │     │                                   └─ page_cache_ra_unbounded
+    0.00      —  │     │                                      ├─ filemap_alloc_folio
+    0.00      —  │     │                                      │  └─ folio_alloc
+    0.00      —  │     │                                      │     └─ alloc_pages
+    0.00      —  │     │                                      │        └─ alloc_pages_mpol
+    0.00      —  │     │                                      │           └─ __alloc_pages
+    0.00      —  │     │                                      │              └─ get_page_from_freelist
+    0.00      —  │     │                                      │                 └─ rmqueue
+    0.00      —  │     │                                      └─ read_pages
+    0.00      —  │     │                                         └─ blk_finish_plug
+    0.00      —  │     │                                            └─ __blk_flush_plug
+    0.00      —  │     │                                               └─ blk_mq_flush_plug_list
+    0.00      —  │     │                                                  └─ blk_mq_flush_plug_list.part.0
+    0.00      —  │     │                                                     └─ blk_mq_dispatch_plug_list
+    0.00      —  │     │                                                        └─ blk_mq_run_hw_queue
+    0.00      —  │     │                                                           └─ blk_mq_sched_dispatch_requests
+    0.00      —  │     │                                                              └─ __blk_mq_sched_dispatch_requests
+    0.00      —  │     │                                                                 └─ __blk_mq_do_dispatch_sched
+    0.00      —  │     │                                                                    └─ blk_mq_dispatch_rq_list
+    0.00      —  │     │                                                                       └─ scsi_queue_rq
+    0.00      —  │     │                                                                          └─ scsi_dispatch_cmd
+    0.00      —  │     │                                                                             └─ ata_scsi_queuecmd
+    0.00      —  │     │                                                                                └─ __ata_scsi_queuecmd
+    0.00      —  │     │                                                                                   └─ ata_qc_issue
+    0.00      —  │     │                                                                                      └─ dma_map_sg_attrs
+    0.00      —  │     │                                                                                         └─ __dma_map_sg_attrs
+    0.00      —  │     │                                                                                            └─ iommu_dma_map_sg
+    0.00      —  │     │                                                                                               └─ iommu_map_sg
+    0.00      —  │     │                                                                                                  └─ __iommu_map
+    0.00      —  │     │                                                                                                     └─ amd_iommu_map_pages
+    0.00      —  │     │                                                                                                        └─ put_pages_list
+    0.00      —  │     └─ do_user_addr_fault
+    0.02      —  ├─ entry_SYSCALL_64_after_hwframe
+    0.02      —  │  └─ do_syscall_64
+    0.01      —  │     ├─ x64_sys_call
+    0.01      —  │     │  ├─ __x64_sys_exit
+    0.01   0.01  │     │  │  └─ do_exit
+    0.01      —  │     │  └─ __x64_sys_mprotect
+    0.01      —  │     │     └─ do_mprotect_pkey
+    0.01      —  │     │        └─ mprotect_fixup
+    0.00      —  │     │           ├─ vma_modify
+    0.00      —  │     │           │  └─ __split_vma
+    0.00      —  │     │           │     └─ vma_complete
+    0.00      —  │     │           │        └─ mas_store_prealloc
+    0.00      —  │     │           │           └─ mas_wr_store_entry.isra.0
+    0.00      —  │     │           │              └─ mas_wr_modify
+    0.00      —  │     │           │                 └─ mas_wr_node_store
+    0.00      —  │     │           └─ perf_event_mmap
+    0.00      —  │     │              └─ perf_event_mmap_event
+    0.00      —  │     │                 └─ memset_orig
+    0.00      —  │     └─ srso_safe_ret
+    0.01      —  ├─ [librados.so.2.0.0]
+    0.01      —  │  ├─ asm_exc_page_fault
+    0.01      —  │  │  └─ exc_page_fault
+    0.01      —  │  │     └─ do_user_addr_fault
+    0.01      —  │  │        └─ handle_mm_fault
+    0.01      —  │  │           └─ __handle_mm_fault
+    0.01      —  │  │              └─ handle_pte_fault
+    0.01      —  │  │                 └─ do_fault
+    0.01      —  │  │                    └─ do_read_fault
+    0.01      —  │  │                       └─ __do_fault
+    0.01      —  │  │                          └─ filemap_fault
+    0.00      —  │  │                             ├─ folio_wait_bit_common
+    0.00      —  │  │                             │  └─ io_schedule
+    0.00      —  │  │                             │     └─ schedule
+    0.00      —  │  │                             │        └─ __schedule
+    0.00      —  │  │                             │           └─ dequeue_task
+    0.00      —  │  │                             │              └─ dequeue_task_fair
+    0.00      —  │  │                             └─ do_sync_mmap_readahead
+    0.00      —  │  │                                └─ page_cache_ra_order
+    0.00      —  │  │                                   └─ page_cache_ra_unbounded
+    0.00      —  │  │                                      └─ filemap_add_folio
+    0.00      —  │  │                                         └─ __filemap_add_folio
+    0.00      —  │  └─ dlopen
+    0.00      —  │     └─ _dl_catch_exception
+    0.00      —  │        └─ entry_SYSCALL_64_after_hwframe
+    0.00      —  │           └─ do_syscall_64
+    0.00      —  │              └─ x64_sys_call
+    0.00      —  │                 └─ __x64_sys_munmap
+    0.00      —  │                    └─ __vm_munmap
+    0.00      —  │                       └─ do_vmi_munmap
+    0.00      —  │                          └─ do_vmi_align_munmap
+    0.00      —  │                             └─ unmap_region
+    0.00      —  │                                └─ unmap_vmas
+    0.00      —  │                                   └─ unmap_single_vma
+    0.00      —  │                                      └─ unmap_page_range
+    0.00      —  │                                         └─ zap_pmd_range.isra.0
+    0.00      —  │                                            └─ flush_tlb_batched_pending
+    0.01      —  ├─ [libgnutls.so.30.37.1]
+    0.01      —  │  └─ [libgnutls.so.30.37.1]
+    0.01      —  │     ├─ fstatat64
+    0.01      —  │     │  └─ entry_SYSCALL_64_after_hwframe
+    0.01      —  │     │     └─ do_syscall_64
+    0.01      —  │     │        └─ x64_sys_call
+    0.01      —  │     │           └─ __x64_sys_newfstatat
+    0.01      —  │     │              └─ __do_sys_newfstatat
+    0.01      —  │     │                 └─ vfs_fstatat
+    0.01      —  │     │                    └─ vfs_statx
+    0.01      —  │     │                       └─ filename_lookup
+    0.01      —  │     │                          └─ path_lookupat
+    0.01      —  │     │                             └─ walk_component
+    0.01      —  │     │                                └─ __lookup_slow
+    0.01      —  │     │                                   └─ ext4_lookup
+    0.01      —  │     │                                      └─ __ext4_iget
+    0.01      —  │     │                                         └─ __ext4_get_inode_loc_noinmem
+    0.01      —  │     │                                            └─ __ext4_get_inode_loc
+    0.01      —  │     │                                               └─ blk_finish_plug
+    0.01      —  │     │                                                  └─ __blk_flush_plug
+    0.01      —  │     │                                                     └─ blk_mq_flush_plug_list
+    0.01      —  │     │                                                        └─ blk_mq_flush_plug_list.part.0
+    0.01      —  │     │                                                           └─ blk_mq_dispatch_plug_list
+    0.01      —  │     │                                                              └─ blk_mq_run_hw_queue
+    0.01      —  │     │                                                                 └─ blk_mq_sched_dispatch_requests
+    0.01      —  │     │                                                                    └─ __blk_mq_sched_dispatch_requests
+    0.01      —  │     │                                                                       └─ __blk_mq_do_dispatch_sched
+    0.01      —  │     │                                                                          └─ blk_mq_dispatch_rq_list
+    0.01      —  │     │                                                                             └─ scsi_queue_rq
+    0.00      —  │     │                                                                                ├─ blk_mq_start_request
+    0.00      —  │     │                                                                                └─ scsi_prepare_cmd
+    0.00      —  │     │                                                                                   └─ sd_init_command
+    0.00      —  │     │                                                                                      └─ sd_setup_read_write_cmnd
+    0.00      —  │     │                                                                                         └─ scsi_alloc_sgtables
+    0.00      —  │     │                                                                                            └─ sg_alloc_table_chained
+    0.00      —  │     │                                                                                               └─ __sg_alloc_table
+    0.00      —  │     │                                                                                                  └─ srso_safe_ret
+    0.00      —  │     └─ asn1_array2tree
+    0.00      —  │        └─ __libc_calloc
+    0.01      —  ├─ sched_setaffinity
+    0.01      —  │  └─ entry_SYSCALL_64_after_hwframe
+    0.01      —  │     └─ do_syscall_64
+    0.01      —  │        ├─ x64_sys_call
+    0.01      —  │        │  └─ __x64_sys_sched_setaffinity
+    0.01      —  │        │     └─ sched_setaffinity
+    0.01      —  │        │        └─ __sched_setaffinity
+    0.01      —  │        │           └─ __set_cpus_allowed_ptr
+    0.01      —  │        │              └─ __set_cpus_allowed_ptr_locked
+    0.00      —  │        │                 ├─ __do_set_cpus_allowed
+    0.00      —  │        │                 │  └─ dequeue_task_fair
+    0.00      —  │        │                 │     └─ dequeue_entity
+    0.00      —  │        │                 │        └─ update_load_avg
+    0.00      —  │        │                 │           └─ __update_load_avg_cfs_rq
+    0.00      —  │        │                 ├─ affine_move_task
+    0.00      —  │        │                 │  └─ wait_for_completion
+    0.00      —  │        │                 │     └─ __cond_resched
+    0.00      —  │        │                 │        └─ __schedule
+    0.00      —  │        │                 │           └─ pick_next_task
+    0.00      —  │        │                 │              └─ put_prev_task_balance
+    0.00      —  │        │                 │                 └─ put_prev_task_fair
+    0.00      —  │        │                 └─ srso_safe_ret
+    0.00      —  │        └─ syscall_exit_to_user_mode
+    0.00      —  │           └─ arch_exit_to_user_mode_prepare.isra.0
+    0.00      —  │              └─ switch_fpu_return
+    0.01      —  ├─ [libpmem.so.1.0.0]
+    0.01      —  │  └─ asm_exc_page_fault
+    0.01      —  │     └─ exc_page_fault
+    0.01      —  │        └─ do_user_addr_fault
+    0.01      —  │           └─ handle_mm_fault
+    0.01      —  │              └─ __handle_mm_fault
+    0.01      —  │                 └─ handle_pte_fault
+    0.01      —  │                    └─ do_fault
+    0.01      —  │                       └─ do_read_fault
+    0.01      —  │                          └─ __do_fault
+    0.01      —  │                             └─ filemap_fault
+    0.01      —  │                                └─ page_cache_async_ra
+    0.01      —  │                                   └─ ondemand_readahead
+    0.01      —  │                                      └─ page_cache_ra_order
+    0.01      —  │                                         └─ page_cache_ra_unbounded
+    0.00      —  │                                            ├─ filemap_alloc_folio
+    0.00      —  │                                            │  └─ folio_alloc
+    0.00      —  │                                            │     └─ alloc_pages
+    0.00      —  │                                            │        └─ alloc_pages_mpol
+    0.00      —  │                                            │           └─ __alloc_pages
+    0.00      —  │                                            │              └─ get_page_from_freelist
+    0.00      —  │                                            │                 └─ rmqueue
+    0.00      —  │                                            │                    └─ __rmqueue_pcplist
+    0.00      —  │                                            │                       └─ rmqueue_bulk
+    0.00      —  │                                            └─ filemap_add_folio
+    0.00      —  │                                               └─ folio_add_lru
+    0.00      —  │                                                  └─ folio_batch_move_lru
+    0.00      —  │                                                     └─ release_pages
+    0.00      —  ├─ mempool::pool_t::get_type
+    0.00      —  │  └─ asm_exc_page_fault
+    0.00      —  │     └─ exc_page_fault
+    0.00      —  │        └─ do_user_addr_fault
+    0.00      —  │           └─ handle_mm_fault
+    0.00      —  │              └─ __handle_mm_fault
+    0.00      —  │                 └─ handle_pte_fault
+    0.00      —  │                    └─ do_fault
+    0.00      —  │                       └─ do_read_fault
+    0.00      —  │                          └─ __do_fault
+    0.00      —  │                             └─ filemap_fault
+    0.00      —  │                                └─ do_sync_mmap_readahead
+    0.00      —  │                                   └─ page_cache_ra_order
+    0.00      —  │                                      └─ page_cache_ra_unbounded
+    0.00      —  │                                         └─ filemap_alloc_folio
+    0.00      —  │                                            └─ folio_alloc
+    0.00      —  │                                               └─ alloc_pages
+    0.00      —  │                                                  └─ alloc_pages_mpol
+    0.00      —  │                                                     └─ __alloc_pages
+    0.00      —  │                                                        └─ get_page_from_freelist
+    0.00      —  │                                                           └─ rmqueue
+    0.00      —  ├─ __madvise
+    0.00      —  │  └─ entry_SYSCALL_64_after_hwframe
+    0.00      —  │     └─ do_syscall_64
+    0.00      —  │        └─ x64_sys_call
+    0.00      —  │           └─ __x64_sys_madvise
+    0.00      —  │              └─ do_madvise
+    0.00      —  │                 └─ madvise_walk_vmas
+    0.00      —  │                    └─ madvise_vma_behavior
+    0.00      —  │                       └─ zap_page_range_single
+    0.00      —  │                          └─ unmap_single_vma
+    0.00      —  │                             └─ unmap_page_range
+    0.00      —  │                                └─ zap_pmd_range.isra.0
+    0.00      —  │                                   └─ zap_pte_range
+    0.00      —  ├─ access
+    0.00      —  │  └─ entry_SYSCALL_64_after_hwframe
+    0.00      —  │     └─ do_syscall_64
+    0.00      —  │        └─ x64_sys_call
+    0.00      —  │           └─ __x64_sys_access
+    0.00      —  │              └─ do_faccessat
+    0.00      —  │                 └─ user_path_at_empty
+    0.00      —  │                    └─ filename_lookup
+    0.00      —  │                       └─ path_lookupat
+    0.00      —  │                          └─ walk_component
+    0.00      —  │                             └─ __lookup_slow
+    0.00      —  │                                └─ ext4_lookup
+    0.00      —  │                                   └─ __ext4_find_entry
+    0.00      —  │                                      └─ __wait_on_buffer
+    0.00      —  │                                         └─ out_of_line_wait_on_bit
+    0.00      —  │                                            └─ __wait_on_bit
+    0.00      —  │                                               └─ bit_wait_io
+    0.00      —  │                                                  └─ io_schedule
+    0.00      —  ├─ execve
+    0.00      —  │  └─ entry_SYSCALL_64_after_hwframe
+    0.00      —  │     └─ do_syscall_64
+    0.00      —  │        └─ x64_sys_call
+    0.00      —  │           └─ __x64_sys_execve
+    0.00      —  │              └─ do_execveat_common.isra.0
+    0.00      —  │                 └─ bprm_execve
+    0.00      —  │                    └─ bprm_execve.part.0
+    0.00      —  │                       └─ exec_binprm
+    0.00      —  │                          └─ search_binary_handler
+    0.00      —  │                             └─ load_elf_binary
+    0.00      —  │                                └─ elf_load
+    0.00      —  │                                   └─ vm_mmap
+    0.00      —  │                                      └─ vm_mmap_pgoff
+    0.00      —  │                                         └─ do_mmap
+    0.00      —  │                                            └─ mmap_region
+    0.00      —  │                                               └─ __mmap_region
+    0.00      —  │                                                  └─ perf_event_mmap
+    0.00      —  │                                                     └─ perf_event_mmap_event
+    0.00      —  ├─ _gnutls_global_init_skip
+    0.00      —  │  └─ asm_exc_page_fault
+    0.00      —  │     └─ exc_page_fault
+    0.00      —  │        └─ do_user_addr_fault
+    0.00      —  │           └─ handle_mm_fault
+    0.00      —  │              └─ __handle_mm_fault
+    0.00      —  │                 └─ handle_pte_fault
+    0.00      —  │                    └─ do_fault
+    0.00      —  │                       └─ do_read_fault
+    0.00      —  │                          └─ filemap_map_pages
+    0.00      —  │                             └─ next_uptodate_folio
+    0.00      —  ├─ error_return
+    0.00      —  ├─ build_options
+    0.00      —  │  └─ asm_exc_page_fault
+    0.00      —  │     └─ exc_page_fault
+    0.00      —  │        └─ do_user_addr_fault
+    0.00      —  │           └─ handle_mm_fault
+    0.00      —  │              └─ __handle_mm_fault
+    0.00      —  │                 └─ handle_pte_fault
+    0.00      —  │                    └─ do_fault
+    0.00      —  │                       └─ do_read_fault
+    0.00      —  │                          └─ __do_fault
+    0.00      —  │                             └─ filemap_fault
+    0.00      —  │                                └─ folio_wait_bit_common
+    0.00      —  │                                   └─ io_schedule
+    0.00      —  │                                      └─ schedule
+    0.00      —  │                                         └─ __schedule
+    0.00      —  │                                            └─ dequeue_task
+    0.00      —  │                                               └─ dequeue_task_fair
+    0.00      —  └─ snprintf
+    0.00      —     └─ asm_exc_page_fault
+    0.00      —        └─ exc_page_fault
+    0.00      —           └─ do_user_addr_fault
+    0.00      —              └─ handle_mm_fault
+    0.00      —                 └─ __handle_mm_fault
+    0.00      —                    └─ handle_pte_fault
+    0.00      —                       └─ do_anonymous_page
+    0.00      —                          ├─ alloc_anon_folio
+    0.00      —                          │  └─ vma_alloc_folio
+    0.00      —                          │     └─ get_vma_policy
+    0.00      —                          └─ __folio_throttle_swaprate
+    0.00      —                             └─ kthread_blkcg

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+        <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+        
+</head>
+
+<body>
+    <div>
+        <div id="plotly-html-element" class="plotly-graph-div" style="height:100%; width:100%;"></div>
+
+        <script type="module">
+            const graph_div = document.getElementById("plotly-html-element");
+            await Plotly.newPlot(graph_div, {"data":[{"type":"bar","x":["yolo-no-perm","yolo-realistic","overlayfs","branchfs"],"y":[2.0,2.0,12.0,207.33333333333337],"name":"init"},{"type":"bar","x":["yolo-no-perm","yolo-realistic","overlayfs","branchfs"],"y":[379.6666666666667,381.3333333333333,2631.0,3366.0],"name":"staging"},{"type":"bar","x":["yolo-no-perm","yolo-realistic","overlayfs","branchfs"],"y":[505.0,641.3333333333334,460.0,1182.3333333333333],"name":"commit","error_y":{"type":"data","array":[1.699673171197595,192.5691794885383,40.3567425180312,38.421637422450154],"visible":true}},{"type":"scatter","name":"native baseline","showlegend":false,"opacity":0.0,"mode":"lines","x":["yolo-no-perm","yolo-realistic","overlayfs","branchfs"],"y":[458.3333333333333,458.3333333333333,458.3333333333333,458.3333333333333],"hovertext":["native total: 458.3","native total: 458.3","native total: 458.3","native total: 458.3"],"hoverinfo":"text"}],"layout":{"title":{"text":"overwrite-files"},"xaxis":{"title":{"text":"backend"}},"yaxis":{"title":{"text":"time (ms)"}},"annotations":[{"text":"native baseline","showarrow":false,"xref":"paper","x":1.0,"yref":"y","y":458.3333333333333,"yshift":-10.0}],"shapes":[{"type":"line","layer":"above","xref":"paper","x0":0.0,"x1":1.0,"yref":"y","y0":458.3333333333333,"y1":458.3333333333333,"line":{"dash":"dot"}}],"barmode":"stack"},"config":{"fillFrame":true,"responsive":true},"frames":null});
+        </script>
+    </div>
+<div style="margin:1em auto;max-width:960px;padding:0.75em 1em;border:1px solid #ddd;border-radius:6px;background:#fff;font-family:system-ui,sans-serif"><div style="font-size:0.95em"><strong style="color:#b54a00">status: stale (10)</strong></div><ul style="margin:0.5em 0 0 1.2em;padding:0;color:#555;font-size:0.9em"><li>native: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>native: user/ was dirty and is now clean</li><li>yolo-no-perm: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>yolo-no-perm: user/ was dirty and is now clean</li><li>yolo-realistic: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>yolo-realistic: user/ was dirty and is now clean</li><li>overlayfs: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>overlayfs: user/ was dirty and is now clean</li><li>branchfs: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>branchfs: user/ was dirty and is now clean</li></ul></div></body>
+
+</html>

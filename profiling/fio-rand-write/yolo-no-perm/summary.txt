@@ -1,0 +1,3 @@
+Profile: fio-rand-write / yolofs-no-perm  (wall: 10639 ms)
+
+  (no bpftrace data)

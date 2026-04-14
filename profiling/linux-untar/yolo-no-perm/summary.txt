@@ -1,0 +1,3 @@
+Profile: linux-untar / yolofs-no-perm  (wall: 14585 ms)
+
+  (no bpftrace data)

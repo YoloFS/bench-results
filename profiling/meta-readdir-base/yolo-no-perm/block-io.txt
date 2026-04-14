@@ -1,0 +1,8 @@
+
+ Performance counter stats for 'system wide':
+
+             3,924      block:block_rq_issue                                                  
+             3,924      block:block_rq_complete                                               
+
+      11.141595012 seconds time elapsed
+

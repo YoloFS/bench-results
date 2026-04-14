@@ -1,0 +1,164 @@
+Function breakdown: fio-rand-write / yolofs-no-perm
+wall: 10639 ms, 15 iterations
+per-op latency (from results.json): 5.93 µs
+
+run function: 0% of profiled time
+timed operation: 100% of run | warm-up: 0% of run
+
+    incl   self  call tree
+   µs/op  µs/op
+  ------------------------------------------------------------
+    5.93      —  └─ __libc_start_main
+    5.93      —     └─ yolofs_bench::main
+    5.93      —        └─ <yolofs_bench::workloads::fio_rand_write::FioRandWrite as yolofs_bench::workload::Workload>::run
+    5.73   0.25           ├─ yolofs_bench::workloads::run_fio
+    2.07      —           │  ├─ __close
+    2.07      —           │  │  └─ entry_SYSCALL_64_after_hwframe
+    2.07      —           │  │     └─ do_syscall_64
+    1.85      —           │  │        ├─ syscall_exit_to_user_mode
+    1.49      —           │  │        │  ├─ task_work_run
+    1.49      —           │  │        │  │  └─ ____fput
+    1.49      —           │  │        │  │     └─ __fput
+    1.49      —           │  │        │  │        └─ ext4_release_file
+    1.49      —           │  │        │  │           └─ ext4_alloc_da_blocks
+    1.49      —           │  │        │  │              └─ filemap_flush
+    1.49      —           │  │        │  │                 └─ __filemap_fdatawrite_range
+    1.49      —           │  │        │  │                    └─ filemap_fdatawrite_wbc
+    1.49      —           │  │        │  │                       └─ do_writepages
+    1.49      —           │  │        │  │                          └─ ext4_writepages
+    1.49      —           │  │        │  │                             └─ ext4_do_writepages
+    0.61      —           │  │        │  │                                ├─ mpage_prepare_extent_to_map
+    0.61      —           │  │        │  │                                │  └─ __folio_batch_release
+    0.61      —           │  │        │  │                                │     └─ lru_add_drain_cpu
+    0.61      —           │  │        │  │                                │        └─ folio_batch_move_lru
+    0.61      —           │  │        │  │                                │           └─ lru_add_fn
+    0.61      —           │  │        │  │                                │              └─ lru_gen_add_folio
+    0.61   0.61           │  │        │  │                                │                 └─ __mod_memcg_lruvec_state
+    0.50   0.50           │  │        │  │                                ├─ mpage_map_and_submit_extent
+    0.38      —           │  │        │  │                                └─ blk_finish_plug
+    0.38      —           │  │        │  │                                   └─ __blk_flush_plug
+    0.38      —           │  │        │  │                                      └─ blk_mq_flush_plug_list
+    0.38      —           │  │        │  │                                         └─ blk_mq_flush_plug_list.part.0
+    0.38      —           │  │        │  │                                            └─ blk_mq_dispatch_plug_list
+    0.38      —           │  │        │  │                                               └─ blk_mq_run_hw_queue
+    0.38      —           │  │        │  │                                                  └─ blk_mq_sched_dispatch_requests
+    0.38      —           │  │        │  │                                                     └─ __blk_mq_sched_dispatch_requests
+    0.38      —           │  │        │  │                                                        └─ __blk_mq_do_dispatch_sched
+    0.38      —           │  │        │  │                                                           └─ blk_mq_dispatch_rq_list
+    0.38      —           │  │        │  │                                                              └─ scsi_queue_rq
+    0.38      —           │  │        │  │                                                                 └─ scsi_dispatch_cmd
+    0.38      —           │  │        │  │                                                                    └─ ata_scsi_queuecmd
+    0.38      —           │  │        │  │                                                                       └─ __ata_scsi_queuecmd
+    0.38      —           │  │        │  │                                                                          └─ ata_qc_issue
+    0.38      —           │  │        │  │                                                                             └─ dma_map_sg_attrs
+    0.38      —           │  │        │  │                                                                                └─ __dma_map_sg_attrs
+    0.38      —           │  │        │  │                                                                                   └─ iommu_dma_map_sg
+    0.38   0.38           │  │        │  │                                                                                      └─ iommu_map_sg
+    0.36      —           │  │        │  └─ __rseq_handle_notify_resume
+    0.36      —           │  │        │     └─ rseq_ip_fixup
+    0.36   0.36           │  │        │        └─ __get_user_8
+    0.22      —           │  │        └─ x64_sys_call
+    0.22      —           │  │           └─ __x64_sys_close
+    0.22      —           │  │              └─ __fput_sync
+    0.22      —           │  │                 └─ __fput
+    0.22      —           │  │                    └─ dput
+    0.22      —           │  │                       └─ __dentry_kill
+    0.22      —           │  │                          └─ dentry_free
+    0.22      —           │  │                             └─ kmem_cache_free
+    0.22   0.22           │  │                                └─ __memcg_slab_free_hook
+    1.14      —           │  ├─ serde_json::de::from_trait
+    1.14   0.09           │  │  └─ <serde_json::value::de::<impl serde_core::de::Deserialize for serde_json::value::Value>::deserialize::ValueVisitor as serde_core::de::Visitor>::visit_map
+    0.94      —           │  │     ├─ <serde_json::value::de::<impl serde_core::de::Deserialize for serde_json::value::Value>::deserialize::ValueVisitor as serde_core::de::Visitor>::visit_map
+    0.75      —           │  │     │  ├─ <serde_json::value::de::<impl serde_core::de::Deserialize for serde_json::value::Value>::deserialize::ValueVisitor as serde_core::de::Visitor>::visit_map
+    0.32      —           │  │     │  │  ├─ alloc::collections::btree::map::BTreeMap<K,V,A>::insert
+    0.32   0.32           │  │     │  │  │  └─ alloc::collections::btree::map::entry::VacantEntry<K,V,A>::insert_entry
+    0.32      —           │  │     │  │  ├─ <serde_json::de::MapAccess<R> as serde_core::de::MapAccess>::next_key_seed
+    0.23   0.23           │  │     │  │  │  ├─ malloc
+    0.09   0.09           │  │     │  │  │  └─ <serde_json::read::SliceRead as serde_json::read::Read>::parse_str
+    0.12      —           │  │     │  │  └─ <serde_json::value::de::<impl serde_core::de::Deserialize for serde_json::value::Value>::deserialize::ValueVisitor as serde_core::de::Visitor>::visit_map
+    0.12      —           │  │     │  │     └─ <serde_json::value::de::<impl serde_core::de::Deserialize for serde_json::value::Value>::deserialize::ValueVisitor as serde_core::de::Visitor>::visit_map
+    0.12      —           │  │     │  │        └─ alloc::collections::btree::map::BTreeMap<K,V,A>::insert
+    0.12   0.12           │  │     │  │           └─ alloc::collections::btree::map::entry::VacantEntry<K,V,A>::insert_entry
+    0.19   0.19           │  │     │  └─ serde_json::de::Deserializer<R>::parse_integer
+    0.11      —           │  │     └─ <serde_json::read::SliceRead as serde_json::read::Read>::parse_str
+    0.11      —           │  │        └─ asm_exc_page_fault
+    0.11      —           │  │           └─ exc_page_fault
+    0.11      —           │  │              └─ do_user_addr_fault
+    0.11      —           │  │                 └─ handle_mm_fault
+    0.11      —           │  │                    └─ __handle_mm_fault
+    0.11      —           │  │                       └─ handle_pte_fault
+    0.11      —           │  │                          └─ do_fault
+    0.11      —           │  │                             └─ do_read_fault
+    0.11      —           │  │                                └─ filemap_map_pages
+    0.11   0.11           │  │                                   └─ next_uptodate_folio
+    0.93      —           │  ├─ __poll
+    0.81      —           │  │  ├─ entry_SYSCALL_64_after_hwframe
+    0.81      —           │  │  │  └─ do_syscall_64
+    0.81      —           │  │  │     └─ x64_sys_call
+    0.81      —           │  │  │        └─ __x64_sys_poll
+    0.81      —           │  │  │           └─ do_sys_poll
+    0.81      —           │  │  │              └─ do_poll.constprop.0
+    0.81      —           │  │  │                 └─ schedule_hrtimeout_range
+    0.81      —           │  │  │                    └─ schedule_hrtimeout_range_clock
+    0.81      —           │  │  │                       └─ schedule
+    0.81      —           │  │  │                          └─ __schedule
+    0.81   0.81           │  │  │                             └─ _raw_spin_lock
+    0.12   0.12           │  │  └─ entry_SYSCALL_64
+    0.39      —           │  ├─ read
+    0.39      —           │  │  └─ entry_SYSCALL_64_after_hwframe
+    0.39      —           │  │     └─ do_syscall_64
+    0.25      —           │  │        ├─ x64_sys_call
+    0.25      —           │  │        │  └─ __x64_sys_read
+    0.25      —           │  │        │     └─ ksys_read
+    0.25      —           │  │        │        └─ vfs_read
+    0.25      —           │  │        │           └─ pipe_read
+    0.15      —           │  │        │              ├─ copy_page_to_iter
+    0.15   0.15           │  │        │              │  └─ rep_movs_alternative
+    0.10   0.10           │  │        │              └─ __folio_put
+    0.14      —           │  │        └─ syscall_exit_to_user_mode
+    0.14   0.14           │  │           └─ arch_exit_to_user_mode_prepare.isra.0
+    0.27   0.27           │  ├─ cfree
+    0.25      —           │  ├─ wait4
+    0.25      —           │  │  └─ entry_SYSCALL_64_after_hwframe
+    0.25      —           │  │     └─ do_syscall_64
+    0.25      —           │  │        └─ x64_sys_call
+    0.25      —           │  │           └─ __x64_sys_wait4
+    0.25      —           │  │              └─ __do_sys_wait4
+    0.25      —           │  │                 └─ kernel_wait4
+    0.25      —           │  │                    └─ do_wait
+    0.25      —           │  │                       └─ schedule
+    0.25      —           │  │                          └─ __schedule
+    0.25      —           │  │                             └─ psi_task_switch
+    0.25   0.25           │  │                                └─ psi_group_change
+    0.22      —           │  ├─ asm_sysvec_apic_timer_interrupt
+    0.22      —           │  │  └─ sysvec_apic_timer_interrupt
+    0.22      —           │  │     └─ __sysvec_apic_timer_interrupt
+    0.22      —           │  │        └─ hrtimer_interrupt
+    0.22      —           │  │           └─ __hrtimer_run_queues
+    0.22      —           │  │              └─ tick_nohz_highres_handler
+    0.22   0.22           │  │                 └─ ktime_get
+    0.12   0.12           │  ├─ alloc::raw_vec::RawVecInner<A>::reserve::do_reserve_and_handle
+    0.08      —           │  └─ yolofs_bench::workloads::emit_op_result
+    0.08      —           │     └─ <std::io::stdio::StdoutLock as std::io::Write>::write_all
+    0.08      —           │        └─ write
+    0.08      —           │           └─ entry_SYSCALL_64_after_hwframe
+    0.08      —           │              └─ do_syscall_64
+    0.08      —           │                 └─ x64_sys_call
+    0.08      —           │                    └─ __x64_sys_write
+    0.08      —           │                       └─ ksys_write
+    0.08   0.08           │                          └─ vfs_write
+    0.19      —           └─ serde_json::de::from_trait
+    0.19      —              └─ asm_exc_page_fault
+    0.19      —                 └─ exc_page_fault
+    0.19      —                    └─ do_user_addr_fault
+    0.19      —                       └─ handle_mm_fault
+    0.19      —                          └─ __handle_mm_fault
+    0.19      —                             └─ handle_pte_fault
+    0.19      —                                └─ do_fault
+    0.19      —                                   └─ do_read_fault
+    0.19      —                                      └─ filemap_map_pages
+    0.19      —                                         └─ set_pte_range
+    0.19      —                                            └─ folio_add_file_rmap_ptes
+    0.19      —                                               └─ __lruvec_stat_mod_folio
+    0.19      —                                                  └─ __mod_lruvec_state
+    0.19   0.19                                                     └─ __mod_node_page_state

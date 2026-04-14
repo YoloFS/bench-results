@@ -1,0 +1,3 @@
+Profile: fio-rand-write / native  (wall: 10432 ms)
+
+  (no bpftrace data)

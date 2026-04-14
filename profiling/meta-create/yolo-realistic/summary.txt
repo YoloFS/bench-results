@@ -1,0 +1,3 @@
+Profile: meta-create / yolofs-realistic  (wall: 10704 ms)
+
+  (no bpftrace data)

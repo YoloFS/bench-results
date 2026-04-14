@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<title>yolo-bench — node0.ljx-295304.advosuwmadison-pg0.utah.cloudlab.us</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 2em; background: #fafafa; }
+  h1 { font-size: 1.4em; }
+  h2 { font-size: 1.1em; margin-top: 2em; color: #555; border-bottom: 1px solid #ddd; padding-bottom: 0.3em; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(600px, 1fr)); gap: 1.2em; }
+  .card { }
+  .card-header { display:flex; align-items:center; gap:0.5em; flex-wrap:wrap; margin-bottom:0.35em; }
+  .card-title { font-size: 0.95em; font-weight: 600; cursor: help; }
+  .card-title .desc { font-weight: 400; color: #888; font-size: 0.72em; }
+  .card-meta { display:flex; align-items:center; gap:0.45em; flex-wrap:wrap; margin-left:auto; }
+  .card-stale details { display:inline-block; }
+  .card-stale summary { cursor:pointer; color:#666; font-size:0.8em; }
+  iframe { width: 100%; height: 420px; border: 1px solid #ddd; border-radius: 4px; background: #fff; }
+  .env { font-size: 0.85em; color: #666; margin-bottom: 1.5em; }
+  .env table { border-collapse: collapse; }
+  .env td { padding: 0.15em 0; }
+  .env td:first-child { color: #999; padding-right: 1em; white-space: nowrap; }
+  .status-badge { display:inline-block; margin-left:0.5em; padding:0.1em 0.45em; border-radius:999px; font-size:0.78em; font-weight:600; }
+  .status-fresh { color:#1f7a1f; background:#eaf7ea; }
+  .status-stale { color:#b54a00; background:#fff1e8; }
+  .status-unknown { color:#666; background:#f1f1f1; }
+  details.cold-meta-collapsed { margin-top: 1.4em; }
+  details.cold-meta-collapsed > summary { cursor: pointer; font-size: 1.02em; color: #555; border-bottom: 1px solid #ddd; padding-bottom: 0.3em; }
+</style>
+</head><body>
+<h1>yolo-bench &mdash; c6525-25g @ utah.cloudlab.us</h1>
+<div class="env"><table>
+<tr><td>cloudlab</td><td>c6525-25g @ utah.cloudlab.us</td></tr>
+<tr><td>host</td><td>node0.ljx-295304.advosuwmadison-pg0.utah.cloudlab.us</td></tr>
+<tr><td>cpu</td><td>AMD EPYC 7302P 16-Core Processor</td></tr>
+<tr><td>memory</td><td>125 GB</td></tr>
+<tr><td>storage</td><td>MTFDDAK480TDN &mdash; SSD (/dev/sda3)</td></tr>
+<tr><td>filesystem</td><td>ext4 &mdash; 294 GB total, 236 GB free</td></tr>
+<tr><td>kernel</td><td>6.8.0-106-generic</td></tr>
+<tr><td>distro</td><td>Ubuntu 24.04.4 LTS</td></tr>
+<tr><td>repo</td><td>c2c43b (user: clean, kmod: clean)</td></tr>
+<tr><td>data</td><td><a href="results.json">results.json</a></td></tr>
+</table></div>
+<h2>Per-op Micro-benchmark: Big File Data Operations</h2>
+<div class="grid">
+  <div class="card"><div class="card-header"><div class="card-title" title="Sequential buffered read benchmark with cold page cache.">fio-seq-read-cold <span class="desc">— Sequential 4K read, 1 GB file, cold page cache (fio)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 0d3b84</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>yolo-no-perm: user/ or kmod/ changed between ce8faa and c2c43b</li><li>branchfs: user/ or kmod/ changed between ce8faa and c2c43b</li><li>overlayfs: user/ or kmod/ changed between ce8faa and c2c43b</li><li>native: user/ or kmod/ changed between ce8faa and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between ce8faa and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Sequential buffered read benchmark with cold page cache.</p><p><strong>Fixture:</strong> The workload creates `&lt;dest&gt;/testfile.dat` inside the mounted sandbox as a 1 GiB deterministic patterned file before running fio.</p><p><strong>Harness:</strong> Harness behavior: create the sandbox-local backing file before the timed run, then have the parent/backend drop page cache before fio starts.</p><p><strong>Execution:</strong> Command:<br>fio --output-format=json &lt;dest&gt;/job.fio<br><br>Jobfile:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>[fio-seq-read-cold]
+filename=&lt;dest&gt;/testfile.dat
+rw=read
+bs=4k
+filesize=1g
+io_size=256m
+direct=0
+invalidate=0
+ioengine=psync
+
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/fio_seq_read_cold.rs</code></p></div></details><iframe src="fio-seq-read-cold.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Sequential buffered read benchmark with warm page cache.">fio-seq-read-warm <span class="desc">— Sequential 4K read, 1 GB file, warm page cache (fio)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 0d3b84</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>yolo-no-perm: user/ or kmod/ changed between ce8faa and c2c43b</li><li>overlayfs: user/ or kmod/ changed between ce8faa and c2c43b</li><li>branchfs: user/ or kmod/ changed between ce8faa and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between ce8faa and c2c43b</li><li>native: user/ or kmod/ changed between ce8faa and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Sequential buffered read benchmark with warm page cache.</p><p><strong>Fixture:</strong> The workload creates `&lt;dest&gt;/testfile.dat` inside the mounted sandbox as a 1 GiB deterministic patterned file before running fio.</p><p><strong>Harness:</strong> Harness behavior: pre-read `&lt;dest&gt;/testfile.dat` once before launching fio to warm the page cache.</p><p><strong>Execution:</strong> Command:<br>fio --output-format=json &lt;dest&gt;/job.fio<br><br>Jobfile:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>[fio-seq-read-warm]
+filename=&lt;dest&gt;/testfile.dat
+rw=read
+bs=4k
+filesize=1g
+io_size=1g
+direct=0
+invalidate=0
+ioengine=psync
+
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/fio_seq_read_warm.rs</code></p></div></details><iframe src="fio-seq-read-warm.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Sequential buffered write benchmark over a 1 GiB logical file space.">fio-seq-write <span class="desc">— Sequential 4K write, 1 GB file (fio)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 0d3b84</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>yolo-no-perm: user/ or kmod/ changed between ce8faa and c2c43b</li><li>overlayfs: user/ or kmod/ changed between ce8faa and c2c43b</li><li>branchfs: user/ or kmod/ changed between ce8faa and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between ce8faa and c2c43b</li><li>native: user/ or kmod/ changed between ce8faa and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Sequential buffered write benchmark over a 1 GiB logical file space.</p><p><strong>Fixture:</strong> No pre-existing file is required; fio creates `&lt;dest&gt;/testfile.dat` inside the workload directory.</p><p><strong>Harness:</strong> Harness behavior: no extra cold/warm cache preparation is applied.</p><p><strong>Execution:</strong> Command:<br>fio --output-format=json &lt;dest&gt;/job.fio<br><br>Jobfile:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>[fio-seq-write]
+filename=&lt;dest&gt;/testfile.dat
+rw=write
+bs=4k
+filesize=1g
+io_size=256m
+direct=0
+invalidate=0
+ioengine=psync
+
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/fio_seq_write.rs</code></p></div></details><iframe src="fio-seq-write.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Random buffered read benchmark with cold page cache.">fio-rand-read-cold <span class="desc">— Random 4K read, 1 GB file, cold page cache (fio)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 0d3b84</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>yolo-no-perm: user/ or kmod/ changed between ce8faa and c2c43b</li><li>branchfs: user/ or kmod/ changed between ce8faa and c2c43b</li><li>overlayfs: user/ or kmod/ changed between ce8faa and c2c43b</li><li>native: user/ or kmod/ changed between ce8faa and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between ce8faa and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Random buffered read benchmark with cold page cache.</p><p><strong>Fixture:</strong> The workload creates `&lt;dest&gt;/testfile.dat` inside the mounted sandbox as a 1 GiB deterministic patterned file before running fio.</p><p><strong>Harness:</strong> Harness behavior: create the sandbox-local backing file before the timed run, then have the parent/backend drop page cache before fio starts.</p><p><strong>Execution:</strong> Command:<br>fio --output-format=json &lt;dest&gt;/job.fio<br><br>Jobfile:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>[fio-rand-read-cold]
+filename=&lt;dest&gt;/testfile.dat
+rw=randread
+bs=4k
+filesize=1g
+io_size=256m
+direct=0
+invalidate=0
+ioengine=psync
+
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/fio_rand_read_cold.rs</code></p></div></details><iframe src="fio-rand-read-cold.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Random buffered read benchmark with warm page cache.">fio-rand-read-warm <span class="desc">— Random 4K read, 1 GB file, warm page cache (fio)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 0d3b84</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>yolo-no-perm: user/ or kmod/ changed between ce8faa and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between ce8faa and c2c43b</li><li>overlayfs: user/ or kmod/ changed between ce8faa and c2c43b</li><li>branchfs: user/ or kmod/ changed between ce8faa and c2c43b</li><li>native: user/ or kmod/ changed between ce8faa and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Random buffered read benchmark with warm page cache.</p><p><strong>Fixture:</strong> The workload creates `&lt;dest&gt;/testfile.dat` inside the mounted sandbox as a 1 GiB deterministic patterned file before running fio.</p><p><strong>Harness:</strong> Harness behavior: pre-read `&lt;dest&gt;/testfile.dat` once before launching fio to warm the page cache.</p><p><strong>Execution:</strong> Command:<br>fio --output-format=json &lt;dest&gt;/job.fio<br><br>Jobfile:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>[fio-rand-read-warm]
+filename=&lt;dest&gt;/testfile.dat
+rw=randread
+bs=4k
+filesize=1g
+io_size=1g
+direct=0
+invalidate=0
+ioengine=psync
+
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/fio_rand_read_warm.rs</code></p></div></details><iframe src="fio-rand-read-warm.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Random buffered write benchmark over a 1 GiB logical file space.">fio-rand-write <span class="desc">— Random 4K write, 1 GB file (fio)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 0d3b84</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>yolo-no-perm: user/ or kmod/ changed between ce8faa and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between ce8faa and c2c43b</li><li>overlayfs: user/ or kmod/ changed between ce8faa and c2c43b</li><li>branchfs: user/ or kmod/ changed between ce8faa and c2c43b</li><li>native: user/ or kmod/ changed between ce8faa and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Random buffered write benchmark over a 1 GiB logical file space.</p><p><strong>Fixture:</strong> No pre-existing file is required; fio creates `&lt;dest&gt;/testfile.dat` inside the workload directory.</p><p><strong>Harness:</strong> Harness behavior: no extra cold/warm cache preparation is applied.</p><p><strong>Execution:</strong> Command:<br>fio --output-format=json &lt;dest&gt;/job.fio<br><br>Jobfile:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>[fio-rand-write]
+filename=&lt;dest&gt;/testfile.dat
+rw=randwrite
+bs=4k
+filesize=1g
+io_size=256m
+direct=0
+invalidate=0
+ioengine=psync
+
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/fio_rand_write.rs</code></p></div></details><iframe src="fio-rand-write.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Mixed random buffered benchmark with cold page cache.">fio-randrw-cold <span class="desc">— Random 4K 70/30 read/write mix, 1 GB file, cold page cache (fio)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 39d2f9</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between ce8faa and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between ce8faa and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between ce8faa and c2c43b</li><li>overlayfs: user/ or kmod/ changed between ce8faa and c2c43b</li><li>branchfs: user/ or kmod/ changed between ce8faa and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Mixed random buffered benchmark with cold page cache.</p><p><strong>Fixture:</strong> The workload creates `&lt;dest&gt;/testfile.dat` inside the mounted sandbox as a 1 GiB deterministic patterned file before running fio.</p><p><strong>Harness:</strong> Harness behavior: create the sandbox-local backing file before the timed run, then have the parent/backend drop page cache before fio starts.</p><p><strong>Execution:</strong> Command:<br>fio --output-format=json &lt;dest&gt;/job.fio<br><br>Jobfile:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>[fio-randrw-cold]
+filename=&lt;dest&gt;/testfile.dat
+rw=randrw
+bs=4k
+filesize=1g
+io_size=256m
+direct=0
+invalidate=0
+ioengine=psync
+rwmixread=70
+
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/fio_randrw_cold.rs</code></p></div></details><iframe src="fio-randrw-cold.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Mixed random buffered benchmark with warm page cache.">fio-randrw-warm <span class="desc">— Random 4K 70/30 read/write mix, 1 GB file, warm page cache (fio)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 39d2f9</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between ce8faa and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between ce8faa and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between ce8faa and c2c43b</li><li>overlayfs: user/ or kmod/ changed between ce8faa and c2c43b</li><li>branchfs: user/ or kmod/ changed between ce8faa and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Mixed random buffered benchmark with warm page cache.</p><p><strong>Fixture:</strong> The workload creates `&lt;dest&gt;/testfile.dat` inside the mounted sandbox as a 1 GiB deterministic patterned file before running fio.</p><p><strong>Harness:</strong> Harness behavior: pre-read `&lt;dest&gt;/testfile.dat` once before launching fio to warm the page cache.</p><p><strong>Execution:</strong> Command:<br>fio --output-format=json &lt;dest&gt;/job.fio<br><br>Jobfile:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>[fio-randrw-warm]
+filename=&lt;dest&gt;/testfile.dat
+rw=randrw
+bs=4k
+filesize=1g
+io_size=1g
+direct=0
+invalidate=0
+ioengine=psync
+rwmixread=70
+
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/fio_randrw_warm.rs</code></p></div></details><iframe src="fio-randrw-warm.html"></iframe></div>
+</div>
+<h2>Per-op Micro-benchmark: Small File Metadata Operations</h2>
+<div class="grid">
+  <div class="card"><div class="card-header"><div class="card-title" title="Op benchmark for file creation throughput and latency.">meta-create <span class="desc">— Create 10,000 empty files (large directory)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 39d2f9</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 531d9c and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 531d9c and c2c43b</li><li>branchfs: user/ or kmod/ changed between 531d9c and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Op benchmark for file creation throughput and latency.</p><p><strong>Fixture:</strong> No pre-existing files required. The work directory is created on demand inside the mounted session.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>for i in 0..count {
+    let t0 = Instant::now();
+    File::create(dest.join(format!(&quot;f-{i:06}.dat&quot;)))?;
+    latencies.push(t0.elapsed());
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_create.rs</code></p></div></details><iframe src="meta-create.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Op benchmark for file creation throughput and latency.">meta-create-100 <span class="desc">— Create 100 empty files (small directory)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 531d9c</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 531d9c and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 531d9c and c2c43b</li><li>branchfs: user/ or kmod/ changed between 531d9c and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Op benchmark for file creation throughput and latency.</p><p><strong>Fixture:</strong> No pre-existing files required. The work directory is created on demand inside the mounted session.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>for i in 0..count {
+    let t0 = Instant::now();
+    File::create(dest.join(format!(&quot;f-{i:06}.dat&quot;)))?;
+    latencies.push(t0.elapsed());
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_create.rs</code></p></div></details><iframe src="meta-create-100.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Op benchmark for file creation throughput and latency.">meta-create-100k <span class="desc">— Create 100,000 empty files (stress directory)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 23e98e</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 23e98e and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 23e98e and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 23e98e and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 23e98e and c2c43b</li><li>branchfs: user/ or kmod/ changed between 23e98e and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Op benchmark for file creation throughput and latency.</p><p><strong>Fixture:</strong> No pre-existing files required. The work directory is created on demand inside the mounted session.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>for i in 0..count {
+    let t0 = Instant::now();
+    File::create(dest.join(format!(&quot;f-{i:06}.dat&quot;)))?;
+    latencies.push(t0.elapsed());
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_create.rs</code></p></div></details><iframe src="meta-create-100k.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Append 4 KiB to each of 10,000 pre-existing files, measuring per-operation latency.">meta-append <span class="desc">— Append 4 KiB to 10,000 base-layer files (large dir)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 39d2f9</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 531d9c and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 531d9c and c2c43b</li><li>branchfs: user/ or kmod/ changed between 531d9c and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Append 4 KiB to each of 10,000 pre-existing files, measuring per-operation latency.</p><p><strong>Fixture:</strong> Fixture varies by source: base populates before mount; stage creates inside the mount; checkpoint snapshots after creation.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>{
+    let buf = vec![0xAB; workloads::OP_FILE_SIZE]; let mut latencies =
+    Vec::with_capacity(count); for i in 0..count
+    {
+        let path = dest.join(format!(&quot;file-{i:06}.dat&quot;)); let t0 =
+        Instant::now();
+        std::fs::OpenOptions::new().append(true).open(&amp;path).with_context(||
+        format!(&quot;opening {}&quot;, path.display()))?
+        .write_all(&amp;buf).with_context(||
+        format!(&quot;appending {}&quot;, path.display()))?;
+        latencies.push(t0.elapsed());
+    } Ok(latencies)
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_append.rs</code></p></div></details><iframe src="meta-append.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Append 4 KiB to each of 10,000 pre-existing files, measuring per-operation latency.">meta-append-100 <span class="desc">— Append 4 KiB to 100 base-layer files (small dir)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 531d9c</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 531d9c and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 531d9c and c2c43b</li><li>branchfs: user/ or kmod/ changed between 531d9c and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Append 4 KiB to each of 10,000 pre-existing files, measuring per-operation latency.</p><p><strong>Fixture:</strong> Fixture varies by source: base populates before mount; stage creates inside the mount; checkpoint snapshots after creation.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>{
+    let buf = vec![0xAB; workloads::OP_FILE_SIZE]; let mut latencies =
+    Vec::with_capacity(count); for i in 0..count
+    {
+        let path = dest.join(format!(&quot;file-{i:06}.dat&quot;)); let t0 =
+        Instant::now();
+        std::fs::OpenOptions::new().append(true).open(&amp;path).with_context(||
+        format!(&quot;opening {}&quot;, path.display()))?
+        .write_all(&amp;buf).with_context(||
+        format!(&quot;appending {}&quot;, path.display()))?;
+        latencies.push(t0.elapsed());
+    } Ok(latencies)
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_append.rs</code></p></div></details><iframe src="meta-append-100.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Open 10,000 files from warm dcache/icache, measuring per-operation latency.">meta-open <span class="desc">— Warm open over 10,000 base-layer files (large dir)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 531d9c</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 531d9c and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 531d9c and c2c43b</li><li>branchfs: user/ or kmod/ changed between 531d9c and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Open 10,000 files from warm dcache/icache, measuring per-operation latency.</p><p><strong>Fixture:</strong> Fixture varies by source: base populates before mount; stage creates inside the mount; checkpoint snapshots after creation.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>{
+    let mut latencies = Vec::with_capacity(count); for i in 0..count
+    {
+        let path = dest.join(format!(&quot;file-{i:06}.dat&quot;)); let t0 =
+        Instant::now(); let f =
+        std::fs::File::open(&amp;path).with_context(||
+        format!(&quot;open {}&quot;, path.display()))?; std::hint::black_box(f);
+        latencies.push(t0.elapsed());
+    } Ok(latencies)
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_open_warm.rs</code></p></div></details><iframe src="meta-open.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Open 10,000 files from warm dcache/icache, measuring per-operation latency.">meta-open-100 <span class="desc">— Warm open over 100 base-layer files (small dir)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 531d9c</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 531d9c and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 531d9c and c2c43b</li><li>branchfs: user/ or kmod/ changed between 531d9c and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Open 10,000 files from warm dcache/icache, measuring per-operation latency.</p><p><strong>Fixture:</strong> Fixture varies by source: base populates before mount; stage creates inside the mount; checkpoint snapshots after creation.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>{
+    let mut latencies = Vec::with_capacity(count); for i in 0..count
+    {
+        let path = dest.join(format!(&quot;file-{i:06}.dat&quot;)); let t0 =
+        Instant::now(); let f =
+        std::fs::File::open(&amp;path).with_context(||
+        format!(&quot;open {}&quot;, path.display()))?; std::hint::black_box(f);
+        latencies.push(t0.elapsed());
+    } Ok(latencies)
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_open_warm.rs</code></p></div></details><iframe src="meta-open-100.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Stat 10,000 files from warm dcache/icache, measuring per-operation latency.">meta-stat <span class="desc">— Warm stat over 10,000 base-layer files (large dir)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 531d9c</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 531d9c and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 531d9c and c2c43b</li><li>branchfs: user/ or kmod/ changed between 531d9c and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Stat 10,000 files from warm dcache/icache, measuring per-operation latency.</p><p><strong>Fixture:</strong> Fixture varies by source: base populates before mount; stage creates inside the mount; checkpoint snapshots after creation.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>{
+    let mut latencies = Vec::with_capacity(count); for i in 0..count
+    {
+        let path = dest.join(format!(&quot;file-{i:06}.dat&quot;)); let t0 =
+        Instant::now(); let meta =
+        std::fs::metadata(&amp;path).with_context(||
+        format!(&quot;stat {}&quot;, path.display()))?; std::hint::black_box(meta);
+        latencies.push(t0.elapsed());
+    } Ok(latencies)
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_stat_warm.rs</code></p></div></details><iframe src="meta-stat.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Stat 10,000 files from warm dcache/icache, measuring per-operation latency.">meta-stat-100 <span class="desc">— Warm stat over 100 base-layer files (small dir)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 531d9c</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 531d9c and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 531d9c and c2c43b</li><li>branchfs: user/ or kmod/ changed between 531d9c and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Stat 10,000 files from warm dcache/icache, measuring per-operation latency.</p><p><strong>Fixture:</strong> Fixture varies by source: base populates before mount; stage creates inside the mount; checkpoint snapshots after creation.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>{
+    let mut latencies = Vec::with_capacity(count); for i in 0..count
+    {
+        let path = dest.join(format!(&quot;file-{i:06}.dat&quot;)); let t0 =
+        Instant::now(); let meta =
+        std::fs::metadata(&amp;path).with_context(||
+        format!(&quot;stat {}&quot;, path.display()))?; std::hint::black_box(meta);
+        latencies.push(t0.elapsed());
+    } Ok(latencies)
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_stat_warm.rs</code></p></div></details><iframe src="meta-stat-100.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Enumerate one warm directory containing 100 or 10,000 files, measuring per-readdir latency.">meta-readdir <span class="desc">— Warm readdir over one base-layer directory with 10,000 files (large dir)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 531d9c</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 531d9c and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 531d9c and c2c43b</li><li>branchfs: user/ or kmod/ changed between 531d9c and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Enumerate one warm directory containing 100 or 10,000 files, measuring per-readdir latency.</p><p><strong>Fixture:</strong> Fixture varies by source: base populates before mount; stage creates inside the mount; checkpoint snapshots after creation.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>{
+    let t0 = Instant::now(); let mut count = 0usize; for entry in
+    std::fs::read_dir(dest).with_context(||
+    format!(&quot;reading {}&quot;, dest.display()))?
+    {
+        let entry =
+        entry.with_context(|| format!(&quot;iterating {}&quot;, dest.display()))?;
+        std::hint::black_box(entry.file_name()); count += 1;
+    } if count != expected
+    {
+        bail!(&quot;expected {expected} entries in {}, found {count}&quot;,
+        dest.display());
+    } Ok(vec![t0.elapsed()])
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_readdir_warm.rs</code></p></div></details><iframe src="meta-readdir.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Enumerate one warm directory containing 100 or 10,000 files, measuring per-readdir latency.">meta-readdir-100 <span class="desc">— Warm readdir over one base-layer directory with 100 files (small dir)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 531d9c</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 531d9c and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 531d9c and c2c43b</li><li>branchfs: user/ or kmod/ changed between 531d9c and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Enumerate one warm directory containing 100 or 10,000 files, measuring per-readdir latency.</p><p><strong>Fixture:</strong> Fixture varies by source: base populates before mount; stage creates inside the mount; checkpoint snapshots after creation.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>{
+    let t0 = Instant::now(); let mut count = 0usize; for entry in
+    std::fs::read_dir(dest).with_context(||
+    format!(&quot;reading {}&quot;, dest.display()))?
+    {
+        let entry =
+        entry.with_context(|| format!(&quot;iterating {}&quot;, dest.display()))?;
+        std::hint::black_box(entry.file_name()); count += 1;
+    } if count != expected
+    {
+        bail!(&quot;expected {expected} entries in {}, found {count}&quot;,
+        dest.display());
+    } Ok(vec![t0.elapsed()])
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_readdir_warm.rs</code></p></div></details><iframe src="meta-readdir-100.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Rename 10,000 files, measuring per-operation latency.">meta-rename <span class="desc">— Rename 10,000 base-layer files (large dir)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 39d2f9</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 531d9c and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 531d9c and c2c43b</li><li>branchfs: user/ or kmod/ changed between 531d9c and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Rename 10,000 files, measuring per-operation latency.</p><p><strong>Fixture:</strong> Fixture varies by source: base populates before mount; stage creates inside the mount; checkpoint snapshots after creation.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>{
+    let mut latencies = Vec::with_capacity(count); for i in 0..count
+    {
+        let from = dest.join(format!(&quot;file-{i:06}.dat&quot;)); let to =
+        dest.join(format!(&quot;renamed-{i:06}.dat&quot;)); let t0 = Instant::now();
+        std::fs::rename(&amp;from,
+        &amp;to).with_context(||
+        format!(&quot;renaming {} -&gt; {}&quot;, from.display(), to.display()))?;
+        latencies.push(t0.elapsed());
+    } Ok(latencies)
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_rename.rs</code></p></div></details><iframe src="meta-rename.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Rename 10,000 files, measuring per-operation latency.">meta-rename-100 <span class="desc">— Rename 100 base-layer files (small dir)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 531d9c</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 531d9c and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 531d9c and c2c43b</li><li>branchfs: user/ or kmod/ changed between 531d9c and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Rename 10,000 files, measuring per-operation latency.</p><p><strong>Fixture:</strong> Fixture varies by source: base populates before mount; stage creates inside the mount; checkpoint snapshots after creation.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>{
+    let mut latencies = Vec::with_capacity(count); for i in 0..count
+    {
+        let from = dest.join(format!(&quot;file-{i:06}.dat&quot;)); let to =
+        dest.join(format!(&quot;renamed-{i:06}.dat&quot;)); let t0 = Instant::now();
+        std::fs::rename(&amp;from,
+        &amp;to).with_context(||
+        format!(&quot;renaming {} -&gt; {}&quot;, from.display(), to.display()))?;
+        latencies.push(t0.elapsed());
+    } Ok(latencies)
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_rename.rs</code></p></div></details><iframe src="meta-rename-100.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Delete 10,000 files, measuring per-operation latency.">meta-unlink <span class="desc">— Unlink 10,000 base-layer files (large dir)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 39d2f9</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 531d9c and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 531d9c and c2c43b</li><li>branchfs: user/ or kmod/ changed between 531d9c and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Delete 10,000 files, measuring per-operation latency.</p><p><strong>Fixture:</strong> Fixture varies by source: base populates before mount; stage creates inside the mount; checkpoint snapshots after creation.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>{
+    let mut latencies = Vec::with_capacity(count); for i in 0..count
+    {
+        let path = dest.join(format!(&quot;file-{i:06}.dat&quot;)); let t0 =
+        Instant::now();
+        std::fs::remove_file(&amp;path).with_context(||
+        format!(&quot;unlinking {}&quot;, path.display()))?;
+        latencies.push(t0.elapsed());
+    } Ok(latencies)
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_unlink.rs</code></p></div></details><iframe src="meta-unlink.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Delete 10,000 files, measuring per-operation latency.">meta-unlink-100 <span class="desc">— Unlink 100 base-layer files (small dir)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 531d9c</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 531d9c and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 531d9c and c2c43b</li><li>branchfs: user/ or kmod/ changed between 531d9c and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Delete 10,000 files, measuring per-operation latency.</p><p><strong>Fixture:</strong> Fixture varies by source: base populates before mount; stage creates inside the mount; checkpoint snapshots after creation.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>{
+    let mut latencies = Vec::with_capacity(count); for i in 0..count
+    {
+        let path = dest.join(format!(&quot;file-{i:06}.dat&quot;)); let t0 =
+        Instant::now();
+        std::fs::remove_file(&amp;path).with_context(||
+        format!(&quot;unlinking {}&quot;, path.display()))?;
+        latencies.push(t0.elapsed());
+    } Ok(latencies)
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_unlink.rs</code></p></div></details><iframe src="meta-unlink-100.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="">meta-create-10 <span class="desc">— </span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) ddbc75</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between ddbc75 and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between ddbc75 and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between ddbc75 and c2c43b</li><li>branchfs: user/ or kmod/ changed between ddbc75 and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 6e4838 and c2c43b</li></ul></details></div></div></div><iframe src="meta-create-10.html"></iframe></div>
+</div>
+<details class="cold-meta-collapsed"><summary>Per-op Micro-benchmark: Small File Metadata Operations (Cold Cache)</summary>
+<h3></h3>
+<div class="grid">
+  <div class="card"><div class="card-header"><div class="card-title" title="One open syscall after dropping page caches, measuring cold path lookup/open latency.">meta-open-cold <span class="desc">— One cold open against a 10,000-file base-layer fixture</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) b56238</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between b56238 and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between b56238 and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between b56238 and c2c43b</li><li>overlayfs: user/ or kmod/ changed between b56238 and c2c43b</li><li>branchfs: user/ or kmod/ changed between b56238 and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> One open syscall after dropping page caches, measuring cold path lookup/open latency.</p><p><strong>Fixture:</strong> Fixture varies by source: base populates before mount; stage creates inside the mount; checkpoint snapshots after creation.</p><p><strong>Harness:</strong> Page cache is dropped after all subprocess setup but before the timed open.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>{
+    let path = dest.join(COLD_DATA_SUBDIR).join(&quot;file-000000.dat&quot;); let t0 =
+    Instant::now(); let f =
+    std::fs::File::open(&amp;path).with_context(||
+    format!(&quot;open {}&quot;, path.display()))?; std::hint::black_box(f);
+    Ok(vec![t0.elapsed()])
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_open_cold.rs</code></p></div></details><iframe src="meta-open-cold.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="One stat syscall after dropping page caches, measuring cold metadata lookup latency.">meta-stat-cold <span class="desc">— One cold stat against a 10,000-file base-layer fixture</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 39d2f9</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between b56238 and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between b56238 and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between b56238 and c2c43b</li><li>overlayfs: user/ or kmod/ changed between b56238 and c2c43b</li><li>branchfs: user/ or kmod/ changed between b56238 and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> One stat syscall after dropping page caches, measuring cold metadata lookup latency.</p><p><strong>Fixture:</strong> Fixture varies by source: base populates before mount; stage creates inside the mount; checkpoint snapshots after creation.</p><p><strong>Harness:</strong> Page cache is dropped after all subprocess setup but before the timed stat.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>{
+    let path = dest.join(COLD_DATA_SUBDIR).join(&quot;file-000000.dat&quot;); let t0 =
+    Instant::now(); let meta =
+    std::fs::metadata(&amp;path).with_context(||
+    format!(&quot;stat {}&quot;, path.display()))?; std::hint::black_box(meta);
+    Ok(vec![t0.elapsed()])
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_stat_cold.rs</code></p></div></details><iframe src="meta-stat-cold.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="One readdir syscall after dropping page caches, measuring cold directory enumeration latency.">meta-readdir-cold <span class="desc">— One cold readdir over one base-layer directory with 10,000 files</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 0d3b84</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between b56238 and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between b56238 and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between b56238 and c2c43b</li><li>overlayfs: user/ or kmod/ changed between b56238 and c2c43b</li><li>branchfs: user/ or kmod/ changed between b56238 and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> One readdir syscall after dropping page caches, measuring cold directory enumeration latency.</p><p><strong>Fixture:</strong> Fixture varies by source: base populates before mount; stage creates inside the mount; checkpoint snapshots after creation.</p><p><strong>Harness:</strong> Page cache is dropped after all subprocess setup but before the timed readdir.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>{
+    let subdir = dest.join(COLD_DATA_SUBDIR); let t0 = Instant::now(); let mut
+    count = 0usize; for entry in
+    std::fs::read_dir(&amp;subdir).with_context(||
+    format!(&quot;reading {}&quot;, subdir.display()))?
+    {
+        let entry =
+        entry.with_context(|| format!(&quot;iterating {}&quot;, subdir.display()))?;
+        std::hint::black_box(entry.file_name()); count += 1;
+    } if count != expected
+    {
+        bail!(&quot;expected {expected} entries in {}, found {count}&quot;,
+        subdir.display());
+    } Ok(vec![t0.elapsed()])
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/meta_readdir_cold.rs</code></p></div></details><iframe src="meta-readdir-cold.html"></iframe></div>
+</div>
+</details>
+<h2>Session Micro-benchmark (init/run/commit)</h2>
+<div class="grid">
+  <div class="card"><div class="card-header"><div class="card-title" title="Session microbenchmark that creates N new 4 KiB files to exercise create + write behavior through each backend.">write-files <span class="desc">— Create 10,000 new 4 KiB files</span></div><div class="card-meta"><span class="status-badge status-stale">stale (10) 39d2f9</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>native: user/ was dirty and is now clean</li><li>yolo-no-perm: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>yolo-no-perm: user/ was dirty and is now clean</li><li>yolo-realistic: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>yolo-realistic: user/ was dirty and is now clean</li><li>overlayfs: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>overlayfs: user/ was dirty and is now clean</li><li>branchfs: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>branchfs: user/ was dirty and is now clean</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Session microbenchmark that creates N new 4 KiB files to exercise create + write behavior through each backend.</p><p><strong>Fixture:</strong> No external fixture. The workload runs in a fresh work directory created inside the backend session.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>let buf = vec![0u8; 4096];
+for i in 0..count {
+    fs::write(dest.join(format!(&quot;file-{i:06}.dat&quot;)), &amp;buf)?;
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/write_files.rs</code></p></div></details><iframe src="write-files.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Session microbenchmark for copy-on-write / copy-up behavior on existing files.">overwrite-files <span class="desc">— Overwrite 10,000 pre-existing 4 KiB files (COW path)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (10) 39d2f9</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>native: user/ was dirty and is now clean</li><li>yolo-no-perm: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>yolo-no-perm: user/ was dirty and is now clean</li><li>yolo-realistic: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>yolo-realistic: user/ was dirty and is now clean</li><li>overlayfs: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>overlayfs: user/ was dirty and is now clean</li><li>branchfs: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>branchfs: user/ was dirty and is now clean</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Session microbenchmark for copy-on-write / copy-up behavior on existing files.</p><p><strong>Fixture:</strong> Populates the backend base layer with N 4 KiB files before timing so each write targets an existing file.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>let buf = vec![0xFFu8; 4096];
+for i in 0..count {
+    fs::write(dest.join(format!(&quot;file-{i:06}.dat&quot;)), &amp;buf)?;
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/overwrite_files.rs</code></p></div></details><iframe src="overwrite-files.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Session microbenchmark for rename-heavy directory operations on existing files.">rename-files <span class="desc">— Rename 10,000 pre-existing files</span></div><div class="card-meta"><span class="status-badge status-stale">stale (10) 39d2f9</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>native: user/ was dirty and is now clean</li><li>yolo-no-perm: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>yolo-no-perm: user/ was dirty and is now clean</li><li>yolo-realistic: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>yolo-realistic: user/ was dirty and is now clean</li><li>overlayfs: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>overlayfs: user/ was dirty and is now clean</li><li>branchfs: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>branchfs: user/ was dirty and is now clean</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Session microbenchmark for rename-heavy directory operations on existing files.</p><p><strong>Fixture:</strong> Populates the backend base layer with N 4 KiB files before timing.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>for i in 0..count {
+    fs::rename(
+        dest.join(format!(&quot;file-{i:06}.dat&quot;)),
+        dest.join(format!(&quot;renamed-{i:06}.dat&quot;)),
+    )?;
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/rename_files.rs</code></p></div></details><iframe src="rename-files.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Session microbenchmark for delete-heavy operations on existing files.">unlink-files <span class="desc">— Delete 10,000 pre-existing files</span></div><div class="card-meta"><span class="status-badge status-stale">stale (10) 2ecc15</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>native: user/ was dirty and is now clean</li><li>yolo-no-perm: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>yolo-no-perm: user/ was dirty and is now clean</li><li>yolo-realistic: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>yolo-realistic: user/ was dirty and is now clean</li><li>overlayfs: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>overlayfs: user/ was dirty and is now clean</li><li>branchfs: user/ or kmod/ changed between 2ecc15 and c2c43b</li><li>branchfs: user/ was dirty and is now clean</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Session microbenchmark for delete-heavy operations on existing files.</p><p><strong>Fixture:</strong> Populates the backend base layer with N 4 KiB files before timing.</p><p><strong>Execution:</strong> Rust code:<br><pre style="overflow:auto;background:#f6f6f6;border:1px solid #e1e1e1;padding:0.7em;border-radius:6px"><code>for i in 0..count {
+    fs::remove_file(dest.join(format!(&quot;file-{i:06}.dat&quot;)))?;
+}
+</code></pre></p><p><strong>Source:</strong> <code>src/workloads/unlink_files.rs</code></p></div></details><iframe src="unlink-files.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Checkpoint-depth scaling workload (fixed-size create/read probes).">checkpoint-scaling <span class="desc">— Checkpoint depth scaling (create/read latency vs checkpoint count)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 3f0988</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between 3f0988 and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 3f0988 and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 3f0988 and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 3f0988 and c2c43b</li><li>branchfs: user/ or kmod/ changed between 3f0988 and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Checkpoint-depth scaling workload (fixed-size create/read probes).</p><p><strong>Fixture:</strong> Creates synthetic files under a single workload directory; no external fixture required.</p><p><strong>Harness:</strong> Uses backend checkpoint protocol between setup phases. Configure with CHECKPOINT_SCALING_MODE={create|read|commit|status} and CHECKPOINT_SCALING_DEPTH=&lt;N&gt;. Checkpoint creation is trivial: 10 seed files are overwritten at each layer.</p><p><strong>Execution:</strong> Builds a checkpoint chain (overwriting 10 seed files per layer), then measures 100 create or 100 read operations (or exits for commit-time measurement) and emits OpResult.</p><p><strong>Source:</strong> <code>src/workloads/checkpoint_scaling.rs</code></p></div></details><iframe src="checkpoint-scaling.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="">checkpoint-scalability <span class="desc">— </span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) ae1f0b</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>branchfs: user/ or kmod/ changed between ae1f0b and c2c43b</li><li>native: user/ or kmod/ changed between d9b397 and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between d9b397 and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between d9b397 and c2c43b</li><li>overlayfs: user/ or kmod/ changed between d9b397 and c2c43b</li></ul></details></div></div></div><iframe src="checkpoint-scalability.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="">overwrite-files-100 <span class="desc">— </span></div><div class="card-meta"><span class="status-badge status-stale">stale (1) 2fa09a</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>yolo-no-perm: user/ or kmod/ changed between 2fa09a and c2c43b</li></ul></details></div></div></div><iframe src="overwrite-files-100.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="">overwrite-files-100k <span class="desc">— </span></div><div class="card-meta"><span class="status-badge status-stale">stale (1) 2fa09a</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>yolo-no-perm: user/ or kmod/ changed between 2fa09a and c2c43b</li></ul></details></div></div></div><iframe src="overwrite-files-100k.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="">overwrite-files-10k <span class="desc">— </span></div><div class="card-meta"><span class="status-badge status-stale">stale (1) 2fa09a</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>yolo-no-perm: user/ or kmod/ changed between 2fa09a and c2c43b</li></ul></details></div></div></div><iframe src="overwrite-files-10k.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="">read-files <span class="desc">— </span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 39d2f9</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between ae1f0b and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between ae1f0b and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between ae1f0b and c2c43b</li><li>overlayfs: user/ or kmod/ changed between ae1f0b and c2c43b</li><li>branchfs: user/ or kmod/ changed between ae1f0b and c2c43b</li></ul></details></div></div></div><iframe src="read-files.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="">rename-files-100 <span class="desc">— </span></div><div class="card-meta"><span class="status-badge status-stale">stale (1) 2fa09a</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>yolo-no-perm: user/ or kmod/ changed between 2fa09a and c2c43b</li></ul></details></div></div></div><iframe src="rename-files-100.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="">rename-files-10k <span class="desc">— </span></div><div class="card-meta"><span class="status-badge status-stale">stale (1) 2fa09a</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>yolo-no-perm: user/ or kmod/ changed between 2fa09a and c2c43b</li></ul></details></div></div></div><iframe src="rename-files-10k.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="">stat-files <span class="desc">— </span></div><div class="card-meta"><span class="status-badge status-stale">stale (5) 39d2f9</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between ae1f0b and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between ae1f0b and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between ae1f0b and c2c43b</li><li>overlayfs: user/ or kmod/ changed between ae1f0b and c2c43b</li><li>branchfs: user/ or kmod/ changed between ae1f0b and c2c43b</li></ul></details></div></div></div><iframe src="stat-files.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="">write-files-100 <span class="desc">— </span></div><div class="card-meta"><span class="status-badge status-stale">stale (1) 2fa09a</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>yolo-no-perm: user/ or kmod/ changed between 2fa09a and c2c43b</li></ul></details></div></div></div><iframe src="write-files-100.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="">write-files-100k <span class="desc">— </span></div><div class="card-meta"><span class="status-badge status-stale">stale (1) 2fa09a</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>yolo-no-perm: user/ or kmod/ changed between 2fa09a and c2c43b</li></ul></details></div></div></div><iframe src="write-files-100k.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="">write-files-10k <span class="desc">— </span></div><div class="card-meta"><span class="status-badge status-stale">stale (1) 2fa09a</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>yolo-no-perm: user/ or kmod/ changed between 2fa09a and c2c43b</li></ul></details></div></div></div><iframe src="write-files-10k.html"></iframe></div>
+</div>
+<h2>Session Macro-benchmark</h2>
+<div class="grid">
+  <div class="card"><div class="card-header"><div class="card-title" title="Session macrobenchmark that replays a real overlayfs patch series as a search/edit/build/commit workflow on a pinned Linux base commit.">dev-workflow <span class="desc">— Pinned Linux worktree plus search/edit/build/commit replay of an overlayfs patch series</span></div><div class="card-meta"><span class="status-badge status-stale">stale (3) b0769a</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>native: user/ or kmod/ changed between b0769a and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between b0769a and c2c43b</li><li>overlayfs: user/ or kmod/ changed between b0769a and c2c43b</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Session macrobenchmark that replays a real overlayfs patch series as a search/edit/build/commit workflow on a pinned Linux base commit.</p><p><strong>Fixture:</strong> Ensures `~/.cache/yolo-bench/linux` exists as the source repo/object store and reuses checked-in workflow fixtures under `bench/fixtures/dev-workflow/`.</p><p><strong>Execution:</strong> Runs `git worktree add --detach &lt;dest&gt; &lt;base-commit&gt;`, `make tinyconfig`, a clean build, then per-commit search/read/edit command lists, incremental build, git status/diff/add/commit, and a backend-managed checkpoint after each edit command.</p><p><strong>Source:</strong> <code>src/workloads/dev_workflow.rs</code></p></div></details><iframe src="dev-workflow.html"></iframe></div>
+  <div class="card"><div class="card-header"><div class="card-title" title="Session macrobenchmark that untars a Linux source release into the mounted destination.">linux-untar <span class="desc">— untar a cached Linux source tarball (~80k files)</span></div><div class="card-meta"><span class="status-badge status-stale">stale (6) ae1f0b</span><div class="card-stale"><details><summary>why</summary><ul style="margin:0.35em 0 0 1.2em;padding:0;color:#666;font-size:0.82em"><li>overlayfs: user/ or kmod/ changed between ae1f0b and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 72c7b2 and c2c43b</li><li>native: user/ or kmod/ changed between edc66a and c2c43b</li><li>yolo-no-perm: could not compare user/ and kmod/ between 2417ba and c2c43b</li><li>yolo-no-perm: user/ was dirty and is now clean</li><li>yolo-no-perm: kmod/ was dirty and is now clean</li></ul></details></div></div></div><details class="card-details" style="margin:0 0 0.5em"><summary style="cursor:pointer;color:#666;font-size:0.84em">details</summary><div style="margin-top:0.45em;font-size:0.84em;color:#555;line-height:1.4"><p><strong>Summary:</strong> Session macrobenchmark that untars a Linux source release into the mounted destination.</p><p><strong>Fixture:</strong> Caches one Linux source tarball under ~/.cache/yolo-bench/linux-tar/ and reuses it across runs.</p><p><strong>Execution:</strong> Runs `tar -xJf &lt;cached-tarball&gt; -C &lt;dest&gt; --strip-components=1`.</p><p><strong>Source:</strong> <code>src/workloads/linux_untar.rs</code></p></div></details><iframe src="linux-untar.html"></iframe></div>
+</div>
+</body></html>

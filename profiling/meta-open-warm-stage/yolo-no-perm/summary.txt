@@ -1,0 +1,3 @@
+Profile: meta-open-warm-stage / yolofs-no-perm  (wall: 11291 ms)
+
+  (no bpftrace data)

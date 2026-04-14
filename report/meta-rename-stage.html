@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+        <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+        
+</head>
+
+<body>
+    <div>
+        <div id="plotly-html-element" class="plotly-graph-div" style="height:100%; width:100%;"></div>
+
+        <script type="module">
+            const graph_div = document.getElementById("plotly-html-element");
+            await Plotly.newPlot(graph_div, {"data":[{"type":"bar","x":["yolofs-allow-all","yolofs-realistic"],"y":[26.18166240201601,26.427018351950686],"showlegend":false,"marker":{"color":["#2E86AB","#4F772D"]},"error_y":{"type":"data","array":[0.11585836797127223,0.2294556826283866],"visible":true}},{"type":"bar","x":["overlayfs","branchfs"],"y":[38.54026980215513,38.54026980215513],"showlegend":false,"text":["12x native","10x native"],"textposition":"inside","marker":{"line":{"width":2.0,"color":"#222"},"color":["rgba(193, 102, 107, 0.450)","rgba(209, 123, 15, 0.450)"],"pattern":{"shape":"x","fillmode":"overlay"}},"error_y":{"type":"data","array":[0.0,0.0],"visible":true},"insidetextfont":{"size":13,"color":"#111"}},{"type":"scatter","name":"native baseline","showlegend":false,"opacity":0.0,"mode":"lines","x":["yolofs-allow-all","yolofs-realistic","overlayfs","branchfs"],"y":[33.51327808883055,33.51327808883055,33.51327808883055,33.51327808883055],"hovertext":["native avg latency (µs): 33.5","native avg latency (µs): 33.5","native avg latency (µs): 33.5","native avg latency (µs): 33.5"],"hoverinfo":"text"}],"layout":{"title":{"text":"meta-rename-stage"},"showlegend":false,"xaxis":{"title":{"text":"backend"}},"yaxis":{"title":{"text":"avg latency (µs)"}},"annotations":[{"text":"native baseline","showarrow":false,"xref":"paper","x":1.0,"yref":"y","y":33.51327808883055,"yshift":-10.0}],"shapes":[{"type":"line","layer":"above","xref":"paper","x0":0.0,"x1":1.0,"yref":"y","y0":33.51327808883055,"y1":33.51327808883055,"line":{"dash":"dot"}}]},"config":{"fillFrame":true,"responsive":true},"frames":null});
+        </script>
+    </div>
+<div style="margin:1em auto;max-width:960px;padding:0.75em 1em;border:1px solid #ddd;border-radius:6px;background:#fff;font-family:system-ui,sans-serif"><div style="font-size:0.95em"><strong style="color:#1f7a1f">status: fresh</strong></div></div><table style="margin:1em auto;border-collapse:collapse;font-family:system-ui;font-size:0.85em">
+<tr style="border-bottom:1px solid #ccc"><th style="padding:0.3em 1em;text-align:left">backend</th><th style="padding:0.3em 1em">avg latency (µs)</th><th style="padding:0.3em 1em">p50 (µs)</th><th style="padding:0.3em 1em">p99 (µs)</th></tr>
+<tr><td style="padding:0.3em 1em">yolofs-allow-all</td><td style="padding:0.3em 1em;text-align:right">26</td><td style="padding:0.3em 1em;text-align:right">24.9</td><td style="padding:0.3em 1em;text-align:right">35.9</td></tr>
+<tr><td style="padding:0.3em 1em">yolofs-realistic</td><td style="padding:0.3em 1em;text-align:right">26</td><td style="padding:0.3em 1em;text-align:right">25.1</td><td style="padding:0.3em 1em;text-align:right">39.1</td></tr>
+<tr><td style="padding:0.3em 1em">overlayfs</td><td style="padding:0.3em 1em;text-align:right">416</td><td style="padding:0.3em 1em;text-align:right">411.2</td><td style="padding:0.3em 1em;text-align:right">477.1</td></tr>
+<tr><td style="padding:0.3em 1em">branchfs</td><td style="padding:0.3em 1em;text-align:right">337</td><td style="padding:0.3em 1em;text-align:right">333.5</td><td style="padding:0.3em 1em;text-align:right">364.2</td></tr>
+</table>
+</body>
+
+</html>

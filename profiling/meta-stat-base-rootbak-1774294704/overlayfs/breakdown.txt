@@ -1,0 +1,128 @@
+Function breakdown: meta-stat-base / overlayfs
+wall: 10166 ms, 10 iterations
+per-op latency (from results.json): 3.99 µs
+
+run function: 15% of profiled time
+timed operation: 35% of run | warm-up: 65% of run
+
+    incl   self  call tree
+   µs/op  µs/op
+  ------------------------------------------------------------
+    3.99      —  └─ __libc_start_main
+    3.99      —     └─ yolofs_bench::main
+    3.99   0.18        └─ yolofs_bench::workloads::meta_shared::run_meta_stat
+    3.37      —           ├─ statx
+    3.29   0.05           │  ├─ entry_SYSCALL_64_after_hwframe
+    3.25   0.06           │  │  └─ do_syscall_64
+    3.00      —           │  │     ├─ x64_sys_call
+    3.00      —           │  │     │  └─ __x64_sys_statx
+    2.61   0.05           │  │     │     ├─ do_statx
+    2.47   0.02           │  │     │     │  ├─ vfs_statx
+    1.62   0.02           │  │     │     │  │  ├─ filename_lookup
+    1.59   0.02           │  │     │     │  │  │  └─ path_lookupat
+    1.25   0.32           │  │     │     │  │  │     ├─ link_path_walk.part.0.constprop.0
+    0.69   0.14           │  │     │     │  │  │     │  ├─ inode_permission
+    0.28   0.09           │  │     │     │  │  │     │  │  ├─ generic_permission
+    0.15   0.02           │  │     │     │  │  │     │  │  │  ├─ capable_wrt_inode_uidgid
+    0.05   0.05           │  │     │     │  │  │     │  │  │  │  ├─ apparmor_capable
+    0.03      —           │  │     │     │  │  │     │  │  │  │  ├─ privileged_wrt_inode_uidgid
+    0.01   0.01           │  │     │     │  │  │     │  │  │  │  │  ├─ make_vfsgid
+    0.01      —           │  │     │     │  │  │     │  │  │  │  │  └─ from_kgid
+    0.01   0.01           │  │     │     │  │  │     │  │  │  │  │     └─ map_id_up
+    0.03   0.03           │  │     │     │  │  │     │  │  │  │  ├─ security_capable
+    0.02   0.02           │  │     │     │  │  │     │  │  │  │  ├─ cap_capable
+    0.01   0.01           │  │     │     │  │  │     │  │  │  │  └─ srso_safe_ret
+    0.03   0.03           │  │     │     │  │  │     │  │  │  ├─ make_vfsuid
+    0.01   0.01           │  │     │     │  │  │     │  │  │  └─ srso_safe_ret
+    0.22   0.09           │  │     │     │  │  │     │  │  ├─ ovl_permission
+    0.05   0.01           │  │     │     │  │  │     │  │  │  ├─ inode_permission
+    0.02   0.02           │  │     │     │  │  │     │  │  │  │  ├─ generic_permission
+    0.02   0.02           │  │     │     │  │  │     │  │  │  │  └─ security_inode_permission
+    0.03   0.02           │  │     │     │  │  │     │  │  │  ├─ generic_permission
+    0.02   0.02           │  │     │     │  │  │     │  │  │  │  └─ make_vfsuid
+    0.03   0.03           │  │     │     │  │  │     │  │  │  ├─ ovl_i_path_real
+    0.01   0.01           │  │     │     │  │  │     │  │  │  └─ srso_safe_ret
+    0.03   0.03           │  │     │     │  │  │     │  │  ├─ revert_creds
+    0.02   0.02           │  │     │     │  │  │     │  │  └─ get_cached_acl_rcu
+    0.17   0.07           │  │     │     │  │  │     │  ├─ walk_component
+    0.06   0.05           │  │     │     │  │  │     │  │  ├─ step_into
+    0.01   0.01           │  │     │     │  │  │     │  │  │  └─ __lookup_mnt
+    0.03   0.02           │  │     │     │  │  │     │  │  └─ lookup_fast
+    0.02   0.02           │  │     │     │  │  │     │  │     └─ __d_lookup_rcu
+    0.03   0.03           │  │     │     │  │  │     │  ├─ ovl_permission
+    0.03   0.03           │  │     │     │  │  │     │  ├─ srso_safe_ret
+    0.02   0.02           │  │     │     │  │  │     │  └─ step_into
+    0.20      —           │  │     │     │  │  │     ├─ walk_component
+    0.20      —           │  │     │     │  │  │     │  └─ lookup_fast
+    0.20   0.19           │  │     │     │  │  │     │     └─ __d_lookup_rcu
+    0.02      —           │  │     │     │  │  │     │        └─ asm_sysvec_apic_timer_interrupt
+    0.02      —           │  │     │     │  │  │     │           └─ sysvec_apic_timer_interrupt
+    0.02      —           │  │     │     │  │  │     │              └─ __sysvec_apic_timer_interrupt
+    0.02      —           │  │     │     │  │  │     │                 └─ hrtimer_interrupt
+    0.02      —           │  │     │     │  │  │     │                    └─ __hrtimer_run_queues
+    0.02      —           │  │     │     │  │  │     │                       └─ perf_mux_hrtimer_handler
+    0.02      —           │  │     │     │  │  │     │                          └─ perf_rotate_context
+    0.02   0.02           │  │     │     │  │  │     │                             └─ __pmu_ctx_sched_out
+    0.08      —           │  │     │     │  │  │     ├─ complete_walk
+    0.06   0.02           │  │     │     │  │  │     │  ├─ try_to_unlazy
+    0.04   0.02           │  │     │     │  │  │     │  │  └─ __legitimize_path
+    0.02   0.02           │  │     │     │  │  │     │  │     ├─ __legitimize_mnt
+    0.01   0.01           │  │     │     │  │  │     │  │     └─ lockref_get_not_dead
+    0.02   0.02           │  │     │     │  │  │     │  └─ __legitimize_path
+    0.02      —           │  │     │     │  │  │     └─ path_init
+    0.02      —           │  │     │     │  │  │        └─ nd_jump_root
+    0.02   0.02           │  │     │     │  │  │           └─ set_root
+    0.63   0.03           │  │     │     │  │  ├─ vfs_getattr_nosec
+    0.43   0.06           │  │     │     │  │  │  ├─ ovl_getattr
+    0.34   0.18           │  │     │     │  │  │  │  ├─ vfs_getattr_nosec
+    0.15      —           │  │     │     │  │  │  │  │  ├─ ext4_file_getattr
+    0.15   0.15           │  │     │     │  │  │  │  │  │  └─ ext4_getattr
+    0.01   0.01           │  │     │     │  │  │  │  │  └─ ext4_getattr
+    0.02   0.02           │  │     │     │  │  │  │  ├─ ext4_file_getattr
+    0.01   0.01           │  │     │     │  │  │  │  └─ ovl_path_real
+    0.10   0.10           │  │     │     │  │  │  ├─ ovl_is_metacopy_dentry
+    0.06   0.06           │  │     │     │  │  │  └─ vfs_getattr_nosec
+    0.14   0.02           │  │     │     │  │  ├─ path_put
+    0.03   0.03           │  │     │     │  │  │  ├─ __rcu_read_lock
+    0.03   0.03           │  │     │     │  │  │  ├─ dput
+    0.03      —           │  │     │     │  │  │  ├─ mntput
+    0.02   0.02           │  │     │     │  │  │  │  ├─ __rcu_read_unlock
+    0.01   0.01           │  │     │     │  │  │  │  └─ mntput_no_expire
+    0.02   0.02           │  │     │     │  │  │  ├─ __rcu_read_unlock
+    0.02   0.02           │  │     │     │  │  │  └─ _raw_spin_unlock
+    0.05      —           │  │     │     │  │  └─ security_inode_getattr
+    0.05   0.03           │  │     │     │  │     └─ apparmor_inode_getattr
+    0.02   0.02           │  │     │     │  │        └─ common_perm_cond
+    0.06   0.06           │  │     │     │  ├─ security_inode_getattr
+    0.03      —           │  │     │     │  └─ cp_statx
+    0.01   0.01           │  │     │     │     ├─ srso_safe_ret
+    0.01      —           │  │     │     │     └─ from_kuid_munged
+    0.01   0.01           │  │     │     │        └─ map_id_up
+    0.36   0.02           │  │     │     └─ getname_flags
+    0.34      —           │  │     │        └─ getname_flags.part.0
+    0.20   0.05           │  │     │           ├─ strncpy_from_user
+    0.15      —           │  │     │           │  └─ __check_object_size
+    0.11   0.03           │  │     │           │     ├─ __check_object_size.part.0
+    0.06   0.02           │  │     │           │     │  ├─ check_heap_object
+    0.03   0.03           │  │     │           │     │  │  ├─ __check_heap_object
+    0.02   0.02           │  │     │           │     │  │  └─ __virt_addr_valid
+    0.02   0.02           │  │     │           │     │  └─ is_vmalloc_addr
+    0.02   0.02           │  │     │           │     ├─ srso_safe_ret
+    0.02   0.02           │  │     │           │     ├─ check_heap_object
+    0.02   0.02           │  │     │           │     └─ check_stack_object
+    0.11   0.11           │  │     │           ├─ memset_orig
+    0.03   0.03           │  │     │           └─ __check_object_size
+    0.13   0.05           │  │     └─ syscall_exit_to_user_mode
+    0.06   0.04           │  │        ├─ arch_exit_to_user_mode_prepare.isra.0
+    0.02   0.02           │  │        │  └─ fpregs_assert_state_consistent
+    0.02   0.02           │  │        └─ fpregs_assert_state_consistent
+    0.05   0.05           │  └─ syscall_return_via_sysret
+    0.15      —           ├─ clock_gettime
+    0.15   0.15           │  └─ [[vdso]]
+    0.13   0.08           ├─ alloc::fmt::format::format_inner
+    0.03   0.03           │  ├─ <alloc::string::String as core::fmt::Write>::write_str
+    0.02   0.02           │  └─ malloc
+    0.06      —           ├─ alloc::raw_vec::RawVecInner<A>::reserve::do_reserve_and_handle
+    0.06      —           │  └─ alloc::raw_vec::RawVecInner<A>::finish_grow
+    0.06   0.06           │     └─ realloc
+    0.05   0.05           └─ cfree

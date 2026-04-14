@@ -1,0 +1,3 @@
+Profile: meta-create / yolofs-no-perm  (wall: 10379 ms)
+
+  (no bpftrace data)

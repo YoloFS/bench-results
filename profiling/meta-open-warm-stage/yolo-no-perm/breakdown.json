@@ -1,0 +1,1523 @@
+{
+  "workload": "meta-open-warm-stage",
+  "backend": "yolo-no-perm",
+  "wall_ms": 11291,
+  "iters": 6,
+  "per_op_us": 7.553932069395755,
+  "timed_samples": 1185544180,
+  "tree": {
+    "name": "(root)",
+    "inclusive": 1185544180,
+    "self_count": 0,
+    "children": [
+      {
+        "name": "__libc_start_main",
+        "inclusive": 1185544180,
+        "self_count": 0,
+        "children": [
+          {
+            "name": "yolofs_bench::main",
+            "inclusive": 1185544180,
+            "self_count": 0,
+            "children": [
+              {
+                "name": "yolofs_bench::workloads::meta_shared::run_meta_open_warm",
+                "inclusive": 1185544180,
+                "self_count": 29697347,
+                "children": [
+                  {
+                    "name": "open64",
+                    "inclusive": 1097649447,
+                    "self_count": 0,
+                    "children": [
+                      {
+                        "name": "entry_SYSCALL_64_after_hwframe",
+                        "inclusive": 1087949929,
+                        "self_count": 0,
+                        "children": [
+                          {
+                            "name": "do_syscall_64",
+                            "inclusive": 1087949929,
+                            "self_count": 3193138,
+                            "children": [
+                              {
+                                "name": "x64_sys_call",
+                                "inclusive": 1078336899,
+                                "self_count": 0,
+                                "children": [
+                                  {
+                                    "name": "__x64_sys_openat",
+                                    "inclusive": 1078336899,
+                                    "self_count": 0,
+                                    "children": [
+                                      {
+                                        "name": "do_sys_openat2",
+                                        "inclusive": 1071821431,
+                                        "self_count": 19418172,
+                                        "children": [
+                                          {
+                                            "name": "do_filp_open",
+                                            "inclusive": 950159623,
+                                            "self_count": 9632099,
+                                            "children": [
+                                              {
+                                                "name": "path_openat",
+                                                "inclusive": 937276356,
+                                                "self_count": 0,
+                                                "children": [
+                                                  {
+                                                    "name": "do_open",
+                                                    "inclusive": 415334285,
+                                                    "self_count": 3215091,
+                                                    "children": [
+                                                      {
+                                                        "name": "vfs_open",
+                                                        "inclusive": 363911048,
+                                                        "self_count": 0,
+                                                        "children": [
+                                                          {
+                                                            "name": "do_dentry_open",
+                                                            "inclusive": 341338306,
+                                                            "self_count": 6445571,
+                                                            "children": [
+                                                              {
+                                                                "name": "yolofs_open",
+                                                                "inclusive": 315491022,
+                                                                "self_count": 9636262,
+                                                                "children": [
+                                                                  {
+                                                                    "name": "yolofs_open_lower",
+                                                                    "inclusive": 254262662,
+                                                                    "self_count": 9628464,
+                                                                    "children": [
+                                                                      {
+                                                                        "name": "dentry_open",
+                                                                        "inclusive": 218807480,
+                                                                        "self_count": 3225440,
+                                                                        "children": [
+                                                                          {
+                                                                            "name": "do_dentry_open",
+                                                                            "inclusive": 106355510,
+                                                                            "self_count": 29115925,
+                                                                            "children": [
+                                                                              {
+                                                                                "name": "ext4_file_open",
+                                                                                "inclusive": 45194772,
+                                                                                "self_count": 6435457,
+                                                                                "children": [
+                                                                                  {
+                                                                                    "name": "fscrypt_file_open",
+                                                                                    "inclusive": 35544033,
+                                                                                    "self_count": 0,
+                                                                                    "children": [
+                                                                                      {
+                                                                                        "name": "dget_parent",
+                                                                                        "inclusive": 9754725,
+                                                                                        "self_count": 3261473,
+                                                                                        "children": [
+                                                                                          {
+                                                                                            "name": "lockref_get_not_zero",
+                                                                                            "inclusive": 6493252,
+                                                                                            "self_count": 6493252,
+                                                                                            "children": []
+                                                                                          }
+                                                                                        ]
+                                                                                      },
+                                                                                      {
+                                                                                        "name": "dput",
+                                                                                        "inclusive": 9694615,
+                                                                                        "self_count": 9694615,
+                                                                                        "children": []
+                                                                                      },
+                                                                                      {
+                                                                                        "name": "lockref_put_return",
+                                                                                        "inclusive": 6478158,
+                                                                                        "self_count": 6478158,
+                                                                                        "children": []
+                                                                                      },
+                                                                                      {
+                                                                                        "name": "lockref_get_not_zero",
+                                                                                        "inclusive": 3219608,
+                                                                                        "self_count": 3219608,
+                                                                                        "children": []
+                                                                                      },
+                                                                                      {
+                                                                                        "name": "__rcu_read_unlock",
+                                                                                        "inclusive": 3205899,
+                                                                                        "self_count": 3205899,
+                                                                                        "children": []
+                                                                                      },
+                                                                                      {
+                                                                                        "name": "__rcu_read_lock",
+                                                                                        "inclusive": 3191028,
+                                                                                        "self_count": 3191028,
+                                                                                        "children": []
+                                                                                      }
+                                                                                    ]
+                                                                                  },
+                                                                                  {
+                                                                                    "name": "ext4_sample_last_mounted",
+                                                                                    "inclusive": 3215282,
+                                                                                    "self_count": 3215282,
+                                                                                    "children": []
+                                                                                  }
+                                                                                ]
+                                                                              },
+                                                                              {
+                                                                                "name": "security_file_open",
+                                                                                "inclusive": 12892831,
+                                                                                "self_count": 0,
+                                                                                "children": [
+                                                                                  {
+                                                                                    "name": "apparmor_file_open",
+                                                                                    "inclusive": 6435666,
+                                                                                    "self_count": 6435666,
+                                                                                    "children": []
+                                                                                  },
+                                                                                  {
+                                                                                    "name": "get_current_fs_domain",
+                                                                                    "inclusive": 3234613,
+                                                                                    "self_count": 3234613,
+                                                                                    "children": []
+                                                                                  },
+                                                                                  {
+                                                                                    "name": "__fsnotify_parent",
+                                                                                    "inclusive": 3222552,
+                                                                                    "self_count": 3222552,
+                                                                                    "children": []
+                                                                                  }
+                                                                                ]
+                                                                              },
+                                                                              {
+                                                                                "name": "lockref_get",
+                                                                                "inclusive": 3276237,
+                                                                                "self_count": 3276237,
+                                                                                "children": []
+                                                                              },
+                                                                              {
+                                                                                "name": "fscrypt_file_open",
+                                                                                "inclusive": 3225095,
+                                                                                "self_count": 3225095,
+                                                                                "children": []
+                                                                              },
+                                                                              {
+                                                                                "name": "__fsnotify_parent",
+                                                                                "inclusive": 3208507,
+                                                                                "self_count": 3208507,
+                                                                                "children": []
+                                                                              },
+                                                                              {
+                                                                                "name": "path_get",
+                                                                                "inclusive": 3183239,
+                                                                                "self_count": 3183239,
+                                                                                "children": []
+                                                                              },
+                                                                              {
+                                                                                "name": "srso_safe_ret",
+                                                                                "inclusive": 3171703,
+                                                                                "self_count": 3171703,
+                                                                                "children": []
+                                                                              },
+                                                                              {
+                                                                                "name": "asm_sysvec_apic_timer_interrupt",
+                                                                                "inclusive": 3087201,
+                                                                                "self_count": 0,
+                                                                                "children": [
+                                                                                  {
+                                                                                    "name": "sysvec_apic_timer_interrupt",
+                                                                                    "inclusive": 3087201,
+                                                                                    "self_count": 0,
+                                                                                    "children": [
+                                                                                      {
+                                                                                        "name": "__sysvec_apic_timer_interrupt",
+                                                                                        "inclusive": 3087201,
+                                                                                        "self_count": 0,
+                                                                                        "children": [
+                                                                                          {
+                                                                                            "name": "hrtimer_interrupt",
+                                                                                            "inclusive": 3087201,
+                                                                                            "self_count": 0,
+                                                                                            "children": [
+                                                                                              {
+                                                                                                "name": "hrtimer_update_next_event",
+                                                                                                "inclusive": 3087201,
+                                                                                                "self_count": 0,
+                                                                                                "children": [
+                                                                                                  {
+                                                                                                    "name": "__hrtimer_next_event_base",
+                                                                                                    "inclusive": 3087201,
+                                                                                                    "self_count": 3087201,
+                                                                                                    "children": []
+                                                                                                  }
+                                                                                                ]
+                                                                                              }
+                                                                                            ]
+                                                                                          }
+                                                                                        ]
+                                                                                      }
+                                                                                    ]
+                                                                                  }
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          },
+                                                                          {
+                                                                            "name": "alloc_empty_file",
+                                                                            "inclusive": 73861991,
+                                                                            "self_count": 2862101,
+                                                                            "children": [
+                                                                              {
+                                                                                "name": "kmem_cache_alloc",
+                                                                                "inclusive": 35382161,
+                                                                                "self_count": 9685351,
+                                                                                "children": [
+                                                                                  {
+                                                                                    "name": "obj_cgroup_charge",
+                                                                                    "inclusive": 22466798,
+                                                                                    "self_count": 12841138,
+                                                                                    "children": [
+                                                                                      {
+                                                                                        "name": "memcg_account_kmem",
+                                                                                        "inclusive": 6404460,
+                                                                                        "self_count": 0,
+                                                                                        "children": [
+                                                                                          {
+                                                                                            "name": "mod_memcg_state",
+                                                                                            "inclusive": 6404460,
+                                                                                            "self_count": 3188280,
+                                                                                            "children": [
+                                                                                              {
+                                                                                                "name": "__mod_memcg_state",
+                                                                                                "inclusive": 3216180,
+                                                                                                "self_count": 3216180,
+                                                                                                "children": []
+                                                                                              }
+                                                                                            ]
+                                                                                          }
+                                                                                        ]
+                                                                                      },
+                                                                                      {
+                                                                                        "name": "try_charge_memcg",
+                                                                                        "inclusive": 3221200,
+                                                                                        "self_count": 3221200,
+                                                                                        "children": []
+                                                                                      }
+                                                                                    ]
+                                                                                  },
+                                                                                  {
+                                                                                    "name": "__memcg_slab_post_alloc_hook",
+                                                                                    "inclusive": 3230012,
+                                                                                    "self_count": 3230012,
+                                                                                    "children": []
+                                                                                  }
+                                                                                ]
+                                                                              },
+                                                                              {
+                                                                                "name": "init_file",
+                                                                                "inclusive": 25889858,
+                                                                                "self_count": 0,
+                                                                                "children": [
+                                                                                  {
+                                                                                    "name": "security_file_alloc",
+                                                                                    "inclusive": 19443164,
+                                                                                    "self_count": 0,
+                                                                                    "children": [
+                                                                                      {
+                                                                                        "name": "kmem_cache_alloc",
+                                                                                        "inclusive": 9728441,
+                                                                                        "self_count": 9728441,
+                                                                                        "children": []
+                                                                                      },
+                                                                                      {
+                                                                                        "name": "should_failslab.constprop.0",
+                                                                                        "inclusive": 6498612,
+                                                                                        "self_count": 6498612,
+                                                                                        "children": []
+                                                                                      },
+                                                                                      {
+                                                                                        "name": "apparmor_file_alloc_security",
+                                                                                        "inclusive": 3216111,
+                                                                                        "self_count": 3216111,
+                                                                                        "children": []
+                                                                                      }
+                                                                                    ]
+                                                                                  },
+                                                                                  {
+                                                                                    "name": "apparmor_file_alloc_security",
+                                                                                    "inclusive": 3225531,
+                                                                                    "self_count": 3225531,
+                                                                                    "children": []
+                                                                                  },
+                                                                                  {
+                                                                                    "name": "hook_file_alloc_security",
+                                                                                    "inclusive": 3221163,
+                                                                                    "self_count": 3221163,
+                                                                                    "children": []
+                                                                                  }
+                                                                                ]
+                                                                              },
+                                                                              {
+                                                                                "name": "memset_orig",
+                                                                                "inclusive": 3270701,
+                                                                                "self_count": 3270701,
+                                                                                "children": []
+                                                                              },
+                                                                              {
+                                                                                "name": "should_failslab.constprop.0",
+                                                                                "inclusive": 3238062,
+                                                                                "self_count": 3238062,
+                                                                                "children": []
+                                                                              },
+                                                                              {
+                                                                                "name": "security_file_alloc",
+                                                                                "inclusive": 3219108,
+                                                                                "self_count": 3219108,
+                                                                                "children": []
+                                                                              }
+                                                                            ]
+                                                                          },
+                                                                          {
+                                                                            "name": "errseq_sample",
+                                                                            "inclusive": 32170756,
+                                                                            "self_count": 32170756,
+                                                                            "children": []
+                                                                          },
+                                                                          {
+                                                                            "name": "srso_safe_ret",
+                                                                            "inclusive": 3193783,
+                                                                            "self_count": 3193783,
+                                                                            "children": []
+                                                                          }
+                                                                        ]
+                                                                      },
+                                                                      {
+                                                                        "name": "lockref_get",
+                                                                        "inclusive": 12917740,
+                                                                        "self_count": 12917740,
+                                                                        "children": []
+                                                                      },
+                                                                      {
+                                                                        "name": "path_get",
+                                                                        "inclusive": 6419606,
+                                                                        "self_count": 3223051,
+                                                                        "children": [
+                                                                          {
+                                                                            "name": "mntget",
+                                                                            "inclusive": 3196555,
+                                                                            "self_count": 3196555,
+                                                                            "children": []
+                                                                          }
+                                                                        ]
+                                                                      },
+                                                                      {
+                                                                        "name": "mntput",
+                                                                        "inclusive": 3257889,
+                                                                        "self_count": 3257889,
+                                                                        "children": []
+                                                                      },
+                                                                      {
+                                                                        "name": "path_put",
+                                                                        "inclusive": 3231483,
+                                                                        "self_count": 0,
+                                                                        "children": [
+                                                                          {
+                                                                            "name": "mntput",
+                                                                            "inclusive": 3231483,
+                                                                            "self_count": 0,
+                                                                            "children": [
+                                                                              {
+                                                                                "name": "mntput_no_expire",
+                                                                                "inclusive": 3231483,
+                                                                                "self_count": 3231483,
+                                                                                "children": []
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  },
+                                                                  {
+                                                                    "name": "_raw_spin_lock",
+                                                                    "inclusive": 19358560,
+                                                                    "self_count": 19358560,
+                                                                    "children": []
+                                                                  },
+                                                                  {
+                                                                    "name": "yolofs_find_dirent",
+                                                                    "inclusive": 12864504,
+                                                                    "self_count": 12864504,
+                                                                    "children": []
+                                                                  },
+                                                                  {
+                                                                    "name": "kmalloc_trace",
+                                                                    "inclusive": 9702037,
+                                                                    "self_count": 9702037,
+                                                                    "children": []
+                                                                  },
+                                                                  {
+                                                                    "name": "down_read",
+                                                                    "inclusive": 3253737,
+                                                                    "self_count": 3253737,
+                                                                    "children": []
+                                                                  },
+                                                                  {
+                                                                    "name": "memcmp",
+                                                                    "inclusive": 3223732,
+                                                                    "self_count": 3223732,
+                                                                    "children": []
+                                                                  },
+                                                                  {
+                                                                    "name": "up_read",
+                                                                    "inclusive": 3189528,
+                                                                    "self_count": 3189528,
+                                                                    "children": []
+                                                                  }
+                                                                ]
+                                                              },
+                                                              {
+                                                                "name": "security_file_open",
+                                                                "inclusive": 12957215,
+                                                                "self_count": 9683316,
+                                                                "children": [
+                                                                  {
+                                                                    "name": "get_current_fs_domain",
+                                                                    "inclusive": 3273899,
+                                                                    "self_count": 3273899,
+                                                                    "children": []
+                                                                  }
+                                                                ]
+                                                              },
+                                                              {
+                                                                "name": "path_get",
+                                                                "inclusive": 3264374,
+                                                                "self_count": 3264374,
+                                                                "children": []
+                                                              },
+                                                              {
+                                                                "name": "apparmor_file_open",
+                                                                "inclusive": 3180124,
+                                                                "self_count": 3180124,
+                                                                "children": []
+                                                              }
+                                                            ]
+                                                          },
+                                                          {
+                                                            "name": "errseq_sample",
+                                                            "inclusive": 22572742,
+                                                            "self_count": 22572742,
+                                                            "children": []
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "name": "may_open",
+                                                        "inclusive": 22650764,
+                                                        "self_count": 16199554,
+                                                        "children": [
+                                                          {
+                                                            "name": "inode_permission",
+                                                            "inclusive": 6451210,
+                                                            "self_count": 6451210,
+                                                            "children": []
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "name": "complete_walk",
+                                                        "inclusive": 16207968,
+                                                        "self_count": 3273811,
+                                                        "children": [
+                                                          {
+                                                            "name": "__legitimize_path",
+                                                            "inclusive": 6415853,
+                                                            "self_count": 6415853,
+                                                            "children": []
+                                                          },
+                                                          {
+                                                            "name": "try_to_unlazy",
+                                                            "inclusive": 3273755,
+                                                            "self_count": 3273755,
+                                                            "children": []
+                                                          },
+                                                          {
+                                                            "name": "__rcu_read_unlock",
+                                                            "inclusive": 3244549,
+                                                            "self_count": 3244549,
+                                                            "children": []
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "name": "ima_file_check",
+                                                        "inclusive": 9349414,
+                                                        "self_count": 0,
+                                                        "children": [
+                                                          {
+                                                            "name": "security_current_getlsmblob_subj",
+                                                            "inclusive": 6149201,
+                                                            "self_count": 2878135,
+                                                            "children": [
+                                                              {
+                                                                "name": "apparmor_current_getlsmblob_subj",
+                                                                "inclusive": 3271066,
+                                                                "self_count": 3271066,
+                                                                "children": []
+                                                              }
+                                                            ]
+                                                          },
+                                                          {
+                                                            "name": "process_measurement",
+                                                            "inclusive": 3200213,
+                                                            "self_count": 3200213,
+                                                            "children": []
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "link_path_walk.part.0.constprop.0",
+                                                    "inclusive": 347832574,
+                                                    "self_count": 99766606,
+                                                    "children": [
+                                                      {
+                                                        "name": "walk_component",
+                                                        "inclusive": 131709373,
+                                                        "self_count": 35189293,
+                                                        "children": [
+                                                          {
+                                                            "name": "lookup_fast",
+                                                            "inclusive": 67474992,
+                                                            "self_count": 28721728,
+                                                            "children": [
+                                                              {
+                                                                "name": "__d_lookup_rcu",
+                                                                "inclusive": 38753264,
+                                                                "self_count": 38753264,
+                                                                "children": []
+                                                              }
+                                                            ]
+                                                          },
+                                                          {
+                                                            "name": "step_into",
+                                                            "inclusive": 25824384,
+                                                            "self_count": 25824384,
+                                                            "children": []
+                                                          },
+                                                          {
+                                                            "name": "asm_sysvec_apic_timer_interrupt",
+                                                            "inclusive": 3220704,
+                                                            "self_count": 0,
+                                                            "children": [
+                                                              {
+                                                                "name": "sysvec_apic_timer_interrupt",
+                                                                "inclusive": 3220704,
+                                                                "self_count": 0,
+                                                                "children": [
+                                                                  {
+                                                                    "name": "__sysvec_apic_timer_interrupt",
+                                                                    "inclusive": 3220704,
+                                                                    "self_count": 0,
+                                                                    "children": [
+                                                                      {
+                                                                        "name": "hrtimer_interrupt",
+                                                                        "inclusive": 3220704,
+                                                                        "self_count": 0,
+                                                                        "children": [
+                                                                          {
+                                                                            "name": "__hrtimer_run_queues",
+                                                                            "inclusive": 3220704,
+                                                                            "self_count": 0,
+                                                                            "children": [
+                                                                              {
+                                                                                "name": "tick_nohz_highres_handler",
+                                                                                "inclusive": 3220704,
+                                                                                "self_count": 0,
+                                                                                "children": [
+                                                                                  {
+                                                                                    "name": "tick_sched_handle",
+                                                                                    "inclusive": 3220704,
+                                                                                    "self_count": 0,
+                                                                                    "children": [
+                                                                                      {
+                                                                                        "name": "update_process_times",
+                                                                                        "inclusive": 3220704,
+                                                                                        "self_count": 0,
+                                                                                        "children": [
+                                                                                          {
+                                                                                            "name": "scheduler_tick",
+                                                                                            "inclusive": 3220704,
+                                                                                            "self_count": 0,
+                                                                                            "children": [
+                                                                                              {
+                                                                                                "name": "task_tick_fair",
+                                                                                                "inclusive": 3220704,
+                                                                                                "self_count": 0,
+                                                                                                "children": [
+                                                                                                  {
+                                                                                                    "name": "update_load_avg",
+                                                                                                    "inclusive": 3220704,
+                                                                                                    "self_count": 0,
+                                                                                                    "children": [
+                                                                                                      {
+                                                                                                        "name": "__update_load_avg_se",
+                                                                                                        "inclusive": 3220704,
+                                                                                                        "self_count": 3220704,
+                                                                                                        "children": []
+                                                                                                      }
+                                                                                                    ]
+                                                                                                  }
+                                                                                                ]
+                                                                                              }
+                                                                                            ]
+                                                                                          }
+                                                                                        ]
+                                                                                      }
+                                                                                    ]
+                                                                                  }
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "name": "inode_permission",
+                                                        "inclusive": 87279712,
+                                                        "self_count": 51752183,
+                                                        "children": [
+                                                          {
+                                                            "name": "security_inode_permission",
+                                                            "inclusive": 16225151,
+                                                            "self_count": 16225151,
+                                                            "children": []
+                                                          },
+                                                          {
+                                                            "name": "yolofs_permission",
+                                                            "inclusive": 9727980,
+                                                            "self_count": 9727980,
+                                                            "children": []
+                                                          },
+                                                          {
+                                                            "name": "generic_permission",
+                                                            "inclusive": 9574398,
+                                                            "self_count": 9574398,
+                                                            "children": []
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "name": "yolofs_permission",
+                                                        "inclusive": 16208560,
+                                                        "self_count": 16208560,
+                                                        "children": []
+                                                      },
+                                                      {
+                                                        "name": "srso_safe_ret",
+                                                        "inclusive": 6467613,
+                                                        "self_count": 6467613,
+                                                        "children": []
+                                                      },
+                                                      {
+                                                        "name": "asm_sysvec_apic_timer_interrupt",
+                                                        "inclusive": 3214054,
+                                                        "self_count": 0,
+                                                        "children": [
+                                                          {
+                                                            "name": "sysvec_apic_timer_interrupt",
+                                                            "inclusive": 3214054,
+                                                            "self_count": 0,
+                                                            "children": [
+                                                              {
+                                                                "name": "__sysvec_apic_timer_interrupt",
+                                                                "inclusive": 3214054,
+                                                                "self_count": 0,
+                                                                "children": [
+                                                                  {
+                                                                    "name": "hrtimer_interrupt",
+                                                                    "inclusive": 3214054,
+                                                                    "self_count": 0,
+                                                                    "children": [
+                                                                      {
+                                                                        "name": "__hrtimer_run_queues",
+                                                                        "inclusive": 3214054,
+                                                                        "self_count": 0,
+                                                                        "children": [
+                                                                          {
+                                                                            "name": "tick_nohz_highres_handler",
+                                                                            "inclusive": 3214054,
+                                                                            "self_count": 0,
+                                                                            "children": [
+                                                                              {
+                                                                                "name": "tick_sched_handle",
+                                                                                "inclusive": 3214054,
+                                                                                "self_count": 0,
+                                                                                "children": [
+                                                                                  {
+                                                                                    "name": "update_process_times",
+                                                                                    "inclusive": 3214054,
+                                                                                    "self_count": 0,
+                                                                                    "children": [
+                                                                                      {
+                                                                                        "name": "scheduler_tick",
+                                                                                        "inclusive": 3214054,
+                                                                                        "self_count": 0,
+                                                                                        "children": [
+                                                                                          {
+                                                                                            "name": "perf_event_task_tick",
+                                                                                            "inclusive": 3214054,
+                                                                                            "self_count": 0,
+                                                                                            "children": [
+                                                                                              {
+                                                                                                "name": "perf_adjust_freq_unthr_context",
+                                                                                                "inclusive": 3214054,
+                                                                                                "self_count": 0,
+                                                                                                "children": [
+                                                                                                  {
+                                                                                                    "name": "x86_pmu_enable",
+                                                                                                    "inclusive": 3214054,
+                                                                                                    "self_count": 0,
+                                                                                                    "children": [
+                                                                                                      {
+                                                                                                        "name": "amd_pmu_enable_all",
+                                                                                                        "inclusive": 3214054,
+                                                                                                        "self_count": 0,
+                                                                                                        "children": [
+                                                                                                          {
+                                                                                                            "name": "native_write_msr",
+                                                                                                            "inclusive": 3214054,
+                                                                                                            "self_count": 3214054,
+                                                                                                            "children": []
+                                                                                                          }
+                                                                                                        ]
+                                                                                                      }
+                                                                                                    ]
+                                                                                                  }
+                                                                                                ]
+                                                                                              }
+                                                                                            ]
+                                                                                          }
+                                                                                        ]
+                                                                                      }
+                                                                                    ]
+                                                                                  }
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "name": "security_inode_permission",
+                                                        "inclusive": 3186656,
+                                                        "self_count": 3186656,
+                                                        "children": []
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "alloc_empty_file",
+                                                    "inclusive": 67610634,
+                                                    "self_count": 6427575,
+                                                    "children": [
+                                                      {
+                                                        "name": "kmem_cache_alloc",
+                                                        "inclusive": 32247639,
+                                                        "self_count": 12941645,
+                                                        "children": [
+                                                          {
+                                                            "name": "__memcg_slab_post_alloc_hook",
+                                                            "inclusive": 16091441,
+                                                            "self_count": 16091441,
+                                                            "children": []
+                                                          },
+                                                          {
+                                                            "name": "__rcu_read_unlock",
+                                                            "inclusive": 3214553,
+                                                            "self_count": 3214553,
+                                                            "children": []
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "name": "init_file",
+                                                        "inclusive": 25740030,
+                                                        "self_count": 0,
+                                                        "children": [
+                                                          {
+                                                            "name": "security_file_alloc",
+                                                            "inclusive": 16068731,
+                                                            "self_count": 3178353,
+                                                            "children": [
+                                                              {
+                                                                "name": "kmem_cache_alloc",
+                                                                "inclusive": 6430096,
+                                                                "self_count": 6430096,
+                                                                "children": []
+                                                              },
+                                                              {
+                                                                "name": "apparmor_file_alloc_security",
+                                                                "inclusive": 3233372,
+                                                                "self_count": 3233372,
+                                                                "children": []
+                                                              },
+                                                              {
+                                                                "name": "hook_file_alloc_security",
+                                                                "inclusive": 3226910,
+                                                                "self_count": 3226910,
+                                                                "children": []
+                                                              }
+                                                            ]
+                                                          },
+                                                          {
+                                                            "name": "hook_file_alloc_security",
+                                                            "inclusive": 3231383,
+                                                            "self_count": 3231383,
+                                                            "children": []
+                                                          },
+                                                          {
+                                                            "name": "__x86_indirect_thunk_rax",
+                                                            "inclusive": 3221914,
+                                                            "self_count": 3221914,
+                                                            "children": []
+                                                          },
+                                                          {
+                                                            "name": "apparmor_file_alloc_security",
+                                                            "inclusive": 3218002,
+                                                            "self_count": 3218002,
+                                                            "children": []
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "name": "should_failslab.constprop.0",
+                                                        "inclusive": 3195390,
+                                                        "self_count": 3195390,
+                                                        "children": []
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "open_last_lookups",
+                                                    "inclusive": 48193346,
+                                                    "self_count": 0,
+                                                    "children": [
+                                                      {
+                                                        "name": "lookup_fast",
+                                                        "inclusive": 48193346,
+                                                        "self_count": 0,
+                                                        "children": [
+                                                          {
+                                                            "name": "__d_lookup_rcu",
+                                                            "inclusive": 48193346,
+                                                            "self_count": 48193346,
+                                                            "children": []
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "terminate_walk",
+                                                    "inclusive": 22638753,
+                                                    "self_count": 3247717,
+                                                    "children": [
+                                                      {
+                                                        "name": "lockref_put_return",
+                                                        "inclusive": 9691011,
+                                                        "self_count": 9691011,
+                                                        "children": []
+                                                      },
+                                                      {
+                                                        "name": "__rcu_read_lock",
+                                                        "inclusive": 3248554,
+                                                        "self_count": 3248554,
+                                                        "children": []
+                                                      },
+                                                      {
+                                                        "name": "mntput",
+                                                        "inclusive": 3232378,
+                                                        "self_count": 0,
+                                                        "children": [
+                                                          {
+                                                            "name": "mntput_no_expire",
+                                                            "inclusive": 3232378,
+                                                            "self_count": 3232378,
+                                                            "children": []
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "name": "dput",
+                                                        "inclusive": 3219093,
+                                                        "self_count": 3219093,
+                                                        "children": []
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "path_init",
+                                                    "inclusive": 13028196,
+                                                    "self_count": 9771282,
+                                                    "children": [
+                                                      {
+                                                        "name": "nd_jump_root",
+                                                        "inclusive": 3256914,
+                                                        "self_count": 3256914,
+                                                        "children": []
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "srso_safe_ret",
+                                                    "inclusive": 12947352,
+                                                    "self_count": 12947352,
+                                                    "children": []
+                                                  },
+                                                  {
+                                                    "name": "percpu_counter_add_batch",
+                                                    "inclusive": 6448203,
+                                                    "self_count": 6448203,
+                                                    "children": []
+                                                  },
+                                                  {
+                                                    "name": "srso_return_thunk",
+                                                    "inclusive": 3243013,
+                                                    "self_count": 3243013,
+                                                    "children": []
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "name": "link_path_walk.part.0.constprop.0",
+                                                "inclusive": 3251168,
+                                                "self_count": 3251168,
+                                                "children": []
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "getname",
+                                            "inclusive": 57431328,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "getname_flags.part.0",
+                                                "inclusive": 54206940,
+                                                "self_count": 3227750,
+                                                "children": [
+                                                  {
+                                                    "name": "strncpy_from_user",
+                                                    "inclusive": 21995235,
+                                                    "self_count": 3126484,
+                                                    "children": [
+                                                      {
+                                                        "name": "__check_object_size",
+                                                        "inclusive": 18868751,
+                                                        "self_count": 0,
+                                                        "children": [
+                                                          {
+                                                            "name": "__check_object_size.part.0",
+                                                            "inclusive": 18868751,
+                                                            "self_count": 3211161,
+                                                            "children": [
+                                                              {
+                                                                "name": "check_heap_object",
+                                                                "inclusive": 12459782,
+                                                                "self_count": 6045482,
+                                                                "children": [
+                                                                  {
+                                                                    "name": "__virt_addr_valid",
+                                                                    "inclusive": 6414300,
+                                                                    "self_count": 6414300,
+                                                                    "children": []
+                                                                  }
+                                                                ]
+                                                              },
+                                                              {
+                                                                "name": "__virt_addr_valid",
+                                                                "inclusive": 3197808,
+                                                                "self_count": 3197808,
+                                                                "children": []
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "memset_orig",
+                                                    "inclusive": 19319101,
+                                                    "self_count": 19319101,
+                                                    "children": []
+                                                  },
+                                                  {
+                                                    "name": "kmem_cache_alloc",
+                                                    "inclusive": 9664854,
+                                                    "self_count": 9664854,
+                                                    "children": []
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "name": "strncpy_from_user",
+                                                "inclusive": 3224388,
+                                                "self_count": 3224388,
+                                                "children": []
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "get_unused_fd_flags",
+                                            "inclusive": 22555573,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "alloc_fd",
+                                                "inclusive": 9696417,
+                                                "self_count": 9696417,
+                                                "children": []
+                                              },
+                                              {
+                                                "name": "expand_files",
+                                                "inclusive": 3254030,
+                                                "self_count": 3254030,
+                                                "children": []
+                                              },
+                                              {
+                                                "name": "_find_next_zero_bit",
+                                                "inclusive": 3219762,
+                                                "self_count": 3219762,
+                                                "children": []
+                                              },
+                                              {
+                                                "name": "_raw_spin_unlock",
+                                                "inclusive": 3201193,
+                                                "self_count": 3201193,
+                                                "children": []
+                                              },
+                                              {
+                                                "name": "srso_safe_ret",
+                                                "inclusive": 3184171,
+                                                "self_count": 3184171,
+                                                "children": []
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "name": "putname",
+                                            "inclusive": 22256735,
+                                            "self_count": 12936569,
+                                            "children": [
+                                              {
+                                                "name": "kmem_cache_free",
+                                                "inclusive": 9320166,
+                                                "self_count": 9320166,
+                                                "children": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "putname",
+                                        "inclusive": 3274595,
+                                        "self_count": 3274595,
+                                        "children": []
+                                      },
+                                      {
+                                        "name": "get_unused_fd_flags",
+                                        "inclusive": 3240873,
+                                        "self_count": 3240873,
+                                        "children": []
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "syscall_exit_to_user_mode",
+                                "inclusive": 6419892,
+                                "self_count": 3225060,
+                                "children": [
+                                  {
+                                    "name": "arch_exit_to_user_mode_prepare.isra.0",
+                                    "inclusive": 3194832,
+                                    "self_count": 3194832,
+                                    "children": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "srso_safe_ret",
+                        "inclusive": 6500767,
+                        "self_count": 6500767,
+                        "children": []
+                      },
+                      {
+                        "name": "syscall_return_via_sysret",
+                        "inclusive": 3198751,
+                        "self_count": 3198751,
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "alloc::raw_vec::RawVecInner<A>::reserve::do_reserve_and_handle",
+                    "inclusive": 29006150,
+                    "self_count": 3272784,
+                    "children": [
+                      {
+                        "name": "alloc::raw_vec::RawVecInner<A>::finish_grow",
+                        "inclusive": 25733366,
+                        "self_count": 0,
+                        "children": [
+                          {
+                            "name": "realloc",
+                            "inclusive": 25733366,
+                            "self_count": 22534244,
+                            "children": [
+                              {
+                                "name": "asm_sysvec_apic_timer_interrupt",
+                                "inclusive": 3199122,
+                                "self_count": 0,
+                                "children": [
+                                  {
+                                    "name": "sysvec_apic_timer_interrupt",
+                                    "inclusive": 3199122,
+                                    "self_count": 0,
+                                    "children": [
+                                      {
+                                        "name": "__sysvec_apic_timer_interrupt",
+                                        "inclusive": 3199122,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "hrtimer_interrupt",
+                                            "inclusive": 3199122,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "__hrtimer_run_queues",
+                                                "inclusive": 3199122,
+                                                "self_count": 0,
+                                                "children": [
+                                                  {
+                                                    "name": "tick_nohz_highres_handler",
+                                                    "inclusive": 3199122,
+                                                    "self_count": 0,
+                                                    "children": [
+                                                      {
+                                                        "name": "tick_sched_handle",
+                                                        "inclusive": 3199122,
+                                                        "self_count": 0,
+                                                        "children": [
+                                                          {
+                                                            "name": "update_process_times",
+                                                            "inclusive": 3199122,
+                                                            "self_count": 0,
+                                                            "children": [
+                                                              {
+                                                                "name": "scheduler_tick",
+                                                                "inclusive": 3199122,
+                                                                "self_count": 0,
+                                                                "children": [
+                                                                  {
+                                                                    "name": "perf_event_task_tick",
+                                                                    "inclusive": 3199122,
+                                                                    "self_count": 0,
+                                                                    "children": [
+                                                                      {
+                                                                        "name": "perf_adjust_freq_unthr_context",
+                                                                        "inclusive": 3199122,
+                                                                        "self_count": 0,
+                                                                        "children": [
+                                                                          {
+                                                                            "name": "x86_pmu_enable",
+                                                                            "inclusive": 3199122,
+                                                                            "self_count": 0,
+                                                                            "children": [
+                                                                              {
+                                                                                "name": "amd_pmu_enable_all",
+                                                                                "inclusive": 3199122,
+                                                                                "self_count": 3199122,
+                                                                                "children": []
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "cfree",
+                    "inclusive": 6529110,
+                    "self_count": 6529110,
+                    "children": []
+                  },
+                  {
+                    "name": "alloc::fmt::format::format_inner",
+                    "inclusive": 6430534,
+                    "self_count": 3203183,
+                    "children": [
+                      {
+                        "name": "<alloc::string::String as core::fmt::Write>::write_str",
+                        "inclusive": 3227351,
+                        "self_count": 3227351,
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "asm_exc_page_fault",
+                    "inclusive": 6429904,
+                    "self_count": 0,
+                    "children": [
+                      {
+                        "name": "exc_page_fault",
+                        "inclusive": 6429904,
+                        "self_count": 0,
+                        "children": [
+                          {
+                            "name": "do_user_addr_fault",
+                            "inclusive": 6429904,
+                            "self_count": 0,
+                            "children": [
+                              {
+                                "name": "handle_mm_fault",
+                                "inclusive": 6429904,
+                                "self_count": 0,
+                                "children": [
+                                  {
+                                    "name": "__handle_mm_fault",
+                                    "inclusive": 6429904,
+                                    "self_count": 0,
+                                    "children": [
+                                      {
+                                        "name": "handle_pte_fault",
+                                        "inclusive": 6429904,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "do_anonymous_page",
+                                            "inclusive": 6429904,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "mem_cgroup_commit_charge",
+                                                "inclusive": 3224581,
+                                                "self_count": 3224581,
+                                                "children": []
+                                              },
+                                              {
+                                                "name": "folio_add_lru_vma",
+                                                "inclusive": 3205323,
+                                                "self_count": 0,
+                                                "children": [
+                                                  {
+                                                    "name": "folio_add_lru",
+                                                    "inclusive": 3205323,
+                                                    "self_count": 0,
+                                                    "children": [
+                                                      {
+                                                        "name": "folio_batch_move_lru",
+                                                        "inclusive": 3205323,
+                                                        "self_count": 3205323,
+                                                        "children": []
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "__vdso_clock_gettime",
+                    "inclusive": 3271712,
+                    "self_count": 3271712,
+                    "children": []
+                  },
+                  {
+                    "name": "yolofs_bench::workloads::summarize_latencies",
+                    "inclusive": 3267001,
+                    "self_count": 0,
+                    "children": [
+                      {
+                        "name": "__munmap",
+                        "inclusive": 3267001,
+                        "self_count": 0,
+                        "children": [
+                          {
+                            "name": "entry_SYSCALL_64_after_hwframe",
+                            "inclusive": 3267001,
+                            "self_count": 0,
+                            "children": [
+                              {
+                                "name": "do_syscall_64",
+                                "inclusive": 3267001,
+                                "self_count": 0,
+                                "children": [
+                                  {
+                                    "name": "x64_sys_call",
+                                    "inclusive": 3267001,
+                                    "self_count": 0,
+                                    "children": [
+                                      {
+                                        "name": "__x64_sys_munmap",
+                                        "inclusive": 3267001,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "__vm_munmap",
+                                            "inclusive": 3267001,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "do_vmi_munmap",
+                                                "inclusive": 3267001,
+                                                "self_count": 0,
+                                                "children": [
+                                                  {
+                                                    "name": "do_vmi_align_munmap",
+                                                    "inclusive": 3267001,
+                                                    "self_count": 0,
+                                                    "children": [
+                                                      {
+                                                        "name": "unmap_region",
+                                                        "inclusive": 3267001,
+                                                        "self_count": 0,
+                                                        "children": [
+                                                          {
+                                                            "name": "unmap_vmas",
+                                                            "inclusive": 3267001,
+                                                            "self_count": 0,
+                                                            "children": [
+                                                              {
+                                                                "name": "unmap_single_vma",
+                                                                "inclusive": 3267001,
+                                                                "self_count": 0,
+                                                                "children": [
+                                                                  {
+                                                                    "name": "unmap_page_range",
+                                                                    "inclusive": 3267001,
+                                                                    "self_count": 0,
+                                                                    "children": [
+                                                                      {
+                                                                        "name": "zap_pmd_range.isra.0",
+                                                                        "inclusive": 3267001,
+                                                                        "self_count": 0,
+                                                                        "children": [
+                                                                          {
+                                                                            "name": "zap_pte_range",
+                                                                            "inclusive": 3267001,
+                                                                            "self_count": 3267001,
+                                                                            "children": []
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "clock_gettime",
+                    "inclusive": 3262975,
+                    "self_count": 0,
+                    "children": [
+                      {
+                        "name": "[[vdso]]",
+                        "inclusive": 3262975,
+                        "self_count": 3262975,
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

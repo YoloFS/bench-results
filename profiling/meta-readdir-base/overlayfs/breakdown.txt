@@ -1,0 +1,100 @@
+Function breakdown: meta-readdir-base / overlayfs
+wall: 10685 ms, 10 iterations
+per-op latency (from results.json): 5463.49 µs
+
+run function: 2% of profiled time
+timed operation: 100% of run | warm-up: 0% of run
+
+    incl   self  call tree
+   µs/op  µs/op
+  ------------------------------------------------------------
+  5463.49      —  └─ __libc_start_main
+  5463.49      —     └─ yolofs_bench::main
+  5463.49  61.64        └─ yolofs_bench::workloads::meta_shared::run_meta_readdir
+  5217.49  147.93           ├─ <std::fs::ReadDir as core::iter::traits::iterator::Iterator>::next
+  5069.56      —           │  └─ <std::sys::fs::unix::ReadDir as core::iter::traits::iterator::Iterator>::next
+  4817.48      —           │     ├─ getdents64
+  4817.48      —           │     │  └─ entry_SYSCALL_64_after_hwframe
+  4817.48      —           │     │     └─ do_syscall_64
+  4817.48      —           │     │        └─ x64_sys_call
+  4817.48      —           │     │           └─ __x64_sys_getdents64
+  4817.48      —           │     │              └─ iterate_dir
+  2969.91      —           │     │                 ├─ yolofs_readdir
+  2969.91      —           │     │                 │  └─ iterate_dir
+  2969.91      —           │     │                 │     └─ ext4_readdir
+  2843.40  76.10           │     │                 │        ├─ ext4_dx_readdir
+  1497.03      —           │     │                 │        │  ├─ ext4_htree_fill_tree
+  1451.32  205.41           │     │                 │        │  │  ├─ htree_dirblock_to_tree
+  574.02      —           │     │                 │        │  │  │  ├─ ext4fs_dirhash
+  574.02  29.68           │     │                 │        │  │  │  │  └─ __ext4fs_dirhash
+  361.97  361.97           │     │                 │        │  │  │  │     ├─ half_md4_transform.isra.0
+  182.37  182.37           │     │                 │        │  │  │  │     └─ str2hashbuf_signed
+  457.69  365.82           │     │                 │        │  │  │  ├─ ext4_htree_store_dirent
+   65.01  65.01           │     │                 │        │  │  │  │  ├─ __kmalloc
+   26.85  26.85           │     │                 │        │  │  │  │  └─ should_failslab.constprop.0
+  164.99  164.99           │     │                 │        │  │  │  ├─ __ext4_check_dir_entry
+   49.21  49.21           │     │                 │        │  │  │  └─ rb_insert_color
+   45.71      —           │     │                 │        │  │  └─ dx_probe
+   45.71      —           │     │                 │        │  │     └─ __ext4_read_dirblock
+   45.71      —           │     │                 │        │  │        └─ ext4_bread
+   45.71      —           │     │                 │        │  │           └─ ext4_getblk
+   45.71      —           │     │                 │        │  │              └─ ext4_map_blocks
+   45.71  45.71           │     │                 │        │  │                 └─ ext4_es_lookup_extent
+  925.12      —           │     │                 │        │  ├─ call_filldir
+  851.94  117.06           │     │                 │        │  │  ├─ yolofs_fill_base
+  389.51      —           │     │                 │        │  │  │  ├─ d_lookup
+  389.51  389.51           │     │                 │        │  │  │  │  └─ __d_lookup
+  294.40  237.32           │     │                 │        │  │  │  ├─ filldir64
+   57.08  57.08           │     │                 │        │  │  │  │  └─ memchr
+   50.97  50.97           │     │                 │        │  │  │  └─ verify_dirent_name
+   44.40  44.40           │     │                 │        │  │  ├─ srso_safe_ret
+   28.78  28.78           │     │                 │        │  │  └─ __x86_indirect_thunk_rax
+  288.80  63.19           │     │                 │        │  ├─ free_rb_tree_fname
+  225.61  194.14           │     │                 │        │  │  └─ kfree
+   31.47  31.47           │     │                 │        │  │     └─ __slab_free
+   56.35  56.35           │     │                 │        │  └─ rb_next_postorder
+   67.15  67.15           │     │                 │        ├─ rb_next
+   59.36  59.36           │     │                 │        └─ srso_safe_ret
+  1847.57      —           │     │                 └─ shared_ovl_iterate
+  1847.57      —           │     │                    └─ wrap_directory_iterator
+  1847.57      —           │     │                       └─ ovl_iterate
+  1847.57      —           │     │                          └─ ovl_iterate_real
+  1847.57      —           │     │                             └─ iterate_dir
+  1847.57      —           │     │                                └─ ext4_readdir
+  1787.19  46.21           │     │                                   ├─ ext4_dx_readdir
+  1052.67      —           │     │                                   │  ├─ ext4_htree_fill_tree
+  1052.67  103.51           │     │                                   │  │  └─ htree_dirblock_to_tree
+  377.99  211.70           │     │                                   │  │     ├─ ext4_htree_store_dirent
+  109.83  109.83           │     │                                   │  │     │  ├─ __kmalloc
+   37.82  37.82           │     │                                   │  │     │  ├─ srso_safe_ret
+   18.63  18.63           │     │                                   │  │     │  └─ should_failslab.constprop.0
+  337.95      —           │     │                                   │  │     ├─ ext4fs_dirhash
+  309.14  55.94           │     │                                   │  │     │  ├─ __ext4fs_dirhash
+  177.97  177.97           │     │                                   │  │     │  │  ├─ str2hashbuf_signed
+   75.23  75.23           │     │                                   │  │     │  │  └─ half_md4_transform.isra.0
+   28.81  28.81           │     │                                   │  │     │  └─ asm_sysvec_apic_timer_interrupt
+  110.98  110.98           │     │                                   │  │     ├─ rb_insert_color
+   68.41  68.41           │     │                                   │  │     ├─ __ext4_check_dir_entry
+   34.64  34.64           │     │                                   │  │     ├─ __kmalloc
+   19.19      —           │     │                                   │  │     └─ __ext4_read_dirblock
+   19.19      —           │     │                                   │  │        └─ ext4_bread
+   19.19      —           │     │                                   │  │           └─ ext4_getblk
+   19.19      —           │     │                                   │  │              └─ bdev_getblk
+   19.19      —           │     │                                   │  │                 └─ find_get_block_common
+   19.19  19.19           │     │                                   │  │                    └─ cpuset_cpu_is_isolated
+  515.48  180.62           │     │                                   │  ├─ call_filldir
+  269.61  37.91           │     │                                   │  │  ├─ ovl_fill_real
+  202.10  178.18           │     │                                   │  │  │  ├─ filldir64
+   23.92  23.92           │     │                                   │  │  │  │  └─ srso_safe_ret
+   29.60  29.60           │     │                                   │  │  │  └─ verify_dirent_name
+   65.24  65.24           │     │                                   │  │  └─ filldir64
+  143.92  39.94           │     │                                   │  ├─ free_rb_tree_fname
+  103.98  31.57           │     │                                   │  │  └─ kfree
+   72.41  43.39           │     │                                   │  │     └─ __slab_free
+   29.02  29.02           │     │                                   │  │        └─ put_cpu_partial
+   28.91  28.91           │     │                                   │  └─ ovl_fill_real
+   60.38  60.38           │     │                                   └─ rb_next
+  165.67  165.67           │     ├─ readdir64
+   86.40      —           │     └─ alloc::ffi::c_str::<impl alloc::borrow::ToOwned for core::ffi::c_str::CStr>::to_owned
+   86.40  86.40           │        └─ malloc
+   63.12  63.12           └─ _RNvCs5QKde7ScR4H_7___rustc35___rust_no_alloc_shim_is_unstable_v2

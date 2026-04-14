@@ -1,0 +1,89 @@
+Optimization targets: meta-open-warm-stage
+==========================================
+
+Current state (after d_revalidate fixes):
+  yolofs-no-perm:  8.77 µs/op  (114k IOPS)
+  overlayfs:     6.88 µs/op  (145k IOPS)
+  gap:           1.90 µs
+
+Improvement history (results-bench git):
+  4a80f39  91,155 IOPS  baseline (before any d_revalidate work)
+  1f3df9d  112,787 IOPS  +23.7%  RCU-walk fix (return 1 instead of -ECHILD)
+  612567a  114,015 IOPS  +1.1%   remove d_revalidate entirely for local lower fs
+  total:   +25.1%
+
+Remaining gap from hierarchical comparison (comparison.txt):
+
+  path_openat                        6.79µs   5.22µs   +1.57
+  ├─ do_open → do_dentry_open
+  │  ├─ yolofs_open                    3.51µs     —      +3.51  ← vs ovl_open 1.71µs
+  │  │  ├─ yolofs_find_dirent          1.43µs     —      +1.43  (1.43µs self)
+  │  │  ├─ yolofs_open_lower           1.33µs     —      +1.33
+  │  │  │  └─ dentry_open            1.00µs     —      +1.00
+  │  │  │     └─ alloc_empty_file    0.27µs     —
+  │  │  ├─ memcmp                    0.49µs     —      (dirent name comparison)
+  │  │  └─ _raw_spin_lock            0.14µs     —      (dirent table lock)
+  │  └─ ovl_open                       —      1.71µs
+  │     └─ ovl_open_realfile           —      1.45µs
+  │        └─ backing_file_open        —      1.23µs
+  ├─ link_path_walk                  1.78µs   1.55µs   +0.23
+  │  ├─ walk_component               0.53µs   0.36µs   +0.17
+  │  │  └─ lookup_fast               0.22µs   0.15µs   +0.07  ← d_revalidate gone
+  │  └─ inode_permission             0.53µs   1.39µs   -0.86  (overlayfs has ovl_permission)
+  └─ alloc_empty_file (outer)        0.43µs   0.30µs   +0.13
+
+Ranked optimization targets:
+─────────────────────────────
+
+1. yolofs_find_dirent hash table sizing — 1.43µs self (save ~1.3µs)
+
+   Root cause: YOLOFS_DE_SHIFT=6 → 64 buckets. The meta-open-warm-stage
+   workload has 10,000 files in one directory → 156 entries per bucket
+   on average. Every lookup walks ~78 entries (half chain on hit),
+   doing memcmp per entry. All filenames are the same length (13 chars
+   for file-NNNN.dat) so the name_len fast-reject never fires — every
+   entry falls through to memcmp.
+
+   Profile confirms: memcmp accounts for 0.49µs and _raw_spin_lock
+   for 0.14µs inside yolofs_find_dirent's 1.43µs self time.
+
+   Fix: increase YOLOFS_DE_SHIFT from 6 to 10 (1024 buckets). Average
+   chain drops from 156 to ~10 entries. Cost: 8KB per directory that
+   has staged entries (vs current 512 bytes). Only allocated on first
+   dirent insertion, not for base-only directories.
+
+   Expected improvement: lookup drops from 1.43µs to ~0.1µs.
+
+   Alternative: dynamic resizing (start at 64, rehash when load
+   factor > 4). More complex but adapts to any directory size.
+
+   Further optimization: for read-only opens, the dirent lookup result
+   is only needed to redirect reads to the staged inode (if the dentry's
+   lower_path was set at lookup time to the staged inode, the read
+   path could use it directly). But a concurrent COW between lookup
+   and open could make the cached lower_path stale, so the dirent
+   check is needed for correctness. Caching ino+gen on the dentry's
+   d_fsdata (updated on COW) would avoid the hash walk entirely —
+   this is a complementary optimization to hash table sizing.
+
+2. yolofs_open_lower → dentry_open — 1.33µs (save ~0.4µs net vs overlayfs)
+   yolofs opens a new struct file for the lower fs on every yolofs_open
+   via dentry_open → alloc_empty_file. overlayfs uses backing_file_open
+   (kernel 6.6+) which is specifically designed for stacking filesystems.
+   Fix: switch from dentry_open to backing_file_open.
+   Net saving is 1.33 - 0.95 (overlayfs backing_file_open) ≈ 0.4µs.
+
+3. Path walk overhead — 0.23µs
+   yolofs has longer absolute paths through .yolofs/mnt/... compared to
+   overlayfs's shorter namespace-relative path. This is structural and
+   not fixable without changing how yolofs mounts. lookup_fast is now
+   at 0.22µs (was 0.91µs before d_revalidate fixes) — essentially at
+   parity with overlayfs (0.15µs).
+
+4. [DONE] d_revalidate — was 0.96µs, now 0µs
+   Fixed in two steps: RCU-walk fast path (ff83d16), then full removal
+   for local lower filesystems (2524942).
+
+Total recoverable: ~1.7µs of 1.90µs gap.
+Remaining ~0.2µs: path walk length + overlayfs permission overhead
+difference.

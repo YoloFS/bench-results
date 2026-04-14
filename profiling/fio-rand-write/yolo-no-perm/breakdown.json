@@ -1,0 +1,1071 @@
+{
+  "workload": "fio-rand-write",
+  "backend": "yolo-no-perm",
+  "wall_ms": 10639,
+  "iters": 15,
+  "per_op_us": 5.9253148981443005,
+  "timed_samples": 18018966,
+  "tree": {
+    "name": "(root)",
+    "inclusive": 18018966,
+    "self_count": 0,
+    "children": [
+      {
+        "name": "__libc_start_main",
+        "inclusive": 18018966,
+        "self_count": 0,
+        "children": [
+          {
+            "name": "yolofs_bench::main",
+            "inclusive": 18018966,
+            "self_count": 0,
+            "children": [
+              {
+                "name": "<yolofs_bench::workloads::fio_rand_write::FioRandWrite as yolofs_bench::workload::Workload>::run",
+                "inclusive": 18018966,
+                "self_count": 0,
+                "children": [
+                  {
+                    "name": "yolofs_bench::workloads::run_fio",
+                    "inclusive": 17436666,
+                    "self_count": 764025,
+                    "children": [
+                      {
+                        "name": "__close",
+                        "inclusive": 6305495,
+                        "self_count": 0,
+                        "children": [
+                          {
+                            "name": "entry_SYSCALL_64_after_hwframe",
+                            "inclusive": 6305495,
+                            "self_count": 0,
+                            "children": [
+                              {
+                                "name": "do_syscall_64",
+                                "inclusive": 6305495,
+                                "self_count": 0,
+                                "children": [
+                                  {
+                                    "name": "syscall_exit_to_user_mode",
+                                    "inclusive": 5624013,
+                                    "self_count": 0,
+                                    "children": [
+                                      {
+                                        "name": "task_work_run",
+                                        "inclusive": 4522837,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "____fput",
+                                            "inclusive": 4522837,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "__fput",
+                                                "inclusive": 4522837,
+                                                "self_count": 0,
+                                                "children": [
+                                                  {
+                                                    "name": "ext4_release_file",
+                                                    "inclusive": 4522837,
+                                                    "self_count": 0,
+                                                    "children": [
+                                                      {
+                                                        "name": "ext4_alloc_da_blocks",
+                                                        "inclusive": 4522837,
+                                                        "self_count": 0,
+                                                        "children": [
+                                                          {
+                                                            "name": "filemap_flush",
+                                                            "inclusive": 4522837,
+                                                            "self_count": 0,
+                                                            "children": [
+                                                              {
+                                                                "name": "__filemap_fdatawrite_range",
+                                                                "inclusive": 4522837,
+                                                                "self_count": 0,
+                                                                "children": [
+                                                                  {
+                                                                    "name": "filemap_fdatawrite_wbc",
+                                                                    "inclusive": 4522837,
+                                                                    "self_count": 0,
+                                                                    "children": [
+                                                                      {
+                                                                        "name": "do_writepages",
+                                                                        "inclusive": 4522837,
+                                                                        "self_count": 0,
+                                                                        "children": [
+                                                                          {
+                                                                            "name": "ext4_writepages",
+                                                                            "inclusive": 4522837,
+                                                                            "self_count": 0,
+                                                                            "children": [
+                                                                              {
+                                                                                "name": "ext4_do_writepages",
+                                                                                "inclusive": 4522837,
+                                                                                "self_count": 0,
+                                                                                "children": [
+                                                                                  {
+                                                                                    "name": "mpage_prepare_extent_to_map",
+                                                                                    "inclusive": 1857833,
+                                                                                    "self_count": 0,
+                                                                                    "children": [
+                                                                                      {
+                                                                                        "name": "__folio_batch_release",
+                                                                                        "inclusive": 1857833,
+                                                                                        "self_count": 0,
+                                                                                        "children": [
+                                                                                          {
+                                                                                            "name": "lru_add_drain_cpu",
+                                                                                            "inclusive": 1857833,
+                                                                                            "self_count": 0,
+                                                                                            "children": [
+                                                                                              {
+                                                                                                "name": "folio_batch_move_lru",
+                                                                                                "inclusive": 1857833,
+                                                                                                "self_count": 0,
+                                                                                                "children": [
+                                                                                                  {
+                                                                                                    "name": "lru_add_fn",
+                                                                                                    "inclusive": 1857833,
+                                                                                                    "self_count": 0,
+                                                                                                    "children": [
+                                                                                                      {
+                                                                                                        "name": "lru_gen_add_folio",
+                                                                                                        "inclusive": 1857833,
+                                                                                                        "self_count": 0,
+                                                                                                        "children": [
+                                                                                                          {
+                                                                                                            "name": "__mod_memcg_lruvec_state",
+                                                                                                            "inclusive": 1857833,
+                                                                                                            "self_count": 1857833,
+                                                                                                            "children": []
+                                                                                                          }
+                                                                                                        ]
+                                                                                                      }
+                                                                                                    ]
+                                                                                                  }
+                                                                                                ]
+                                                                                              }
+                                                                                            ]
+                                                                                          }
+                                                                                        ]
+                                                                                      }
+                                                                                    ]
+                                                                                  },
+                                                                                  {
+                                                                                    "name": "mpage_map_and_submit_extent",
+                                                                                    "inclusive": 1506290,
+                                                                                    "self_count": 1506290,
+                                                                                    "children": []
+                                                                                  },
+                                                                                  {
+                                                                                    "name": "blk_finish_plug",
+                                                                                    "inclusive": 1158714,
+                                                                                    "self_count": 0,
+                                                                                    "children": [
+                                                                                      {
+                                                                                        "name": "__blk_flush_plug",
+                                                                                        "inclusive": 1158714,
+                                                                                        "self_count": 0,
+                                                                                        "children": [
+                                                                                          {
+                                                                                            "name": "blk_mq_flush_plug_list",
+                                                                                            "inclusive": 1158714,
+                                                                                            "self_count": 0,
+                                                                                            "children": [
+                                                                                              {
+                                                                                                "name": "blk_mq_flush_plug_list.part.0",
+                                                                                                "inclusive": 1158714,
+                                                                                                "self_count": 0,
+                                                                                                "children": [
+                                                                                                  {
+                                                                                                    "name": "blk_mq_dispatch_plug_list",
+                                                                                                    "inclusive": 1158714,
+                                                                                                    "self_count": 0,
+                                                                                                    "children": [
+                                                                                                      {
+                                                                                                        "name": "blk_mq_run_hw_queue",
+                                                                                                        "inclusive": 1158714,
+                                                                                                        "self_count": 0,
+                                                                                                        "children": [
+                                                                                                          {
+                                                                                                            "name": "blk_mq_sched_dispatch_requests",
+                                                                                                            "inclusive": 1158714,
+                                                                                                            "self_count": 0,
+                                                                                                            "children": [
+                                                                                                              {
+                                                                                                                "name": "__blk_mq_sched_dispatch_requests",
+                                                                                                                "inclusive": 1158714,
+                                                                                                                "self_count": 0,
+                                                                                                                "children": [
+                                                                                                                  {
+                                                                                                                    "name": "__blk_mq_do_dispatch_sched",
+                                                                                                                    "inclusive": 1158714,
+                                                                                                                    "self_count": 0,
+                                                                                                                    "children": [
+                                                                                                                      {
+                                                                                                                        "name": "blk_mq_dispatch_rq_list",
+                                                                                                                        "inclusive": 1158714,
+                                                                                                                        "self_count": 0,
+                                                                                                                        "children": [
+                                                                                                                          {
+                                                                                                                            "name": "scsi_queue_rq",
+                                                                                                                            "inclusive": 1158714,
+                                                                                                                            "self_count": 0,
+                                                                                                                            "children": [
+                                                                                                                              {
+                                                                                                                                "name": "scsi_dispatch_cmd",
+                                                                                                                                "inclusive": 1158714,
+                                                                                                                                "self_count": 0,
+                                                                                                                                "children": [
+                                                                                                                                  {
+                                                                                                                                    "name": "ata_scsi_queuecmd",
+                                                                                                                                    "inclusive": 1158714,
+                                                                                                                                    "self_count": 0,
+                                                                                                                                    "children": [
+                                                                                                                                      {
+                                                                                                                                        "name": "__ata_scsi_queuecmd",
+                                                                                                                                        "inclusive": 1158714,
+                                                                                                                                        "self_count": 0,
+                                                                                                                                        "children": [
+                                                                                                                                          {
+                                                                                                                                            "name": "ata_qc_issue",
+                                                                                                                                            "inclusive": 1158714,
+                                                                                                                                            "self_count": 0,
+                                                                                                                                            "children": [
+                                                                                                                                              {
+                                                                                                                                                "name": "dma_map_sg_attrs",
+                                                                                                                                                "inclusive": 1158714,
+                                                                                                                                                "self_count": 0,
+                                                                                                                                                "children": [
+                                                                                                                                                  {
+                                                                                                                                                    "name": "__dma_map_sg_attrs",
+                                                                                                                                                    "inclusive": 1158714,
+                                                                                                                                                    "self_count": 0,
+                                                                                                                                                    "children": [
+                                                                                                                                                      {
+                                                                                                                                                        "name": "iommu_dma_map_sg",
+                                                                                                                                                        "inclusive": 1158714,
+                                                                                                                                                        "self_count": 0,
+                                                                                                                                                        "children": [
+                                                                                                                                                          {
+                                                                                                                                                            "name": "iommu_map_sg",
+                                                                                                                                                            "inclusive": 1158714,
+                                                                                                                                                            "self_count": 1158714,
+                                                                                                                                                            "children": []
+                                                                                                                                                          }
+                                                                                                                                                        ]
+                                                                                                                                                      }
+                                                                                                                                                    ]
+                                                                                                                                                  }
+                                                                                                                                                ]
+                                                                                                                                              }
+                                                                                                                                            ]
+                                                                                                                                          }
+                                                                                                                                        ]
+                                                                                                                                      }
+                                                                                                                                    ]
+                                                                                                                                  }
+                                                                                                                                ]
+                                                                                                                              }
+                                                                                                                            ]
+                                                                                                                          }
+                                                                                                                        ]
+                                                                                                                      }
+                                                                                                                    ]
+                                                                                                                  }
+                                                                                                                ]
+                                                                                                              }
+                                                                                                            ]
+                                                                                                          }
+                                                                                                        ]
+                                                                                                      }
+                                                                                                    ]
+                                                                                                  }
+                                                                                                ]
+                                                                                              }
+                                                                                            ]
+                                                                                          }
+                                                                                        ]
+                                                                                      }
+                                                                                    ]
+                                                                                  }
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "__rseq_handle_notify_resume",
+                                        "inclusive": 1101176,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "rseq_ip_fixup",
+                                            "inclusive": 1101176,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "__get_user_8",
+                                                "inclusive": 1101176,
+                                                "self_count": 1101176,
+                                                "children": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "x64_sys_call",
+                                    "inclusive": 681482,
+                                    "self_count": 0,
+                                    "children": [
+                                      {
+                                        "name": "__x64_sys_close",
+                                        "inclusive": 681482,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "__fput_sync",
+                                            "inclusive": 681482,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "__fput",
+                                                "inclusive": 681482,
+                                                "self_count": 0,
+                                                "children": [
+                                                  {
+                                                    "name": "dput",
+                                                    "inclusive": 681482,
+                                                    "self_count": 0,
+                                                    "children": [
+                                                      {
+                                                        "name": "__dentry_kill",
+                                                        "inclusive": 681482,
+                                                        "self_count": 0,
+                                                        "children": [
+                                                          {
+                                                            "name": "dentry_free",
+                                                            "inclusive": 681482,
+                                                            "self_count": 0,
+                                                            "children": [
+                                                              {
+                                                                "name": "kmem_cache_free",
+                                                                "inclusive": 681482,
+                                                                "self_count": 0,
+                                                                "children": [
+                                                                  {
+                                                                    "name": "__memcg_slab_free_hook",
+                                                                    "inclusive": 681482,
+                                                                    "self_count": 681482,
+                                                                    "children": []
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "serde_json::de::from_trait",
+                        "inclusive": 3475273,
+                        "self_count": 0,
+                        "children": [
+                          {
+                            "name": "<serde_json::value::de::<impl serde_core::de::Deserialize for serde_json::value::Value>::deserialize::ValueVisitor as serde_core::de::Visitor>::visit_map",
+                            "inclusive": 3475273,
+                            "self_count": 280247,
+                            "children": [
+                              {
+                                "name": "<serde_json::value::de::<impl serde_core::de::Deserialize for serde_json::value::Value>::deserialize::ValueVisitor as serde_core::de::Visitor>::visit_map",
+                                "inclusive": 2867738,
+                                "self_count": 0,
+                                "children": [
+                                  {
+                                    "name": "<serde_json::value::de::<impl serde_core::de::Deserialize for serde_json::value::Value>::deserialize::ValueVisitor as serde_core::de::Visitor>::visit_map",
+                                    "inclusive": 2293166,
+                                    "self_count": 0,
+                                    "children": [
+                                      {
+                                        "name": "alloc::collections::btree::map::BTreeMap<K,V,A>::insert",
+                                        "inclusive": 973179,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "alloc::collections::btree::map::entry::VacantEntry<K,V,A>::insert_entry",
+                                            "inclusive": 973179,
+                                            "self_count": 973179,
+                                            "children": []
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "<serde_json::de::MapAccess<R> as serde_core::de::MapAccess>::next_key_seed",
+                                        "inclusive": 963268,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "malloc",
+                                            "inclusive": 693333,
+                                            "self_count": 693333,
+                                            "children": []
+                                          },
+                                          {
+                                            "name": "<serde_json::read::SliceRead as serde_json::read::Read>::parse_str",
+                                            "inclusive": 269935,
+                                            "self_count": 269935,
+                                            "children": []
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "<serde_json::value::de::<impl serde_core::de::Deserialize for serde_json::value::Value>::deserialize::ValueVisitor as serde_core::de::Visitor>::visit_map",
+                                        "inclusive": 356719,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "<serde_json::value::de::<impl serde_core::de::Deserialize for serde_json::value::Value>::deserialize::ValueVisitor as serde_core::de::Visitor>::visit_map",
+                                            "inclusive": 356719,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "alloc::collections::btree::map::BTreeMap<K,V,A>::insert",
+                                                "inclusive": 356719,
+                                                "self_count": 0,
+                                                "children": [
+                                                  {
+                                                    "name": "alloc::collections::btree::map::entry::VacantEntry<K,V,A>::insert_entry",
+                                                    "inclusive": 356719,
+                                                    "self_count": 356719,
+                                                    "children": []
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "serde_json::de::Deserializer<R>::parse_integer",
+                                    "inclusive": 574572,
+                                    "self_count": 574572,
+                                    "children": []
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "<serde_json::read::SliceRead as serde_json::read::Read>::parse_str",
+                                "inclusive": 327288,
+                                "self_count": 0,
+                                "children": [
+                                  {
+                                    "name": "asm_exc_page_fault",
+                                    "inclusive": 327288,
+                                    "self_count": 0,
+                                    "children": [
+                                      {
+                                        "name": "exc_page_fault",
+                                        "inclusive": 327288,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "do_user_addr_fault",
+                                            "inclusive": 327288,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "handle_mm_fault",
+                                                "inclusive": 327288,
+                                                "self_count": 0,
+                                                "children": [
+                                                  {
+                                                    "name": "__handle_mm_fault",
+                                                    "inclusive": 327288,
+                                                    "self_count": 0,
+                                                    "children": [
+                                                      {
+                                                        "name": "handle_pte_fault",
+                                                        "inclusive": 327288,
+                                                        "self_count": 0,
+                                                        "children": [
+                                                          {
+                                                            "name": "do_fault",
+                                                            "inclusive": 327288,
+                                                            "self_count": 0,
+                                                            "children": [
+                                                              {
+                                                                "name": "do_read_fault",
+                                                                "inclusive": 327288,
+                                                                "self_count": 0,
+                                                                "children": [
+                                                                  {
+                                                                    "name": "filemap_map_pages",
+                                                                    "inclusive": 327288,
+                                                                    "self_count": 0,
+                                                                    "children": [
+                                                                      {
+                                                                        "name": "next_uptodate_folio",
+                                                                        "inclusive": 327288,
+                                                                        "self_count": 327288,
+                                                                        "children": []
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "__poll",
+                        "inclusive": 2825107,
+                        "self_count": 0,
+                        "children": [
+                          {
+                            "name": "entry_SYSCALL_64_after_hwframe",
+                            "inclusive": 2461206,
+                            "self_count": 0,
+                            "children": [
+                              {
+                                "name": "do_syscall_64",
+                                "inclusive": 2461206,
+                                "self_count": 0,
+                                "children": [
+                                  {
+                                    "name": "x64_sys_call",
+                                    "inclusive": 2461206,
+                                    "self_count": 0,
+                                    "children": [
+                                      {
+                                        "name": "__x64_sys_poll",
+                                        "inclusive": 2461206,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "do_sys_poll",
+                                            "inclusive": 2461206,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "do_poll.constprop.0",
+                                                "inclusive": 2461206,
+                                                "self_count": 0,
+                                                "children": [
+                                                  {
+                                                    "name": "schedule_hrtimeout_range",
+                                                    "inclusive": 2461206,
+                                                    "self_count": 0,
+                                                    "children": [
+                                                      {
+                                                        "name": "schedule_hrtimeout_range_clock",
+                                                        "inclusive": 2461206,
+                                                        "self_count": 0,
+                                                        "children": [
+                                                          {
+                                                            "name": "schedule",
+                                                            "inclusive": 2461206,
+                                                            "self_count": 0,
+                                                            "children": [
+                                                              {
+                                                                "name": "__schedule",
+                                                                "inclusive": 2461206,
+                                                                "self_count": 0,
+                                                                "children": [
+                                                                  {
+                                                                    "name": "_raw_spin_lock",
+                                                                    "inclusive": 2461206,
+                                                                    "self_count": 2461206,
+                                                                    "children": []
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "entry_SYSCALL_64",
+                            "inclusive": 363901,
+                            "self_count": 363901,
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "read",
+                        "inclusive": 1171462,
+                        "self_count": 0,
+                        "children": [
+                          {
+                            "name": "entry_SYSCALL_64_after_hwframe",
+                            "inclusive": 1171462,
+                            "self_count": 0,
+                            "children": [
+                              {
+                                "name": "do_syscall_64",
+                                "inclusive": 1171462,
+                                "self_count": 0,
+                                "children": [
+                                  {
+                                    "name": "x64_sys_call",
+                                    "inclusive": 759086,
+                                    "self_count": 0,
+                                    "children": [
+                                      {
+                                        "name": "__x64_sys_read",
+                                        "inclusive": 759086,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "ksys_read",
+                                            "inclusive": 759086,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "vfs_read",
+                                                "inclusive": 759086,
+                                                "self_count": 0,
+                                                "children": [
+                                                  {
+                                                    "name": "pipe_read",
+                                                    "inclusive": 759086,
+                                                    "self_count": 0,
+                                                    "children": [
+                                                      {
+                                                        "name": "copy_page_to_iter",
+                                                        "inclusive": 461294,
+                                                        "self_count": 0,
+                                                        "children": [
+                                                          {
+                                                            "name": "rep_movs_alternative",
+                                                            "inclusive": 461294,
+                                                            "self_count": 461294,
+                                                            "children": []
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "name": "__folio_put",
+                                                        "inclusive": 297792,
+                                                        "self_count": 297792,
+                                                        "children": []
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "syscall_exit_to_user_mode",
+                                    "inclusive": 412376,
+                                    "self_count": 0,
+                                    "children": [
+                                      {
+                                        "name": "arch_exit_to_user_mode_prepare.isra.0",
+                                        "inclusive": 412376,
+                                        "self_count": 412376,
+                                        "children": []
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "cfree",
+                        "inclusive": 824076,
+                        "self_count": 824076,
+                        "children": []
+                      },
+                      {
+                        "name": "wait4",
+                        "inclusive": 772134,
+                        "self_count": 0,
+                        "children": [
+                          {
+                            "name": "entry_SYSCALL_64_after_hwframe",
+                            "inclusive": 772134,
+                            "self_count": 0,
+                            "children": [
+                              {
+                                "name": "do_syscall_64",
+                                "inclusive": 772134,
+                                "self_count": 0,
+                                "children": [
+                                  {
+                                    "name": "x64_sys_call",
+                                    "inclusive": 772134,
+                                    "self_count": 0,
+                                    "children": [
+                                      {
+                                        "name": "__x64_sys_wait4",
+                                        "inclusive": 772134,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "__do_sys_wait4",
+                                            "inclusive": 772134,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "kernel_wait4",
+                                                "inclusive": 772134,
+                                                "self_count": 0,
+                                                "children": [
+                                                  {
+                                                    "name": "do_wait",
+                                                    "inclusive": 772134,
+                                                    "self_count": 0,
+                                                    "children": [
+                                                      {
+                                                        "name": "schedule",
+                                                        "inclusive": 772134,
+                                                        "self_count": 0,
+                                                        "children": [
+                                                          {
+                                                            "name": "__schedule",
+                                                            "inclusive": 772134,
+                                                            "self_count": 0,
+                                                            "children": [
+                                                              {
+                                                                "name": "psi_task_switch",
+                                                                "inclusive": 772134,
+                                                                "self_count": 0,
+                                                                "children": [
+                                                                  {
+                                                                    "name": "psi_group_change",
+                                                                    "inclusive": 772134,
+                                                                    "self_count": 772134,
+                                                                    "children": []
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "asm_sysvec_apic_timer_interrupt",
+                        "inclusive": 681482,
+                        "self_count": 0,
+                        "children": [
+                          {
+                            "name": "sysvec_apic_timer_interrupt",
+                            "inclusive": 681482,
+                            "self_count": 0,
+                            "children": [
+                              {
+                                "name": "__sysvec_apic_timer_interrupt",
+                                "inclusive": 681482,
+                                "self_count": 0,
+                                "children": [
+                                  {
+                                    "name": "hrtimer_interrupt",
+                                    "inclusive": 681482,
+                                    "self_count": 0,
+                                    "children": [
+                                      {
+                                        "name": "__hrtimer_run_queues",
+                                        "inclusive": 681482,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "tick_nohz_highres_handler",
+                                            "inclusive": 681482,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "ktime_get",
+                                                "inclusive": 681482,
+                                                "self_count": 681482,
+                                                "children": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "name": "alloc::raw_vec::RawVecInner<A>::reserve::do_reserve_and_handle",
+                        "inclusive": 361407,
+                        "self_count": 361407,
+                        "children": []
+                      },
+                      {
+                        "name": "yolofs_bench::workloads::emit_op_result",
+                        "inclusive": 256205,
+                        "self_count": 0,
+                        "children": [
+                          {
+                            "name": "<std::io::stdio::StdoutLock as std::io::Write>::write_all",
+                            "inclusive": 256205,
+                            "self_count": 0,
+                            "children": [
+                              {
+                                "name": "write",
+                                "inclusive": 256205,
+                                "self_count": 0,
+                                "children": [
+                                  {
+                                    "name": "entry_SYSCALL_64_after_hwframe",
+                                    "inclusive": 256205,
+                                    "self_count": 0,
+                                    "children": [
+                                      {
+                                        "name": "do_syscall_64",
+                                        "inclusive": 256205,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "x64_sys_call",
+                                            "inclusive": 256205,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "__x64_sys_write",
+                                                "inclusive": 256205,
+                                                "self_count": 0,
+                                                "children": [
+                                                  {
+                                                    "name": "ksys_write",
+                                                    "inclusive": 256205,
+                                                    "self_count": 0,
+                                                    "children": [
+                                                      {
+                                                        "name": "vfs_write",
+                                                        "inclusive": 256205,
+                                                        "self_count": 256205,
+                                                        "children": []
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "serde_json::de::from_trait",
+                    "inclusive": 582300,
+                    "self_count": 0,
+                    "children": [
+                      {
+                        "name": "asm_exc_page_fault",
+                        "inclusive": 582300,
+                        "self_count": 0,
+                        "children": [
+                          {
+                            "name": "exc_page_fault",
+                            "inclusive": 582300,
+                            "self_count": 0,
+                            "children": [
+                              {
+                                "name": "do_user_addr_fault",
+                                "inclusive": 582300,
+                                "self_count": 0,
+                                "children": [
+                                  {
+                                    "name": "handle_mm_fault",
+                                    "inclusive": 582300,
+                                    "self_count": 0,
+                                    "children": [
+                                      {
+                                        "name": "__handle_mm_fault",
+                                        "inclusive": 582300,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "handle_pte_fault",
+                                            "inclusive": 582300,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "do_fault",
+                                                "inclusive": 582300,
+                                                "self_count": 0,
+                                                "children": [
+                                                  {
+                                                    "name": "do_read_fault",
+                                                    "inclusive": 582300,
+                                                    "self_count": 0,
+                                                    "children": [
+                                                      {
+                                                        "name": "filemap_map_pages",
+                                                        "inclusive": 582300,
+                                                        "self_count": 0,
+                                                        "children": [
+                                                          {
+                                                            "name": "set_pte_range",
+                                                            "inclusive": 582300,
+                                                            "self_count": 0,
+                                                            "children": [
+                                                              {
+                                                                "name": "folio_add_file_rmap_ptes",
+                                                                "inclusive": 582300,
+                                                                "self_count": 0,
+                                                                "children": [
+                                                                  {
+                                                                    "name": "__lruvec_stat_mod_folio",
+                                                                    "inclusive": 582300,
+                                                                    "self_count": 0,
+                                                                    "children": [
+                                                                      {
+                                                                        "name": "__mod_lruvec_state",
+                                                                        "inclusive": 582300,
+                                                                        "self_count": 0,
+                                                                        "children": [
+                                                                          {
+                                                                            "name": "__mod_node_page_state",
+                                                                            "inclusive": 582300,
+                                                                            "self_count": 582300,
+                                                                            "children": []
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

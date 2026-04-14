@@ -1,0 +1,3 @@
+Profile: meta-readdir-base / yolofs-no-perm  (wall: 10846 ms)
+
+  (no bpftrace data)

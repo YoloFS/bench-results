@@ -1,0 +1,74 @@
+Function breakdown: meta-readdir-checkpoint / overlayfs
+wall: 10786 ms, 7 iterations
+per-op latency (from results.json): 5256.78 µs
+
+run function: 1% of profiled time
+timed operation: 100% of run | warm-up: 0% of run
+
+    incl   self  call tree
+   µs/op  µs/op
+  ------------------------------------------------------------
+  5256.78      —  └─ __libc_start_main
+  5256.78      —     └─ yolofs_bench::main
+  5256.78  202.91        └─ yolofs_bench::workloads::meta_shared::run_meta_readdir
+  4910.17  74.87           ├─ <std::fs::ReadDir as core::iter::traits::iterator::Iterator>::next
+  4835.31      —           │  └─ <std::sys::fs::unix::ReadDir as core::iter::traits::iterator::Iterator>::next
+  4745.31      —           │     ├─ getdents64
+  4745.31      —           │     │  └─ entry_SYSCALL_64_after_hwframe
+  4745.31      —           │     │     └─ do_syscall_64
+  4745.31      —           │     │        └─ x64_sys_call
+  4745.31      —           │     │           └─ __x64_sys_getdents64
+  4745.31      —           │     │              └─ iterate_dir
+  4745.31      —           │     │                 └─ shared_ovl_iterate
+  4745.31      —           │     │                    └─ wrap_directory_iterator
+  4745.31      —           │     │                       └─ ovl_iterate
+  4745.31      —           │     │                          └─ ovl_iterate_real
+  4745.31      —           │     │                             └─ iterate_dir
+  4745.31      —           │     │                                └─ ext4_readdir
+  4682.96  297.94           │     │                                   ├─ ext4_dx_readdir
+  2619.93      —           │     │                                   │  ├─ ext4_htree_fill_tree
+  2619.93  220.92           │     │                                   │  │  └─ htree_dirblock_to_tree
+  1112.49  555.11           │     │                                   │  │     ├─ ext4_htree_store_dirent
+  557.38  489.65           │     │                                   │  │     │  └─ __kmalloc
+   67.74  67.74           │     │                                   │  │     │     └─ ___slab_alloc
+  952.16  119.49           │     │                                   │  │     ├─ ext4fs_dirhash
+  705.89  56.63           │     │                                   │  │     │  ├─ __ext4fs_dirhash
+  336.62  336.62           │     │                                   │  │     │  │  ├─ half_md4_transform.isra.0
+  312.65  312.65           │     │                                   │  │     │  │  └─ str2hashbuf_signed
+   63.54      —           │     │                                   │  │     │  ├─ asm_sysvec_apic_timer_interrupt
+   63.54      —           │     │                                   │  │     │  │  └─ sysvec_apic_timer_interrupt
+   63.54      —           │     │                                   │  │     │  │     └─ __sysvec_apic_timer_interrupt
+   63.54      —           │     │                                   │  │     │  │        └─ hrtimer_interrupt
+   63.54      —           │     │                                   │  │     │  │           └─ __hrtimer_run_queues
+   63.54      —           │     │                                   │  │     │  │              └─ tick_nohz_highres_handler
+   63.54  63.54           │     │                                   │  │     │  │                 └─ hrtimer_forward
+   63.24  63.24           │     │                                   │  │     │  └─ str2hashbuf_signed
+  205.74      —           │     │                                   │  │     ├─ __ext4_read_dirblock
+  205.74      —           │     │                                   │  │     │  └─ ext4_bread
+  205.74      —           │     │                                   │  │     │     └─ ext4_getblk
+  205.74      —           │     │                                   │  │     │        └─ bdev_getblk
+  205.74      —           │     │                                   │  │     │           └─ find_get_block_common
+  142.81  74.61           │     │                                   │  │     │              ├─ __find_get_block_slow
+   68.19      —           │     │                                   │  │     │              │  └─ __filemap_get_folio
+   68.19  68.19           │     │                                   │  │     │              │     └─ filemap_get_entry
+   62.93  62.93           │     │                                   │  │     │              └─ lookup_bh_lru
+  128.63  128.63           │     │                                   │  │     └─ rb_insert_color
+  944.94  245.74           │     │                                   │  ├─ call_filldir
+  560.31  143.35           │     │                                   │  │  ├─ ovl_fill_real
+  416.97  203.08           │     │                                   │  │  │  └─ filldir64
+  173.02  173.02           │     │                                   │  │  │     ├─ memchr
+   40.87      —           │     │                                   │  │  │     └─ asm_exc_page_fault
+   40.87      —           │     │                                   │  │  │        └─ exc_page_fault
+   40.87  40.87           │     │                                   │  │  │           └─ do_user_addr_fault
+  138.88  138.88           │     │                                   │  │  └─ filldir64
+  671.64  171.21           │     │                                   │  ├─ free_rb_tree_fname
+  425.56  140.15           │     │                                   │  │  ├─ kfree
+  285.42  217.75           │     │                                   │  │  │  └─ __slab_free
+   67.67  67.67           │     │                                   │  │  │     └─ slab_update_freelist.isra.0
+   74.87  74.87           │     │                                   │  │  └─ __slab_free
+   74.65  74.65           │     │                                   │  ├─ srso_safe_ret
+   73.86  73.86           │     │                                   │  └─ ovl_fill_real
+   62.35  62.35           │     │                                   └─ rb_next
+   50.23  50.23           │     └─ readdir64
+   71.96  71.96           ├─ cfree
+   71.74  71.74           └─ malloc

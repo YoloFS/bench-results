@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+        <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+        
+</head>
+
+<body>
+    <div>
+        <div id="plotly-html-element" class="plotly-graph-div" style="height:100%; width:100%;"></div>
+
+        <script type="module">
+            const graph_div = document.getElementById("plotly-html-element");
+            await Plotly.newPlot(graph_div, {"data":[{"type":"bar","x":["yolo-no-perm","yolo-realistic","overlayfs","branchfs"],"y":[70.90633687154623,70.75625194776227,64.58264123108795,2261.7918155299303],"name":"base","hovertext":["yolo-no-perm (base)\u003cbr\u003e70.9 µs\u003cbr\u003e14103 IOPS","yolo-realistic (base)\u003cbr\u003e70.8 µs\u003cbr\u003e14133 IOPS","overlayfs (base)\u003cbr\u003e64.6 µs\u003cbr\u003e15484 IOPS","branchfs (base)\u003cbr\u003e2261.8 µs\u003cbr\u003e442 IOPS"],"hoverinfo":"text","marker":{"color":["#2E86AB","#4F772D","#C1666B","#D17B0F"],"pattern":{"shape":"","fillmode":"replace"}},"error_y":{"type":"data","array":[0.15280366588732153,0.07590470138327471,0.7662533797536445,8.21005232094744],"visible":true}},{"type":"bar","x":["yolo-no-perm","yolo-realistic","overlayfs","branchfs"],"y":[37.222535146379805,38.27746866440066,100.9327538600382,1547.4205843530624],"name":"stage","hovertext":["yolo-no-perm (stage)\u003cbr\u003e37.2 µs\u003cbr\u003e26865 IOPS","yolo-realistic (stage)\u003cbr\u003e38.3 µs\u003cbr\u003e26125 IOPS","overlayfs (stage)\u003cbr\u003e100.9 µs\u003cbr\u003e9908 IOPS","branchfs (stage)\u003cbr\u003e1547.4 µs\u003cbr\u003e646 IOPS"],"hoverinfo":"text","marker":{"color":["#2E86AB","#4F772D","#C1666B","#D17B0F"],"pattern":{"shape":"/","fillmode":"overlay","solidity":0.4}},"error_y":{"type":"data","array":[0.172390583190179,1.4204968057395324,0.15755168067181402,1.076697590866618],"visible":true}},{"type":"bar","x":["yolo-no-perm","yolo-realistic","overlayfs","branchfs"],"y":[37.47797487271388,38.70526377979807,102.84259889025061,2013.7811776519156],"name":"checkpoint","hovertext":["yolo-no-perm (checkpoint)\u003cbr\u003e37.5 µs\u003cbr\u003e26682 IOPS","yolo-realistic (checkpoint)\u003cbr\u003e38.7 µs\u003cbr\u003e25836 IOPS","overlayfs (checkpoint)\u003cbr\u003e102.8 µs\u003cbr\u003e9724 IOPS","branchfs (checkpoint)\u003cbr\u003e2013.8 µs\u003cbr\u003e497 IOPS"],"hoverinfo":"text","marker":{"color":["#2E86AB","#4F772D","#C1666B","#D17B0F"],"pattern":{"shape":"x","fillmode":"overlay","solidity":0.4}},"error_y":{"type":"data","array":[0.8315210330095454,0.41379916040989134,4.544958434100987,21.786983393855962],"visible":true}},{"type":"scatter","name":"native baseline","showlegend":false,"opacity":0.0,"mode":"lines","x":["yolo-no-perm","yolo-realistic","overlayfs","branchfs"],"y":[59.76417427528507,59.76417427528507,59.76417427528507,59.76417427528507],"hovertext":["native avg latency (µs): 59.8","native avg latency (µs): 59.8","native avg latency (µs): 59.8","native avg latency (µs): 59.8"],"hoverinfo":"text"}],"layout":{"title":{"text":"meta-readdir-100"},"xaxis":{"title":{"text":"backend"}},"yaxis":{"title":{"text":"avg latency (µs)"}},"annotations":[{"text":"native baseline","showarrow":false,"xref":"paper","x":1.0,"yref":"y","y":59.76417427528507,"yshift":-10.0}],"shapes":[{"type":"line","layer":"above","xref":"paper","x0":0.0,"x1":1.0,"yref":"y","y0":59.76417427528507,"y1":59.76417427528507,"line":{"dash":"dot"}}],"barmode":"group"},"config":{"fillFrame":true,"responsive":true},"frames":null});
+        </script>
+    </div>
+<div style="margin:1em auto;max-width:960px;padding:0.75em 1em;border:1px solid #ddd;border-radius:6px;background:#fff;font-family:system-ui,sans-serif"><div style="font-size:0.95em"><strong style="color:#b54a00">status: stale (5)</strong></div><ul style="margin:0.5em 0 0 1.2em;padding:0;color:#555;font-size:0.9em"><li>native: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-no-perm: user/ or kmod/ changed between 531d9c and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 531d9c and c2c43b</li><li>overlayfs: user/ or kmod/ changed between 531d9c and c2c43b</li><li>branchfs: user/ or kmod/ changed between 531d9c and c2c43b</li></ul></div></body>
+
+</html>

@@ -1,0 +1,60 @@
+Optimization targets: meta-create
+=================================
+
+Current state:
+  yolofs-no-perm:  65.62 µs/op  (15.2k IOPS)
+  overlayfs:     55.51 µs/op  (18.0k IOPS)
+  gap:           10.11 µs
+
+The gap is in path_openat (+10.25µs), inside yolofs_create → yolofs_create_staged
+→ yolofs_inode_alloc. The actual ext4_create is faster for yolofs (26.75µs) than
+overlayfs (44.76µs) because yolofs's inode store is a flat directory.
+
+yolofs_inode_alloc breakdown (40.67µs inclusive):
+  vfs_create → ext4_create       26.75µs  — actual inode creation
+  lookup_one_len                  13.62µs  — negative dentry lookup in inodes dir
+    __lookup_slow → ext4_lookup    ~9µs   — ext4 dx hash tree probe
+    d_alloc_parallel               ~3µs   — dentry allocation
+    ext4_read_dirblock             ~2µs   — reading directory hash blocks
+
+Root cause of lookup_one_len cost: the .yolofs/inodes/ directory accumulates
+entries across iterations. With 10K inodes per workload run × 8 profiling
+iterations = 80K entries. ext4's dx hash tree scales sub-linearly but
+still costs ~14µs per probe at this size.
+
+This is a negative lookup — yolofs looks up inode "12345" which doesn't exist
+yet, gets a negative dentry, then passes it to vfs_create. The negative
+lookup must traverse the hash tree to confirm the name is absent.
+
+Compared to overlayfs: overlayfs creates in the upper directory which starts
+fresh each iteration (small directory). yolofs creates in a shared inodes/
+directory that grows across iterations. In a real session (not profiling),
+the inodes/ directory also grows, so this cost is realistic.
+
+Ranked targets:
+───────────────
+
+1. lookup_one_len in yolofs_inode_alloc — 13.62µs (save ~10µs)
+   The negative dentry lookup dominates. Options:
+   a) Pre-create dentries: keep the last-allocated dentry cached and
+      advance it. Since inode numbers are sequential, the next number
+      is predictable.
+   b) Use tmpfs for the inode store instead of ext4. tmpfs directory
+      lookups are much faster (no disk-backed hash tree).
+   c) Bypass the directory entirely: create ext4 inodes without adding
+      directory entries. Use inode numbers directly (ext4 iget_locked).
+      This is a larger change but eliminates the directory overhead.
+   d) Shard the inode store: use subdirectories (e.g. inodes/00/,
+      inodes/01/, ..., inodes/ff/) to keep each directory small.
+      256 shards × 40 entries each vs 1 dir × 10K entries.
+
+2. link_path_walk — +5.47µs
+   Structural: longer absolute paths through the yolofs mount.
+   Not fixable without changing how yolofs mounts.
+
+3. alloc_empty_file — +2.27µs
+   yolofs allocates a lower file struct during create. May be avoidable
+   if the lower file isn't needed until open time.
+
+Note: yolofs_create_staged also includes yolofs_iget (1.36µs) and journal
+writes. These are inherent costs of the staging model.

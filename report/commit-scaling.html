@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>Commit Scaling</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head><body>
+<h2>Commit time vs file count</h2>
+<div id="commit-plot" style="width:900px;height:500px"></div>
+<h2>Staging time vs file count</h2>
+<div id="staging-plot" style="width:900px;height:500px"></div>
+<script>
+Plotly.newPlot('commit-plot', [
+  {x: [1000,10000,20000,30000,40000,50000,60000,70000,80000,90000,100000], y: [40,410,815,1262,1631,2038,2530,2918,3259,3669,4203], mode: 'lines+markers', name: 'create (yolofs-no-perm)'},
+  {x: [1000,10000,20000,30000,40000,50000,60000,70000,80000,90000,100000], y: [50,487,1049,1470,2016,2400,2953,3479,3994,4469,4914], mode: 'lines+markers', name: 'overwrite (yolofs-no-perm)'},
+  {x: [1000,10000,20000,30000,40000,50000,60000,70000,80000,90000,100000], y: [32,296,594,900,1200,1526,1852,2181,2440,2777,3125], mode: 'lines+markers', name: 'rename (yolofs-no-perm)'},
+  {x: [1000,10000,20000,30000,40000,50000,60000,70000,80000,90000,100000], y: [15,142,302,424,591,703,865,1011,1156,1354,1455], mode: 'lines+markers', name: 'unlink (yolofs-no-perm)'},
+  {x: [1000,10000,20000,30000,40000,50000], y: [38,406,834,1193,1638,2011], mode: 'lines+markers', name: 'create (overlayfs)'},
+  {x: [1000,10000,20000,30000,40000,50000], y: [62,624,1243,1892,2552,3137], mode: 'lines+markers', name: 'overwrite (overlayfs)'},
+  {x: [1000,10000,20000,30000,40000,50000], y: [64,641,1312,1967,2584,3258], mode: 'lines+markers', name: 'rename (overlayfs)'},
+  {x: [1000,10000,20000,30000,40000,50000], y: [31,325,648,974,1325,1636], mode: 'lines+markers', name: 'unlink (overlayfs)'},
+], {xaxis: {title: 'File count'}, yaxis: {title: 'Commit time (ms)'}});
+Plotly.newPlot('staging-plot', [
+  {x: [1000,10000,20000,30000,40000,50000,60000,70000,80000,90000,100000], y: [36,359,729,1096,1456,1822,2168,2555,2916,3250,3631], mode: 'lines+markers', name: 'create (yolofs-no-perm)'},
+  {x: [1000,10000,20000,30000,40000,50000,60000,70000,80000,90000,100000], y: [37,375,760,1133,1512,1962,2349,2684,2986,3442,3751], mode: 'lines+markers', name: 'overwrite (yolofs-no-perm)'},
+  {x: [1000,10000,20000,30000,40000,50000,60000,70000,80000,90000,100000], y: [18,184,368,550,726,918,1113,1297,1485,1654,1844], mode: 'lines+markers', name: 'rename (yolofs-no-perm)'},
+  {x: [1000,10000,20000,30000,40000,50000,60000,70000,80000,90000,100000], y: [9,84,167,253,336,418,500,581,666,744,830], mode: 'lines+markers', name: 'unlink (yolofs-no-perm)'},
+  {x: [1000,10000,20000,30000,40000,50000], y: [61,624,1275,1915,2532,3160], mode: 'lines+markers', name: 'create (overlayfs)'},
+  {x: [1000,10000,20000,30000,40000,50000], y: [295,2592,5247,7787,10391,13052], mode: 'lines+markers', name: 'overwrite (overlayfs)'},
+  {x: [1000,10000,20000,30000,40000,50000], y: [528,4219,8501,12860,16977,21533], mode: 'lines+markers', name: 'rename (overlayfs)'},
+  {x: [1000,10000,20000,30000,40000,50000], y: [245,578,1163,1750,2343,2919], mode: 'lines+markers', name: 'unlink (overlayfs)'},
+], {xaxis: {title: 'File count'}, yaxis: {title: 'Staging time (ms)'}});
+</script></body></html>

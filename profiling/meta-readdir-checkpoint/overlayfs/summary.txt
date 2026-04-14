@@ -1,0 +1,3 @@
+Profile: meta-readdir-checkpoint / overlayfs  (wall: 10786 ms)
+
+  (no bpftrace data)

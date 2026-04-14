@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+        <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+        
+</head>
+
+<body>
+    <div>
+        <div id="plotly-html-element" class="plotly-graph-div" style="height:100%; width:100%;"></div>
+
+        <script type="module">
+            const graph_div = document.getElementById("plotly-html-element");
+            await Plotly.newPlot(graph_div, {"data":[{"type":"bar","x":["yolo-no-perm","yolo-realistic","overlayfs"],"y":[2.0,2.0,12.333333333333334],"name":"init"},{"type":"bar","x":["yolo-no-perm","yolo-realistic","overlayfs"],"y":[10300.0,11479.0,10373.0],"name":"staging"},{"type":"bar","x":["yolo-no-perm","yolo-realistic","overlayfs"],"y":[3145.6666666666665,3188.0,2737.6666666666665],"name":"commit","error_y":{"type":"data","array":[10.274023338281626,0.0,30.62678566222711],"visible":true}},{"type":"scatter","name":"native baseline","showlegend":false,"opacity":0.0,"mode":"lines","x":["yolo-no-perm","yolo-realistic","overlayfs"],"y":[10022.0,10022.0,10022.0],"hovertext":["native total: 10022.0","native total: 10022.0","native total: 10022.0"],"hoverinfo":"text"}],"layout":{"title":{"text":"linux-untar"},"xaxis":{"title":{"text":"backend"}},"yaxis":{"title":{"text":"time (ms)"}},"annotations":[{"text":"native baseline","showarrow":false,"xref":"paper","x":1.0,"yref":"y","y":10022.0,"yshift":-10.0}],"shapes":[{"type":"line","layer":"above","xref":"paper","x0":0.0,"x1":1.0,"yref":"y","y0":10022.0,"y1":10022.0,"line":{"dash":"dot"}}],"barmode":"stack"},"config":{"fillFrame":true,"responsive":true},"frames":null});
+        </script>
+    </div>
+<div style="margin:1em auto;max-width:960px;padding:0.75em 1em;border:1px solid #ddd;border-radius:6px;background:#fff;font-family:system-ui,sans-serif"><div style="font-size:0.95em"><strong style="color:#b54a00">status: stale (6)</strong></div><ul style="margin:0.5em 0 0 1.2em;padding:0;color:#555;font-size:0.9em"><li>overlayfs: user/ or kmod/ changed between ae1f0b and c2c43b</li><li>yolo-realistic: user/ or kmod/ changed between 72c7b2 and c2c43b</li><li>native: user/ or kmod/ changed between edc66a and c2c43b</li><li>yolo-no-perm: could not compare user/ and kmod/ between 2417ba and c2c43b</li><li>yolo-no-perm: user/ was dirty and is now clean</li><li>yolo-no-perm: kmod/ was dirty and is now clean</li></ul></div></body>
+
+</html>

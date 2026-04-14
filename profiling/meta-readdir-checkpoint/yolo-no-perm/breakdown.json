@@ -1,0 +1,209 @@
+{
+  "workload": "meta-readdir-checkpoint",
+  "backend": "yolo-no-perm",
+  "wall_ms": 10215,
+  "iters": 8,
+  "per_op_us": 7816.421529545005,
+  "timed_samples": 454549450,
+  "tree": {
+    "name": "(root)",
+    "inclusive": 454549450,
+    "self_count": 0,
+    "children": [
+      {
+        "name": "__libc_start_main",
+        "inclusive": 454549450,
+        "self_count": 0,
+        "children": [
+          {
+            "name": "yolofs_bench::main",
+            "inclusive": 454549450,
+            "self_count": 0,
+            "children": [
+              {
+                "name": "yolofs_bench::workloads::meta_shared::run_meta_readdir",
+                "inclusive": 454549450,
+                "self_count": 0,
+                "children": [
+                  {
+                    "name": "<std::fs::ReadDir as core::iter::traits::iterator::Iterator>::next",
+                    "inclusive": 450804072,
+                    "self_count": 0,
+                    "children": [
+                      {
+                        "name": "<std::sys::fs::unix::ReadDir as core::iter::traits::iterator::Iterator>::next",
+                        "inclusive": 450804072,
+                        "self_count": 0,
+                        "children": [
+                          {
+                            "name": "getdents64",
+                            "inclusive": 440952534,
+                            "self_count": 0,
+                            "children": [
+                              {
+                                "name": "entry_SYSCALL_64_after_hwframe",
+                                "inclusive": 440952534,
+                                "self_count": 0,
+                                "children": [
+                                  {
+                                    "name": "do_syscall_64",
+                                    "inclusive": 440952534,
+                                    "self_count": 0,
+                                    "children": [
+                                      {
+                                        "name": "x64_sys_call",
+                                        "inclusive": 440952534,
+                                        "self_count": 0,
+                                        "children": [
+                                          {
+                                            "name": "__x64_sys_getdents64",
+                                            "inclusive": 440952534,
+                                            "self_count": 0,
+                                            "children": [
+                                              {
+                                                "name": "iterate_dir",
+                                                "inclusive": 440952534,
+                                                "self_count": 0,
+                                                "children": [
+                                                  {
+                                                    "name": "yolofs_readdir",
+                                                    "inclusive": 397482185,
+                                                    "self_count": 247541512,
+                                                    "children": [
+                                                      {
+                                                        "name": "dput",
+                                                        "inclusive": 53869147,
+                                                        "self_count": 53869147,
+                                                        "children": []
+                                                      },
+                                                      {
+                                                        "name": "lockref_put_return",
+                                                        "inclusive": 39401036,
+                                                        "self_count": 39401036,
+                                                        "children": []
+                                                      },
+                                                      {
+                                                        "name": "__rcu_read_unlock",
+                                                        "inclusive": 28175169,
+                                                        "self_count": 28175169,
+                                                        "children": []
+                                                      },
+                                                      {
+                                                        "name": "__rcu_read_lock",
+                                                        "inclusive": 11463144,
+                                                        "self_count": 11463144,
+                                                        "children": []
+                                                      },
+                                                      {
+                                                        "name": "filldir64",
+                                                        "inclusive": 9086477,
+                                                        "self_count": 2585058,
+                                                        "children": [
+                                                          {
+                                                            "name": "memchr",
+                                                            "inclusive": 3256707,
+                                                            "self_count": 3256707,
+                                                            "children": []
+                                                          },
+                                                          {
+                                                            "name": "srso_safe_ret",
+                                                            "inclusive": 3244712,
+                                                            "self_count": 3244712,
+                                                            "children": []
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "name": "verify_dirent_name",
+                                                        "inclusive": 4800680,
+                                                        "self_count": 4800680,
+                                                        "children": []
+                                                      },
+                                                      {
+                                                        "name": "fs_umode_to_dtype",
+                                                        "inclusive": 3145020,
+                                                        "self_count": 3145020,
+                                                        "children": []
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "name": "_raw_spin_lock",
+                                                    "inclusive": 31014270,
+                                                    "self_count": 31014270,
+                                                    "children": []
+                                                  },
+                                                  {
+                                                    "name": "srso_safe_ret",
+                                                    "inclusive": 6325743,
+                                                    "self_count": 6325743,
+                                                    "children": []
+                                                  },
+                                                  {
+                                                    "name": "dput",
+                                                    "inclusive": 3133831,
+                                                    "self_count": 3133831,
+                                                    "children": []
+                                                  },
+                                                  {
+                                                    "name": "filldir64",
+                                                    "inclusive": 2996505,
+                                                    "self_count": 2996505,
+                                                    "children": []
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "readdir64",
+                            "inclusive": 6501315,
+                            "self_count": 6501315,
+                            "children": []
+                          },
+                          {
+                            "name": "alloc::ffi::c_str::<impl alloc::borrow::ToOwned for core::ffi::c_str::CStr>::to_owned",
+                            "inclusive": 3350223,
+                            "self_count": 0,
+                            "children": [
+                              {
+                                "name": "malloc",
+                                "inclusive": 3350223,
+                                "self_count": 3350223,
+                                "children": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "cfree",
+                    "inclusive": 2208204,
+                    "self_count": 2208204,
+                    "children": []
+                  },
+                  {
+                    "name": "malloc",
+                    "inclusive": 1537174,
+                    "self_count": 1537174,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+Optimization changelog: meta-open-warm-stage
+============================================================
+
+  4a80f39    91155 IOPS  10.97 µs/op  baseline
+            baseline (before optimizations)
+  1f3df9d   112787 IOPS  8.87 µs/op  +23.7% step, +23.7% cumulative
+            d_revalidate RCU-walk fix
+  612567a   114015 IOPS  8.77 µs/op  +1.1% step, +25.1% cumulative
+            remove d_revalidate for local lower fs
+  c4280d2   132381 IOPS  7.55 µs/op  +16.1% step, +45.2% cumulative
+            hash table 64→1024 buckets
+
+Total: 91155 → 132381 IOPS (+45%)
+       10.97 → 7.55 µs/op
+
+Gap to overlayfs (145446 IOPS, 6.88 µs/op):
+  before: 4.09 µs
+  after:  0.68 µs
+  closed: 3.42 µs (83% of original gap)

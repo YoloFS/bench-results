@@ -1,0 +1,10 @@
+perf.data
+perf.data.old
+probe.bt
+__pycache__
+*.aux
+*.log
+*.out
+*.fdb_latexmk
+*.fls
+*.synctex.gz

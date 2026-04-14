@@ -1,0 +1,3 @@
+Profile: meta-open-base / yolofs-no-perm  (wall: 10179 ms)
+
+  (no bpftrace data)

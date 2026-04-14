@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+        <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+        
+</head>
+
+<body>
+    <div>
+        <div id="plotly-html-element" class="plotly-graph-div" style="height:100%; width:100%;"></div>
+
+        <script type="module">
+            const graph_div = document.getElementById("plotly-html-element");
+            await Plotly.newPlot(graph_div, {"data":[{"type":"bar","x":["yolo-realistic","overlayfs"],"y":[14026.0,14869.0],"name":"run","hovertext":["run: 14026 ms\u003cbr\u003eincremental-build: c2c54b5f34f6: 2771 ms\u003cbr\u003eincremental-build: 87a8a76c34a2: 2887 ms\u003cbr\u003eincremental-build: 18e48d0e2c7b: 2793 ms\u003cbr\u003eincremental-build: 4333e42ed444: 2789 ms\u003cbr\u003eincremental-build: d66907b51ba0: 2786 ms","run: 14869 ms\u003cbr\u003eincremental-build: c2c54b5f34f6: 2945 ms\u003cbr\u003eincremental-build: 87a8a76c34a2: 3048 ms\u003cbr\u003eincremental-build: 18e48d0e2c7b: 2950 ms\u003cbr\u003eincremental-build: 4333e42ed444: 2966 ms\u003cbr\u003eincremental-build: d66907b51ba0: 2960 ms"],"hoverinfo":"text","marker":{"color":"#4D908E"}},{"type":"bar","x":["yolo-realistic","overlayfs"],"y":[5.0,338.0],"name":"checkpoint","hovertext":["checkpoint: 5 ms\u003cbr\u003echeckpoint: incremental-build c2c54b5f34f6: 1 ms\u003cbr\u003echeckpoint: incremental-build 87a8a76c34a2: 1 ms\u003cbr\u003echeckpoint: incremental-build 18e48d0e2c7b: 1 ms\u003cbr\u003echeckpoint: incremental-build 4333e42ed444: 1 ms\u003cbr\u003echeckpoint: incremental-build d66907b51ba0: 1 ms","checkpoint: 338 ms\u003cbr\u003echeckpoint: incremental-build c2c54b5f34f6: 68 ms\u003cbr\u003echeckpoint: incremental-build 87a8a76c34a2: 68 ms\u003cbr\u003echeckpoint: incremental-build 18e48d0e2c7b: 65 ms\u003cbr\u003echeckpoint: incremental-build 4333e42ed444: 70 ms\u003cbr\u003echeckpoint: incremental-build d66907b51ba0: 67 ms"],"hoverinfo":"text","marker":{"color":"#577590"}},{"type":"scatter","name":"native baseline","showlegend":false,"opacity":0.0,"mode":"lines","x":["yolo-realistic","overlayfs"],"y":[14140.0,14140.0],"hovertext":["native run: 14140.0","native run: 14140.0"],"hoverinfo":"text"}],"layout":{"title":{"text":"Incremental Build"},"xaxis":{"title":{"text":"backend"}},"yaxis":{"title":{"text":"time (ms)"}},"annotations":[{"text":"native","showarrow":false,"xref":"paper","x":1.0,"yref":"y","y":14140.0,"yshift":-10.0}],"shapes":[{"type":"line","layer":"above","xref":"paper","x0":0.0,"x1":1.0,"yref":"y","y0":14140.0,"y1":14140.0,"line":{"dash":"dot"}}],"barmode":"stack"},"config":{"fillFrame":true,"responsive":true},"frames":null});
+        </script>
+    </div>
+</body>
+
+</html>

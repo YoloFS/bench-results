@@ -1,0 +1,99 @@
+Function breakdown: fio-rand-write / native
+wall: 10432 ms, 15 iterations
+per-op latency (from results.json): 4.37 µs
+
+run function: 0% of profiled time
+timed operation: 100% of run | warm-up: 0% of run
+
+    incl   self  call tree
+   µs/op  µs/op
+  ------------------------------------------------------------
+    4.37      —  └─ __libc_start_main
+    4.37      —     └─ yolofs_bench::main
+    4.37      —        └─ <yolofs_bench::workloads::fio_rand_write::FioRandWrite as yolofs_bench::workload::Workload>::run
+    4.11      —           ├─ yolofs_bench::workloads::run_fio
+    1.53      —           │  ├─ read
+    1.53      —           │  │  └─ entry_SYSCALL_64_after_hwframe
+    1.53      —           │  │     └─ do_syscall_64
+    1.53      —           │  │        └─ x64_sys_call
+    1.53      —           │  │           └─ __x64_sys_read
+    1.53   0.10           │  │              └─ ksys_read
+    1.43   0.21           │  │                 └─ vfs_read
+    1.07      —           │  │                    ├─ pipe_read
+    1.07      —           │  │                    │  └─ copy_page_to_iter
+    1.07   1.07           │  │                    │     └─ _copy_to_iter
+    0.15      —           │  │                    └─ rw_verify_area
+    0.15      —           │  │                       └─ security_file_permission
+    0.15   0.15           │  │                          └─ apparmor_file_permission
+    0.94      —           │  ├─ serde_json::de::from_trait
+    0.94      —           │  │  └─ <serde_json::value::de::<impl serde_core::de::Deserialize for serde_json::value::Value>::deserialize::ValueVisitor as serde_core::de::Visitor>::visit_map
+    0.94   0.23           │  │     └─ <serde_json::value::de::<impl serde_core::de::Deserialize for serde_json::value::Value>::deserialize::ValueVisitor as serde_core::de::Visitor>::visit_map
+    0.70   0.24           │  │        └─ <serde_json::value::de::<impl serde_core::de::Deserialize for serde_json::value::Value>::deserialize::ValueVisitor as serde_core::de::Visitor>::visit_map
+    0.28      —           │  │           ├─ serde_json::de::Deserializer<R>::parse_integer
+    0.28   0.28           │  │           │  └─ serde_json::de::Deserializer<R>::parse_decimal
+    0.19      —           │  │           └─ alloc::collections::btree::map::BTreeMap<K,V,A>::insert
+    0.19      —           │  │              └─ alloc::collections::btree::map::entry::VacantEntry<K,V,A>::insert_entry
+    0.19      —           │  │                 └─ malloc
+    0.19      —           │  │                    └─ asm_exc_page_fault
+    0.19      —           │  │                       └─ exc_page_fault
+    0.19      —           │  │                          └─ do_user_addr_fault
+    0.19      —           │  │                             └─ handle_mm_fault
+    0.19      —           │  │                                └─ __handle_mm_fault
+    0.19      —           │  │                                   └─ handle_pte_fault
+    0.19      —           │  │                                      └─ do_anonymous_page
+    0.19   0.19           │  │                                         └─ mem_cgroup_commit_charge
+    0.66      —           │  ├─ yolofs_bench::workloads::emit_op_result
+    0.66   0.19           │  │  └─ <std::io::stdio::StdoutLock as std::io::Write>::write_all
+    0.46      —           │  │     └─ write
+    0.46      —           │  │        └─ entry_SYSCALL_64_after_hwframe
+    0.46      —           │  │           └─ do_syscall_64
+    0.46      —           │  │              └─ x64_sys_call
+    0.46      —           │  │                 └─ __x64_sys_write
+    0.46      —           │  │                    └─ ksys_write
+    0.46      —           │  │                       └─ vfs_write
+    0.46   0.46           │  │                          └─ pipe_write
+    0.58      —           │  ├─ open64
+    0.58      —           │  │  └─ entry_SYSCALL_64_after_hwframe
+    0.58      —           │  │     └─ do_syscall_64
+    0.58      —           │  │        └─ x64_sys_call
+    0.58      —           │  │           └─ __x64_sys_openat
+    0.58      —           │  │              └─ do_sys_openat2
+    0.58      —           │  │                 └─ do_filp_open
+    0.58      —           │  │                    └─ path_openat
+    0.58      —           │  │                       └─ open_last_lookups
+    0.58      —           │  │                          └─ lookup_open.isra.0
+    0.58      —           │  │                             └─ d_alloc_parallel
+    0.58      —           │  │                                └─ __d_alloc
+    0.58   0.58           │  │                                   └─ kmem_cache_alloc_lru
+    0.41      —           │  └─ wait4
+    0.41      —           │     └─ entry_SYSCALL_64_after_hwframe
+    0.41      —           │        └─ do_syscall_64
+    0.41      —           │           └─ x64_sys_call
+    0.41      —           │              └─ __x64_sys_wait4
+    0.41      —           │                 └─ __do_sys_wait4
+    0.41      —           │                    └─ kernel_wait4
+    0.41      —           │                       └─ do_wait
+    0.22      —           │                          ├─ __do_wait
+    0.22      —           │                          │  └─ wait_consider_task
+    0.22      —           │                          │     └─ wait_task_zombie
+    0.22      —           │                          │        └─ release_task
+    0.22      —           │                          │           └─ proc_flush_pid
+    0.22   0.22           │                          │              └─ d_invalidate
+    0.19      —           │                          └─ schedule
+    0.19      —           │                             └─ __schedule
+    0.19      —           │                                └─ dequeue_task
+    0.19      —           │                                   └─ dequeue_task_fair
+    0.19      —           │                                      └─ dequeue_entity
+    0.19      —           │                                         └─ update_cfs_group
+    0.19   0.19           │                                            └─ reweight_entity
+    0.26      —           └─ serde_json::de::from_trait
+    0.26      —              └─ asm_exc_page_fault
+    0.26      —                 └─ exc_page_fault
+    0.26      —                    └─ do_user_addr_fault
+    0.26      —                       └─ handle_mm_fault
+    0.26      —                          └─ __handle_mm_fault
+    0.26      —                             └─ handle_pte_fault
+    0.26      —                                └─ do_fault
+    0.26      —                                   └─ do_read_fault
+    0.26      —                                      └─ filemap_map_pages
+    0.26   0.26                                         └─ srso_safe_ret
