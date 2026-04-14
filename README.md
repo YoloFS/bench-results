@@ -1,1 +1,1 @@
-https://yolofs.github.io/bench-results/
+https://yolofs.github.io/bench-results/report
